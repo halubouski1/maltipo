@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Блог питомника мальтипу — уход, здоровье и воспитание щенка</title>
+  <meta name="description" content="Статьи питомника Maltipoo: как подготовиться к приезду щенка мальтипу, прививки и здоровье, адаптация к новому дому и воспитание в первые месяцы.">
+  <!-- Hero = one screen, fixed once in px so mobile toolbars don't make it jump; below 768 the mobile
+       layout scales to the full width: --m = width / 360 (both updated in main.js on width change) -->
+  <script>(function(d){d.style.setProperty("--fixed-vh",innerHeight+"px");if(d.clientWidth<768)d.style.setProperty("--m",d.clientWidth/360)})(document.documentElement);</script>
+  <!-- Hero title starts its fade-in at 1% opacity from the very first paint (no visible → hidden flash,
+       and Chrome counts it for LCP). Skipped with reduced motion; main.js removes it if AOS is missing. -->
+  <script>if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("aos-pending");</script>
+  <!-- One bundled, minified stylesheet built by `npm run build:css` from
+       css/normalize.css, css/vendor/*.css, css/style.css, css/media.css (edit those). -->
+  <link rel="stylesheet" href="css/site.min.css">
+</head>
+<body>
+
+  <!-- Header (Figma 80:62, 159:1728–159:1741, 80:17) — identical on every page -->
+  <header class="header">
+    <div class="container header__inner">
+      <a class="header__logo" href="index.html" aria-label="Maltipoo — на главную">
+        <picture><source type="image/avif" srcset="assets/images/logo-gold-142.avif 142w, assets/images/logo-gold-284.avif 284w, assets/images/logo-gold-426.avif 426w" sizes="142px"><img class="header__logo-img" src="assets/images/logo-gold-426.webp" srcset="assets/images/logo-gold-142.webp 142w, assets/images/logo-gold-284.webp 284w, assets/images/logo-gold-426.webp 426w" sizes="142px" width="142" height="32" alt="" fetchpriority="high"></picture>
+      </a>
+      <nav class="header__nav" aria-label="Основное меню">
+        <a class="header__link" href="about.html">О питомнике</a>
+        <a class="header__link" href="catalog.html">Каталог щенков</a>
+        <a class="header__link" href="shop.html">Товары</a>
+        <a class="header__link" href="delivery.html">Доставка</a>
+        <a class="header__link" href="reviews.html">Отзывы</a>
+        <a class="header__link" href="faq.html">FAQ</a>
+        <a class="header__link" href="blog.html">Блог</a>
+        <a class="header__link" href="contacts.html">Контакты</a>
+      </nav>
+      <a class="header__social" href="contacts.html#contact-form" data-popup-open="consult" aria-haspopup="dialog">Задать вопрос в соц сетях</a>
+      <a class="header__call" href="tel:+79999999999">Позвонить</a>
+      <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="menu" data-menu-toggle>
+        <span class="burger__lines" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Menu (Figma 254:3059 on the 254:1625 frame: white card 556 × 1030 at 32px from the right, 120 from the top) -->
+  <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Меню" data-menu data-lenis-prevent hidden>
+    <div class="menu__overlay" data-dialog-close></div>
+    <div class="menu__panel">
+      <button class="menu__close" type="button" aria-label="Закрыть меню" data-dialog-close><span class="icon icon--close" aria-hidden="true"></span></button>
+      <p class="menu__label">Меню</p>
+      <nav class="menu__nav" aria-label="Меню">
+        <a class="menu__link" href="about.html">О нашем питомнике</a>
+        <a class="menu__link" href="index.html#growth">О породе</a>
+        <a class="menu__link" href="catalog.html">Каталог</a>
+        <a class="menu__link" href="shop.html">Товары</a>
+        <a class="menu__link" href="delivery.html">Доставка</a>
+        <a class="menu__link" href="reviews.html">Отзывы клиентов</a>
+        <a class="menu__link" href="faq.html">FAQ</a>
+        <a class="menu__link" href="blog.html">Блог/статьи</a>
+        <a class="menu__link" href="contacts.html">Контакты</a>
+      </nav>
+      <p class="menu__hours"><span class="menu__hours-label">График работы<span class="icon icon--sparkle" aria-hidden="true"></span></span><span class="menu__hours-time">пн-вс 10:00-20:00</span></p>
+    </div>
+  </div>
+
+  <!-- Consultation popup (Figma 254:3696 / mobile 254:4794; thank-you state 254:5502 / 254:6570), opened by every [data-popup-open="consult"] -->
+  <div class="popup" id="consult" role="dialog" aria-modal="true" aria-labelledby="consult-title" data-popup="consult" data-lenis-prevent hidden>
+    <div class="popup__overlay" data-dialog-close></div>
+    <div class="popup__panel">
+      <button class="popup__close" type="button" aria-label="Закрыть" data-dialog-close><span class="icon icon--close" aria-hidden="true"></span></button>
+      <form class="popup__form" action="#" method="post" novalidate data-lead-form data-msg-name-empty="Введите имя" data-msg-name-short="Слишком короткое имя" data-msg-phone-empty="Введите телефон" data-msg-phone-invalid="Проверьте номер" data-msg-email-invalid="Проверьте e-mail" data-msg-consent-empty="Нужно согласие">
+        <p class="popup__title" id="consult-title">Оставить заявку на консультацию</p>
+        <div class="field-wrap popup__field">
+          <label class="visually-hidden" for="consult-name">Имя</label>
+          <input class="field popup__input" id="consult-name" name="name" type="text" placeholder="Имя" autocomplete="name" data-validate="name" aria-describedby="consult-name-error">
+          <span class="field-error" id="consult-name-error" aria-live="polite"></span>
+        </div>
+        <div class="field-wrap popup__field">
+          <label class="visually-hidden" for="consult-phone">Телефон</label>
+          <input class="field popup__input" id="consult-phone" name="phone" type="tel" inputmode="tel" placeholder="+7 (000)-000-00-00" autocomplete="tel" data-validate="phone" aria-describedby="consult-phone-error">
+          <span class="field-error" id="consult-phone-error" aria-live="polite"></span>
+        </div>
+        <div class="field-wrap popup__field">
+          <label class="visually-hidden" for="consult-email">E-mail</label>
+          <input class="field popup__input" id="consult-email" name="email" type="email" inputmode="email" placeholder="example@mail.com" autocomplete="email" data-validate="email" aria-describedby="consult-email-error">
+          <span class="field-error" id="consult-email-error" aria-live="polite"></span>
+        </div>
+        <div class="field-wrap popup__consent">
+          <input class="popup__check" id="consult-consent" name="consent" type="checkbox" value="yes" data-validate="consent" aria-describedby="consult-consent-error">
+          <label class="popup__consent-text" for="consult-consent">Даю согласие на обработку <a href="#">персональных данных</a> и на получение рассылки</label>
+          <span class="field-error" id="consult-consent-error" aria-live="polite"></span>
+        </div>
+        <button class="btn btn--dark popup__btn popup__submit" type="submit">Отправить<span class="btn__icon" aria-hidden="true"></span></button>
+      </form>
+      <div class="popup__thanks">
+        <p class="popup__title popup__thanks-title" id="consult-thanks-title" tabindex="-1">Спасибо за заявку! <br>Мы в ближайшее время свяжемся с вами</p>
+        <a class="btn btn--dark popup__btn popup__back" href="index.html" data-popup-back>Вернуться на главную<span class="btn__icon" aria-hidden="true"></span></a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- Head (Figma 177:1789, 0–880: glow 177:1795, kicker 177:1853, the word 177:2307 (SVG, glyphs 46,315), lead 177:2127) -->
+    <section class="blog-head" id="top">
+      <div class="blog-head__glow" aria-hidden="true"></div>
+      <div class="container blog-head__inner">
+        <p class="tag-pill blog-head__tag"><span class="icon icon--paw" aria-hidden="true"></span>О щенках, их уходе и воспитании</p>
+        <h1 class="blog-head__title"><img src="assets/images/decor/text-blog.svg" width="843" height="270" alt="Блог"></h1>
+        <p class="blog-head__lead">Появление щенка меняет привычный ритм дома — и приносит множество вопросов. Что подготовить к первой встрече? Как помочь малышу освоиться? С чего начать уход и обучение?</p>
+      </div>
+    </section>
+
+    <!-- Articles (Figma 880–3073: filters 177:2219 / 177:2225 at 912; two 899 × 662 cards from 1012, 30 apart;
+         rows of three 595 × 378 from 1861, 22 apart, 581 per row). main.js initBlog filters by category,
+         sorts by date and puts the first two articles found into the large row -->
+    <section class="blog-list" aria-label="Статьи" data-blog>
+      <div class="container blog-list__inner">
+        <div class="blog-list__filters">
+          <div class="dropdown blog-filter" data-dropdown data-value="" data-blog-filter="category">
+            <button class="blog-filter__toggle dropdown__toggle" id="blog-category" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="blog-category-list"><span class="dropdown__value" data-dropdown-value>Категории</span><span class="blog-filter__icon" aria-hidden="true"><span class="icon icon--arrow"></span></span></button>
+            <ul class="dropdown__list blog-filter__list" id="blog-category-list" role="listbox" tabindex="-1" aria-label="Категории" hidden>
+              <li class="dropdown__option" id="blog-category-all" role="option" aria-selected="false" data-value="all">Все статьи</li>
+              <li class="dropdown__option" id="blog-category-prep" role="option" aria-selected="false" data-value="prep">Подготовка к переезду</li>
+              <li class="dropdown__option" id="blog-category-health" role="option" aria-selected="false" data-value="health">Здоровье</li>
+              <li class="dropdown__option" id="blog-category-adaptation" role="option" aria-selected="false" data-value="adaptation">Адаптация</li>
+              <li class="dropdown__option" id="blog-category-training" role="option" aria-selected="false" data-value="training">Воспитание</li>
+            </ul>
+          </div>
+          <div class="dropdown blog-filter" data-dropdown data-value="" data-blog-filter="sort">
+            <button class="blog-filter__toggle dropdown__toggle" id="blog-sort" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="blog-sort-list"><span class="dropdown__value" data-dropdown-value>Сортировать по</span><span class="blog-filter__icon" aria-hidden="true"><span class="icon icon--arrow"></span></span></button>
+            <ul class="dropdown__list blog-filter__list" id="blog-sort-list" role="listbox" tabindex="-1" aria-label="Сортировать по" hidden>
+              <li class="dropdown__option" id="blog-sort-new" role="option" aria-selected="false" data-value="new">Сначала новые</li>
+              <li class="dropdown__option" id="blog-sort-old" role="option" aria-selected="false" data-value="old">Сначала старые</li>
+            </ul>
+          </div>
+        </div>
+        <div class="blog-list__featured" data-blog-featured>
+            <article class="post" data-post data-category="prep" data-date="2026-06-15">
+              <a class="post__link" href="article.html">
+                <span class="post__media">
+                  <picture><source type="image/avif" srcset="assets/images/shop-why-1404.avif 1404w, assets/images/shop-why-1604.avif 1604w" sizes="(min-width: 1920px) 1180px, (min-width: 1280px) 885px, 100vw"><img class="post__photo post__photo--left" src="assets/images/shop-why-1604.webp" srcset="assets/images/shop-why-1404.webp 1404w, assets/images/shop-why-1604.webp 1604w" sizes="(min-width: 1920px) 1180px, (min-width: 1280px) 885px, 100vw" width="1604" height="980" alt="Три кремовых мальтипу у плюшевой лежанки" loading="lazy" decoding="async"></picture>
+                  <span class="tag post__date"><time datetime="2026-06-15">15.06.2026</time></span>
+                  <span class="post__arrow" aria-hidden="true"><span class="icon icon--arrow-up-right"></span></span>
+                </span>
+                <span class="post__title">Как подготовиться к приезду щенка?</span>
+              </a>
+            </article>
+            <article class="post" data-post data-category="health" data-date="2026-03-18">
+              <a class="post__link" href="article.html">
+                <span class="post__media">
+                  <picture><source type="image/avif" srcset="assets/images/grow-1-640.avif 640w, assets/images/grow-1-960.avif 960w, assets/images/grow-1-1342.avif 1342w, assets/images/grow-1-1678.avif 1678w" sizes="(min-width: 1920px) 1180px, (min-width: 1280px) 885px, 100vw"><img class="post__photo" src="assets/images/grow-1-1678.webp" srcset="assets/images/grow-1-640.webp 640w, assets/images/grow-1-960.webp 960w, assets/images/grow-1-1342.webp 1342w, assets/images/grow-1-1678.webp 1678w" sizes="(min-width: 1920px) 1180px, (min-width: 1280px) 885px, 100vw" width="1678" height="937" alt="Абрикосовый мальтипу в сером кресле" loading="lazy" decoding="async"></picture>
+                  <span class="tag post__date"><time datetime="2026-03-18">18.03.2026</time></span>
+                  <span class="post__arrow" aria-hidden="true"><span class="icon icon--arrow-up-right"></span></span>
+                </span>
+                <span class="post__title">Сохраняем иммунитет щенку: прививки</span>
+              </a>
+            </article>
+        </div>
+        <div class="blog-list__grid" data-blog-grid>
+            <article class="post" data-post data-category="prep" data-date="2025-05-05">
+              <a class="post__link" href="article.html">
+                <span class="post__media">
+                  <picture><source type="image/avif" srcset="assets/images/blog-woman-674.avif 674w, assets/images/blog-woman-1176.avif 1176w, assets/images/blog-woman-1672.avif 1672w" sizes="(min-width: 1920px) 680px, (min-width: 1280px) 510px, 50vw"><img class="post__photo" src="assets/images/blog-woman-1672.webp" srcset="assets/images/blog-woman-674.webp 674w, assets/images/blog-woman-1176.webp 1176w, assets/images/blog-woman-1672.webp 1672w" sizes="(min-width: 1920px) 680px, (min-width: 1280px) 510px, 50vw" width="1672" height="941" alt="Девушка обнимает абрикосового мальтипу на природе" loading="lazy" decoding="async"></picture>
+                  <span class="tag post__date"><time datetime="2025-05-05">05.05.2025</time></span>
+                  <span class="post__arrow" aria-hidden="true"><span class="icon icon--arrow-up-right"></span></span>
+                </span>
+                <span class="post__title">Когда можно забирать малыша <br>Мальтипу домой?</span>
+              </a>
+            </article>
+            <article class="post" data-post data-category="adaptation" data-date="2025-05-05">
+              <a class="post__link" href="article.html">
+                <span class="post__media">
+                  <picture><source type="image/avif" srcset="assets/images/blog-roses-674.avif 674w, assets/images/blog-roses-1176.avif 1176w, assets/images/blog-roses-1672.avif 1672w" sizes="(min-width: 1920px) 680px, (min-width: 1280px) 510px, 50vw"><img class="post__photo" src="assets/images/blog-roses-1672.webp" srcset="assets/images/blog-roses-674.webp 674w, assets/images/blog-roses-1176.webp 1176w, assets/images/blog-roses-1672.webp 1672w" sizes="(min-width: 1920px) 680px, (min-width: 1280px) 510px, 50vw" width="1672" height="941" alt="Щенок мальтипу в бежевой лежанке с букетом роз" loading="lazy" decoding="async"></picture>
+                  <span class="tag post__date"><time datetime="2025-05-05">05.05.2025</time></span>
+                  <span class="post__arrow" aria-hidden="true"><span class="icon icon--arrow-up-right"></span></span>
+                </span>
+                <span class="post__title">Как адаптировать малыша <br>Мальтипу к новому дому?</span>
+              </a>
+            </article>
+            <article class="post" data-post data-category="training" data-date="2025-05-05">
+              <a class="post__link" href="article.html">
+                <span class="post__media">
+                  <picture><source type="image/avif" srcset="assets/images/blog-podium-663.avif 663w, assets/images/blog-podium-1023.avif 1023w, assets/images/blog-podium-1559.avif 1559w" sizes="(min-width: 1920px) 680px, (min-width: 1280px) 510px, 50vw"><img class="post__photo" src="assets/images/blog-podium-1559.webp" srcset="assets/images/blog-podium-663.webp 663w, assets/images/blog-podium-1023.webp 1023w, assets/images/blog-podium-1559.webp 1559w" sizes="(min-width: 1920px) 680px, (min-width: 1280px) 510px, 50vw" width="1559" height="1009" alt="Два пушистых щенка мальтипу на подиуме" loading="lazy" decoding="async"></picture>
+                  <span class="tag post__date"><time datetime="2025-05-05">05.05.2025</time></span>
+                  <span class="post__arrow" aria-hidden="true"><span class="icon icon--arrow-up-right"></span></span>
+                </span>
+                <span class="post__title">Дрессировка хвостиков <br>в первые три месяца</span>
+              </a>
+            </article>
+            <article class="post" data-post data-category="prep" data-date="2025-05-05">
+              <a class="post__link" href="article.html">
+                <span class="post__media">
+                  <picture><source type="image/avif" srcset="assets/images/blog-woman-674.avif 674w, assets/images/blog-woman-1176.avif 1176w, assets/images/blog-woman-1672.avif 1672w" sizes="(min-width: 1920px) 680px, (min-width: 1280px) 510px, 50vw"><img class="post__photo" src="assets/images/blog-woman-1672.webp" srcset="assets/images/blog-woman-674.webp 674w, assets/images/blog-woman-1176.webp 1176w, assets/images/blog-woman-1672.webp 1672w" sizes="(min-width: 1920px) 680px, (min-width: 1280px) 510px, 50vw" width="1672" height="941" alt="Девушка обнимает абрикосового мальтипу на природе" loading="lazy" decoding="async"></picture>
+                  <span class="tag post__date"><time datetime="2025-05-05">05.05.2025</time></span>
+                  <span class="post__arrow" aria-hidden="true"><span class="icon icon--arrow-up-right"></span></span>
+                </span>
+                <span class="post__title">Когда можно забирать малыша <br>Мальтипу домой?</span>
+              </a>
+            </article>
+            <article class="post" data-post data-category="adaptation" data-date="2025-05-05">
+              <a class="post__link" href="article.html">
+                <span class="post__media">
+                  <picture><source type="image/avif" srcset="assets/images/blog-roses-674.avif 674w, assets/images/blog-roses-1176.avif 1176w, assets/images/blog-roses-1672.avif 1672w" sizes="(min-width: 1920px) 680px, (min-width: 1280px) 510px, 50vw"><img class="post__photo" src="assets/images/blog-roses-1672.webp" srcset="assets/images/blog-roses-674.webp 674w, assets/images/blog-roses-1176.webp 1176w, assets/images/blog-roses-1672.webp 1672w" sizes="(min-width: 1920px) 680px, (min-width: 1280px) 510px, 50vw" width="1672" height="941" alt="Щенок мальтипу в бежевой лежанке с букетом роз" loading="lazy" decoding="async"></picture>
+                  <span class="tag post__date"><time datetime="2025-05-05">05.05.2025</time></span>
+                  <span class="post__arrow" aria-hidden="true"><span class="icon icon--arrow-up-right"></span></span>
+                </span>
+                <span class="post__title">Как адаптировать малыша <br>Мальтипу к новому дому?</span>
+              </a>
+            </article>
+            <article class="post" data-post data-category="training" data-date="2025-05-05">
+              <a class="post__link" href="article.html">
+                <span class="post__media">
+                  <picture><source type="image/avif" srcset="assets/images/blog-podium-663.avif 663w, assets/images/blog-podium-1023.avif 1023w, assets/images/blog-podium-1559.avif 1559w" sizes="(min-width: 1920px) 680px, (min-width: 1280px) 510px, 50vw"><img class="post__photo" src="assets/images/blog-podium-1559.webp" srcset="assets/images/blog-podium-663.webp 663w, assets/images/blog-podium-1023.webp 1023w, assets/images/blog-podium-1559.webp 1559w" sizes="(min-width: 1920px) 680px, (min-width: 1280px) 510px, 50vw" width="1559" height="1009" alt="Два пушистых щенка мальтипу на подиуме" loading="lazy" decoding="async"></picture>
+                  <span class="tag post__date"><time datetime="2025-05-05">05.05.2025</time></span>
+                  <span class="post__arrow" aria-hidden="true"><span class="icon icon--arrow-up-right"></span></span>
+                </span>
+                <span class="post__title">Дрессировка хвостиков <br>в первые три месяца</span>
+              </a>
+            </article>
+        </div>
+        <p class="blog-list__empty" data-blog-empty role="status" hidden>В этой категории пока нет статей.</p>
+      </div>
+    </section>
+
+    <!-- Questions (Figma 178:2308, 3073–4414: blush band, title 178:2310, lead 178:2333, ® 178:2311, rule 178:2323,
+         photo card 178:2312 25,3439 1852 × 890 radius 20, buttons 178:2345 / 178:2335) -->
+    <section class="blog-cta" aria-labelledby="blog-cta-title">
+      <div class="container blog-cta__inner">
+        <h2 class="blog-cta__title" id="blog-cta-title">У каждого малыша — своя история. <br>У вас — свои вопросы</h2>
+        <p class="blog-cta__lead">Статьи помогают разобраться в общих темах, а личный разговор — обсудить то, что важно именно вам. Расскажите о своём образе жизни, ожиданиях и сомнениях. Поможем сориентироваться <br class="br-design">в выборе щенка и подготовке к его появлению.</p>
+        <img class="blog-cta__mark" src="assets/images/decor/text-registered.svg" width="83" height="76" alt="" aria-hidden="true">
+        <span class="blog-cta__rule" aria-hidden="true"></span>
+        <div class="blog-cta__card">
+          <picture><source type="image/avif" srcset="assets/images/grow-1-1342.avif 1342w, assets/images/grow-1-1678.avif 1678w" sizes="(min-width: 1920px) 1852px, (min-width: 1280px) 1389px, 100vw"><img class="blog-cta__photo" src="assets/images/grow-1-1678.webp" srcset="assets/images/grow-1-1342.webp 1342w, assets/images/grow-1-1678.webp 1678w" sizes="(min-width: 1920px) 1852px, (min-width: 1280px) 1389px, 100vw" width="1678" height="937" alt="Абрикосовый мальтипу в сером кресле" loading="lazy" decoding="async"></picture>
+          <div class="blog-cta__actions">
+            <a class="btn blog-cta__ask" href="contacts.html#contact-form" data-popup-open="consult" aria-haspopup="dialog">Задать вопрос</a>
+            <a class="btn blog-cta__btn" href="catalog.html">Посмотреть щенков<span class="btn__icon" aria-hidden="true"></span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer (Figma 80:800 contacts card 22,20610 1880×460; columns 80:841–80:857; bottom row 169:2, 158:256–158:257, 169:11, 80:840, 80:858) -->
+  <footer class="footer" id="contacts">
+    <div class="container">
+      <div class="contact-card">
+        <div class="contact-card__bg" aria-hidden="true"></div>
+        <picture><source type="image/avif" srcset="assets/images/avito-puppy-525.avif 525w, assets/images/avito-puppy-806.avif 806w, assets/images/avito-puppy-1075.avif 1075w, assets/images/avito-puppy-1436.avif 1436w" sizes="(min-width: 1920px) 525px, (min-width: 1280px) 394px, 100vw"><img class="contact-card__puppy" src="assets/images/avito-puppy-1436.webp" srcset="assets/images/avito-puppy-525.webp 525w, assets/images/avito-puppy-806.webp 806w, assets/images/avito-puppy-1075.webp 1075w, assets/images/avito-puppy-1436.webp 1436w" sizes="(min-width: 1920px) 525px, (min-width: 1280px) 394px, 100vw" width="1436" height="1096" alt="" loading="lazy" decoding="async"></picture>
+        <div class="contact-card__call">
+          <p class="contact-card__label"><span class="icon icon--sparkle" aria-hidden="true"></span>Позвоните нам</p>
+          <a class="contact-card__phone" href="tel:+79999999999">8 (999) 999 99-99</a>
+          <a class="contact-card__more" href="catalog.html">Смотреть щеночков<span class="icon icon--arrow-up-right" aria-hidden="true"></span></a>
+        </div>
+        <div class="contact-card__year">
+          <span class="contact-card__copy">© 2026</span>
+          <span class="contact-card__year-rule" aria-hidden="true"></span>
+          <button class="to-top" type="button" aria-label="Наверх" data-scroll-top><span class="icon icon--arrow" aria-hidden="true"></span></button>
+        </div>
+        <div class="contact-card__place">
+          <p class="contact-card__label contact-card__label--right">Мы находимся тут<span class="icon icon--sparkle" aria-hidden="true"></span></p>
+          <address class="contact-card__address">Москва, улица Поднебесная <br class="br-design">12, строение 45 эт. 2, 123112</address>
+        </div>
+        <ul class="socials">
+          <li class="socials__row">
+            <a class="socials__link" href="#">max<span class="link-dot" aria-hidden="true"></span></a>
+            <a class="socials__link" href="#">рутуб<span class="link-dot" aria-hidden="true"></span></a>
+          </li>
+          <li class="socials__row">
+            <a class="socials__link" href="#">telegram<span class="link-dot" aria-hidden="true"></span></a>
+            <a class="socials__link" href="#">whatsapp<span class="link-dot" aria-hidden="true"></span></a>
+            <a class="socials__link" href="#">вконтакте<span class="link-dot" aria-hidden="true"></span></a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer__columns">
+        <nav class="footer__group footer__group--main" aria-label="Главная">
+          <p class="footer__title">Главная</p>
+          <ul class="footer__links">
+            <li><a href="about.html">О нашем питомнике</a></li>
+            <li><a href="index.html#growth">О породе</a></li>
+            <li><a href="catalog.html">Каталог</a></li>
+            <li><a href="shop.html">Товары</a></li>
+            <li><a href="delivery.html">Доставка</a></li>
+            <li><a href="reviews.html">Отзывы клиентов</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="blog.html">Блог/статьи</a></li>
+          </ul>
+        </nav>
+        <nav class="footer__group footer__group--policy" aria-label="Политика">
+          <p class="footer__title">Политика</p>
+          <ul class="footer__links">
+            <li><a href="#">Условия сохранения информации</a></li>
+            <li><a href="#">Приватность</a></li>
+            <li><a href="#">Обработка персональных данных</a></li>
+          </ul>
+        </nav>
+        <nav class="footer__group footer__group--contacts" aria-label="Контакты">
+          <p class="footer__title">Контакты</p>
+          <ul class="footer__links">
+            <li><a href="contacts.html#map">Адрес</a></li>
+            <li><a href="contacts.html#contact-form">Обратная связь</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <span class="footer__divider" aria-hidden="true"></span>
+      <div class="footer__bottom">
+        <picture><source type="image/avif" srcset="assets/images/logo-gold-142.avif 142w, assets/images/logo-gold-284.avif 284w, assets/images/logo-gold-426.avif 426w" sizes="142px"><img class="footer__logo" src="assets/images/logo-gold-426.webp" srcset="assets/images/logo-gold-142.webp 142w, assets/images/logo-gold-284.webp 284w, assets/images/logo-gold-426.webp 426w" sizes="142px" width="142" height="32" alt="Maltipoo" loading="lazy" decoding="async"></picture>
+        <p class="footer__hours"><span class="footer__hours-label">График работы<span class="icon icon--sparkle" aria-hidden="true"></span></span><span class="footer__hours-time">пн-вс 10:00-20:00</span></p>
+        <p class="footer__legal footer__legal--name">ИП Пухова Анастасия Александровна</p>
+        <p class="footer__legal footer__legal--ogrn">ОГРНИП: 321774600056230</p>
+        <p class="footer__legal footer__legal--inn">ИНН: 745108889886</p>
+        <a class="footer__dev" href="#"><img src="assets/icons/dev-studio.svg" width="57" height="35" alt="">Разработка <br>и дизайн</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- One bundled, minified script built by `npm run build:js` from js/vendor/*.js + js/main.js (edit those). -->
+  <script src="js/site.min.js" defer></script>
+</body>
+</html>

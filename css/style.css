@@ -1,0 +1,7420 @@
+/* Helvetica Neue with Figma's vertical metrics.
+   ascent/descent-override put the cap top at the text-box top, as in Figma
+   (Chrome's default metrics draw it ~0.105em lower). No web licence for
+   Helvetica Neue yet: the system font via local() (Apple devices), Arial
+   elsewhere (see CLAUDE.md → Content flagged). */
+
+@font-face {
+  font-family: "Helvetica Neue Figma";
+  src: local("HelveticaNeue-Light"), local("Helvetica Neue Light");
+  font-weight: 300;
+  ascent-override: 84.25%;
+  descent-override: 31.75%;
+}
+
+@font-face {
+  font-family: "Helvetica Neue Figma";
+  src: local("HelveticaNeue"), local("Helvetica Neue");
+  font-weight: 400;
+  ascent-override: 84.25%;
+  descent-override: 31.75%;
+}
+
+@font-face {
+  font-family: "Helvetica Neue Figma";
+  src: local("HelveticaNeue-Medium"), local("Helvetica Neue Medium");
+  font-weight: 500;
+  ascent-override: 84.25%;
+  descent-override: 31.75%;
+}
+
+@font-face {
+  font-family: "Helvetica Neue Figma";
+  src: local("HelveticaNeue-Bold"), local("Helvetica Neue Bold");
+  font-weight: 700;
+  ascent-override: 84.25%;
+  descent-override: 31.75%;
+}
+
+:root {
+  --font: "Helvetica Neue Figma", "Helvetica Neue", Arial, sans-serif;
+
+  --c-bg: #191310;
+  --c-ink: #342a23;
+  --c-ink-deep: #342626;
+  --c-black: #141414;
+  --c-sand: #decabd;
+  --c-cream: #f7efea;
+  --c-blush: #f1e1d7;
+  --c-family: #e0bcac;
+  --c-eyes: #d2af9d;
+  --c-muted: #9e8f87;
+  --c-tag-ink: #2e2e2e;
+  --c-line: #897c77;
+  --c-line-dark: #4d4640;
+  --c-nav-rule: #b0957e;
+  --c-burger-light: #f2f2f2;
+  --c-footer-link: #564f49;
+  --c-footer-time: #88827d;
+  --c-legal: #676767;
+  --c-year-rule: #acacac;
+  --c-arrow-light: #e6dbd4;
+  --c-slider-next: #decabd;
+  --c-slider-next-ink: #50392b;
+  --c-hover-dark: #4a3b31;
+  --c-hover-ink: #7a5a44;
+  --c-error: #a3412a;
+  --c-white: #fff;
+  --c-hero-card: #16100e;
+  --c-sold: #7d7d7d;
+  --c-reserve-card: #caa495;
+  --c-cell: #251d19;
+  --c-text-soft: #d7c8bf;
+  --c-review-card: #2a1f1a;
+  --c-review-name: #cdcdcd;
+  --c-review-name-dim: #aaafbb;
+  --c-review-role: #5f5f5f;
+  --c-review-text: rgba(181, 183, 189, 0.6);
+  --c-review-rule: rgba(52, 52, 52, 0.2);
+  --c-star: #ccc0b3;
+  --c-pd-text: #7b7b7b;
+  --c-pd-rule: rgba(255, 255, 255, 0.1);
+  --c-pd-border: rgba(255, 255, 255, 0.3);
+  --c-light: #ddd;
+  --c-light-dim: rgba(221, 221, 221, 0.35);
+  --c-map: #0e0e0e;
+  --c-error-light: #e8907a;
+  --c-ink-15: rgba(52, 42, 35, 0.15);
+  --c-ink-35: rgba(52, 42, 35, 0.35);
+  --c-ink-50: rgba(52, 42, 35, 0.5);
+  --c-ink-70: rgba(52, 42, 35, 0.7);
+  --c-ink-75: rgba(52, 42, 35, 0.75);
+  --c-ink-60: rgba(52, 42, 35, 0.6);
+  --c-cream-82: rgba(247, 239, 234, 0.82);
+  --c-black-30: rgba(0, 0, 0, 0.3);
+  --c-white-50: rgba(255, 255, 255, 0.5);
+  --c-white-60: rgba(255, 255, 255, 0.6);
+  --c-shop-1: #a77b5f;
+  --c-shop-2: #75523d;
+  --c-shop-3: #5c3e2b;
+  --c-shop-4: #43291a;
+  --c-overlay: rgba(0, 0, 0, 0.55);
+  --c-shade: #15100d;
+  --c-table-rule: rgba(255, 255, 255, 0.2);
+  --c-white-45: rgba(255, 255, 255, 0.45);
+  /* light veil over the hero video / still: darker at the top (header, note) and the bottom (title) */
+  --hero-veil: linear-gradient(to bottom, rgba(25, 19, 16, 0.42) 0, rgba(25, 19, 16, 0.12) 24%, rgba(25, 19, 16, 0.12) 55%, rgba(25, 19, 16, 0.45) 100%);
+
+  /* Text gradients (Figma fills) */
+  --g-warm: linear-gradient(140.36deg, #f5decc 34.04%, #645248 182.06%);
+  --g-warm-steep: linear-gradient(151.88deg, #f5decc 34.04%, #645248 182.06%);
+  --g-white: linear-gradient(95.33deg, #fff 0.21%, #999 166.48%);
+  --g-white-steep: linear-gradient(104.48deg, #fff 3.23%, #999 150.71%);
+  --g-care: linear-gradient(119.11deg, #f5decc 3.39%, #453931 263.08%);
+  --g-dot: linear-gradient(149.3deg, #c5aa95 0%, #755f4b 100%);
+  --g-arrow-next: linear-gradient(142.19deg, #f3d6c0 21.85%, #746255 311.5%);
+  --g-avito: linear-gradient(to bottom, #847975, #fdf5e9);
+  --g-glass-pill: linear-gradient(90deg, rgba(150, 88, 45, 0.38), rgba(255, 255, 255, 0.04));
+  --g-glass-dark: linear-gradient(90deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.06));
+
+  /* Glow backgrounds: Figma radial fills over --c-bg (layer opacity baked in) */
+  --glow-80: #3b2e27, #2a211c 50%, #191310;
+  --glow-100: #44352d, #2e241f 50%, #191310;
+  --glow-60: #332721, #261d19 50%, #191310;
+
+  /* Figma blurred #191310 rects (σ 100px) as a Gaussian ramp */
+  --fade-ramp: linear-gradient(to bottom,
+    rgba(25, 19, 16, 0) 0, rgba(25, 19, 16, 0.02) 100px, rgba(25, 19, 16, 0.16) 200px,
+    rgba(25, 19, 16, 0.5) 300px, rgba(25, 19, 16, 0.84) 400px, rgba(25, 19, 16, 0.98) 500px, #191310 600px);
+
+  --glass-fill: rgba(255, 255, 255, 0.02);
+  --glass-border: rgba(255, 255, 255, 0.35);
+  --glass-border-soft: rgba(255, 255, 255, 0.12);
+  --glass-border-hover: rgba(255, 255, 255, 0.5);
+  --glass-fill-hover: rgba(255, 255, 255, 0.07);
+  --glass-frame: rgba(255, 255, 255, 0.06);
+  --glass-blur: 20px;
+
+  --radius-tag: 3px;
+  --radius-field: 7px;
+  --radius-sm: 8px;
+  --radius-video: 10px;
+  --radius-card: 12px;
+  --radius-menu: 15px;
+  --radius-lg: 15px;
+  --radius-xl: 20px;
+  --radius-pill: 1000px;
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur: 0.45s;
+}
+
+/* Base */
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-weight: 400;
+  color: var(--c-white);
+  background: var(--c-bg);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: none;
+}
+
+picture {
+  display: contents;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+h1, h2, h3, p, ul, ol, table, address {
+  margin: 0;
+  padding: 0;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+address {
+  font-style: normal;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 0;
+  text-align: left;
+  font-weight: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--c-sand);
+  outline-offset: 3px;
+}
+
+/* Line breaks and labels that exist only in one layout (the mobile Figma frame has its own) */
+.br-compact,
+.label-compact {
+  display: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.container {
+  position: relative;
+}
+
+/* Icons: SVG masks coloured by currentColor */
+
+.icon {
+  display: inline-block;
+  flex: none;
+  width: var(--icon-size, 21px);
+  height: var(--icon-size, 21px);
+  background: currentColor;
+  -webkit-mask: var(--icon) center / contain no-repeat;
+  mask: var(--icon) center / contain no-repeat;
+}
+
+.icon--paw { --icon: url("../assets/icons/paw.svg"); }
+.icon--arrow { --icon: url("../assets/icons/arrow.svg"); }
+.icon--arrow-up-right { --icon: url("../assets/icons/arrow-up-right.svg"); }
+.icon--enter { --icon: url("../assets/icons/enter.svg"); }
+.icon--circle-arrow { --icon: url("../assets/icons/circle-arrow.svg"); }
+.icon--whatsapp { --icon: url("../assets/icons/whatsapp.svg"); }
+.icon--sparkle { --icon: url("../assets/icons/sparkle.svg"); }
+.icon--close { --icon: url("../assets/icons/close.svg"); }
+.icon--star { --icon: url("../assets/icons/star.svg"); }
+.icon--chevron { --icon: url("../assets/icons/chevron.svg"); }
+
+.emoji {
+  display: inline-block;
+  margin-left: 22px;
+  font-size: 35px;
+  line-height: 1.2;
+  vertical-align: middle;
+}
+
+/* Text helpers */
+
+.gradient-text {
+  background: var(--g-warm);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gradient-text--white {
+  background-image: var(--g-white);
+}
+
+.gradient-text--care {
+  background-image: var(--g-care);
+}
+
+.body-text {
+  font-size: 18px;
+  line-height: 33px;
+  letter-spacing: -0.54px;
+  color: var(--c-muted);
+}
+
+.body-text p + p {
+  margin-top: 33px;
+}
+
+/* "Сколько стоит / Мальтипу" two-size titles (Figma 80:308, 80:926, 80:928) */
+.split-title {
+  font-weight: 400;
+  line-height: 73px;
+  letter-spacing: -2.4px;
+  color: var(--c-white);
+}
+
+.split-title__small,
+.split-title__big {
+  display: block;
+}
+
+.split-title__small {
+  font-size: 35px;
+}
+
+.split-title__big {
+  font-size: 85px;
+}
+
+.rule {
+  position: absolute;
+  height: 1px;
+  transform-origin: left;
+}
+
+.rule--light { background: rgba(255, 255, 255, 0.15); }
+.rule--ink { background: rgba(52, 42, 35, 0.3); }
+.rule--faint { background: rgba(0, 0, 0, 0.2); }
+
+/* Buttons (Figma 80:235 and copies): pill 64px, label left of a 51px icon circle.
+   min-width = the Figma width; padding-right reserves the circle, so a longer
+   label widens the pill. Hover: a fill grows from the circle (::before). */
+
+.btn {
+  --btn-bg: var(--c-cream);
+  --btn-fg: var(--c-ink);
+  --btn-icon-bg: var(--c-ink);
+  --btn-icon-fg: var(--c-white);
+  --btn-hover-bg: var(--c-sand);
+  --btn-hover-fg: var(--c-ink);
+  --btn-h: 64px;
+  --btn-w: 276px;
+  --btn-pl: 24px;
+  --btn-pr: 59px;
+  --btn-icon: 51px;
+  --btn-icon-inset: 7px;
+  --btn-paw: 21px;
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--btn-w);
+  height: var(--btn-h);
+  padding: 0 var(--btn-pr) 0 var(--btn-pl);
+  box-sizing: border-box;
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.48px;
+  white-space: nowrap;
+  color: var(--btn-fg);
+  background: var(--btn-bg);
+  transition: color var(--dur) var(--ease);
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--btn-hover-bg);
+  clip-path: circle(0 at calc(100% - var(--btn-icon-inset) - var(--btn-icon) / 2) 50%);
+  transition: clip-path 0.55s var(--ease);
+}
+
+.btn__icon {
+  position: absolute;
+  top: var(--btn-icon-inset);
+  right: var(--btn-icon-inset);
+  width: var(--btn-icon);
+  height: var(--btn-icon);
+  border-radius: 50%;
+  background: var(--btn-icon-bg);
+  transition: transform var(--dur) var(--ease), background-color var(--dur) var(--ease);
+}
+
+.btn__icon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: var(--btn-paw);
+  height: var(--btn-paw);
+  background: var(--btn-icon-fg);
+  -webkit-mask: url("../assets/icons/paw.svg") center / contain no-repeat;
+  mask: url("../assets/icons/paw.svg") center / contain no-repeat;
+  transition: transform 0.6s var(--ease);
+}
+
+.btn:hover,
+.btn:focus-visible {
+  color: var(--btn-hover-fg);
+}
+
+.btn:hover::before,
+.btn:focus-visible::before {
+  clip-path: circle(150% at calc(100% - var(--btn-icon-inset) - var(--btn-icon) / 2) 50%);
+}
+
+.btn:hover .btn__icon,
+.btn:focus-visible .btn__icon {
+  transform: scale(1.06);
+}
+
+.btn:hover .btn__icon::after,
+.btn:focus-visible .btn__icon::after {
+  transform: rotate(-18deg) scale(1.1);
+}
+
+.btn--dark {
+  --btn-bg: var(--c-ink);
+  --btn-fg: var(--c-sand);
+  --btn-icon-bg: var(--c-sand);
+  --btn-icon-fg: var(--c-ink);
+  --btn-hover-bg: var(--c-hover-dark);
+  --btn-hover-fg: var(--c-white);
+}
+
+.btn--white {
+  --btn-bg: var(--c-white);
+  --btn-hover-bg: var(--c-cream);
+}
+
+.btn--glass {
+  --btn-bg: var(--glass-fill);
+  --btn-fg: var(--c-white);
+  --btn-hover-bg: rgba(255, 255, 255, 0.14);
+  --btn-hover-fg: var(--c-white);
+  font-weight: 400;
+  border: 1px solid var(--glass-border);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+}
+
+/* WhatsApp glass button (Figma 80:480): the glyph replaces the circle */
+.btn--whatsapp {
+  --btn-icon: 43px;
+  --btn-icon-inset: 10px;
+}
+
+.btn--whatsapp .btn__icon {
+  background: var(--c-white);
+  border-radius: 0;
+  -webkit-mask: url("../assets/icons/whatsapp.svg") center / contain no-repeat;
+  mask: url("../assets/icons/whatsapp.svg") center / contain no-repeat;
+}
+
+.btn--whatsapp .btn__icon::after {
+  content: none;
+}
+
+.btn--wide {
+  --btn-w: 374px;
+  --btn-pl: 34px;
+}
+
+.btn--mid {
+  --btn-w: 365px;
+  --btn-pr: 148px;
+}
+
+.btn--video {
+  --btn-w: 341px;
+  --btn-pl: 34px;
+  --btn-pr: 64px;
+}
+
+.btn--sm {
+  --btn-h: 50px;
+  --btn-w: 252px;
+  --btn-pr: 60px;
+  --btn-icon: 40px;
+  --btn-icon-inset: 5px;
+  --btn-paw: 17px;
+}
+
+/* Glass bits */
+
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 37px;
+  height: 40px;
+  padding: 0 21px;
+  box-sizing: border-box;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-pill);
+  background: var(--glass-fill);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.42px;
+}
+
+.tag-pill .icon {
+  --icon-size: 16px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 33px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  border: 1px solid var(--glass-border-soft);
+  border-radius: var(--radius-tag);
+  background: rgba(0, 0, 0, 0.02);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  font-size: 16px;
+  line-height: 1.2;
+  letter-spacing: -0.48px;
+  white-space: nowrap;
+  color: var(--c-white);
+}
+
+.tag--light {
+  border-color: var(--c-white);
+  background: var(--c-white);
+  color: var(--c-tag-ink);
+}
+
+/* Small "↗" dot after social links (Figma 80:813, 80:814) */
+.link-dot {
+  position: relative;
+  display: inline-block;
+  flex: none;
+  width: 21px;
+  height: 21px;
+  margin-left: 10px;
+  border-radius: 50%;
+  background: var(--c-sand);
+  vertical-align: middle;
+  transition: transform var(--dur) var(--ease);
+}
+
+.link-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 12px;
+  height: 12px;
+  background: var(--c-black);
+  -webkit-mask: url("../assets/icons/arrow-up-right.svg") center / contain no-repeat;
+  mask: url("../assets/icons/arrow-up-right.svg") center / contain no-repeat;
+  transition: transform var(--dur) var(--ease);
+}
+
+a:hover > .link-dot,
+a:focus-visible > .link-dot {
+  transform: scale(1.15);
+}
+
+a:hover > .link-dot::after,
+a:focus-visible > .link-dot::after {
+  transform: rotate(45deg);
+}
+
+/* "+" annotation dot and its hairline (Figma 80:147–80:149, 80:150–80:152) */
+.note-dot {
+  position: absolute;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  background: var(--g-dot);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 33px;
+  text-align: center;
+  color: var(--c-white);
+}
+
+.note-dot::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border: 1px solid rgba(197, 170, 149, 0.6);
+  border-radius: 50%;
+  animation: note-pulse 2.6s var(--ease) infinite;
+}
+
+@keyframes note-pulse {
+  0% { opacity: 0.9; transform: scale(0.7); }
+  70%, 100% { opacity: 0; transform: scale(1.5); }
+}
+
+.note-line {
+  position: absolute;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* Feature chips (Figma 80:281 and the care items 80:316…): glass box with a paw dot */
+.feature-chip {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 364px;
+  height: 94px;
+  padding: 0 20px 0 116px;
+  box-sizing: border-box;
+  border: 1px solid var(--glass-frame);
+  border-radius: var(--radius-card);
+  background: var(--glass-fill);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.06;
+  letter-spacing: -0.45px;
+  color: var(--c-sand);
+}
+
+.feature-chip__icon {
+  position: absolute;
+  top: 26px;
+  left: 31px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--c-sand);
+}
+
+.feature-chip__icon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 17px;
+  height: 17px;
+  background: var(--c-ink);
+  -webkit-mask: url("../assets/icons/paw.svg") center / contain no-repeat;
+  mask: url("../assets/icons/paw.svg") center / contain no-repeat;
+}
+
+/* Glass frame around a sand card (Figma 80:166/80:167 pairs) */
+.glass-frame {
+  border: 1px solid var(--glass-frame);
+  border-radius: var(--radius-card);
+  background: rgba(255, 255, 255, 0.015);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+}
+
+/* Slider arrows (Figma 80:191): outlined "prev", filled "next", 60 × 58 */
+.slider-nav {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  gap: 13px;
+}
+
+.slider-btn {
+  position: relative;
+  width: 60px;
+  height: 58px;
+  border: 1px solid var(--c-line-dark);
+  border-radius: 50%;
+  color: var(--c-line-dark);
+  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease), color var(--dur) var(--ease), opacity var(--dur) var(--ease);
+}
+
+.slider-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 20px;
+  height: 20px;
+  background: currentColor;
+  -webkit-mask: url("../assets/icons/arrow.svg") center / contain no-repeat;
+  mask: url("../assets/icons/arrow.svg") center / contain no-repeat;
+  transition: transform var(--dur) var(--ease);
+}
+
+.slider-btn--prev::after {
+  transform: scaleX(-1);
+}
+
+.slider-btn--next,
+.slider-btn:hover,
+.slider-btn:focus-visible {
+  border-color: var(--c-slider-next);
+  background: var(--c-slider-next);
+  color: var(--c-slider-next-ink);
+}
+
+.slider-btn--next:hover::after,
+.slider-btn--next:focus-visible::after {
+  transform: translateX(4px);
+}
+
+.slider-btn--prev:hover::after,
+.slider-btn--prev:focus-visible::after {
+  transform: scaleX(-1) translateX(4px);
+}
+
+.slider-btn.swiper-button-disabled {
+  border-color: var(--c-line-dark);
+  background: none;
+  color: var(--c-line-dark);
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* Header (Figma 80:62, 159:1728–159:1741, 80:17) */
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+}
+
+.header__inner {
+  height: 101px;
+}
+
+.header__logo {
+  position: absolute;
+  top: 35px;
+  left: 46px;
+}
+
+.header__logo-img,
+.footer__logo,
+.video__logo {
+  width: 142px;
+  height: auto;
+}
+
+.header__nav {
+  position: absolute;
+  top: 22px;
+  left: calc(50% - 571px);
+  display: flex;
+}
+
+.header__link {
+  position: relative;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 57px;
+  letter-spacing: -0.42px;
+  white-space: nowrap;
+  transition: color var(--dur) var(--ease);
+}
+
+.header__link + .header__link {
+  margin-left: 56px;
+}
+
+/* Figma separators (159:1731…): 28px lines centred between the links */
+.header__link + .header__link::before {
+  content: "";
+  position: absolute;
+  top: 14px;
+  left: -28px;
+  width: 1px;
+  height: 28px;
+  background: var(--c-nav-rule);
+}
+
+.header__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 14px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--dur) var(--ease);
+}
+
+.header__link:hover,
+.header__link:focus-visible {
+  color: var(--c-sand);
+}
+
+.header__link:hover::after,
+.header__link:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.header__social,
+.header__call {
+  position: absolute;
+  top: 31px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 39px;
+  box-sizing: border-box;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: -0.36px;
+  white-space: nowrap;
+  transition: background-color 0.35s var(--ease), border-color 0.35s var(--ease), color 0.35s var(--ease);
+}
+
+.header__social {
+  right: 235px;
+  min-width: 209px;
+  padding: 0 16px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-fill);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+}
+
+.header__call {
+  right: 115px;
+  min-width: 105px;
+  padding: 0 14px;
+  background: var(--c-cream);
+  font-weight: 500;
+  color: var(--c-ink);
+}
+
+/* hovers stay slight: a touch more glass / a touch darker cream */
+.header__social:hover,
+.header__social:focus-visible {
+  border-color: var(--glass-border-hover);
+  background: var(--glass-fill-hover);
+}
+
+.header__call:hover,
+.header__call:focus-visible {
+  background: var(--c-blush);
+}
+
+.burger {
+  position: absolute;
+  top: 31px;
+  right: 32px;
+  width: 39px;
+  height: 39px;
+  border-radius: 6px;
+  background: var(--c-cream);
+  transition: background-color 0.35s var(--ease);
+}
+
+.burger:hover,
+.burger:focus-visible {
+  background: var(--c-blush);
+}
+
+.burger--light {
+  background: var(--c-burger-light);
+}
+
+/* Three 19 × 1 lines at y +14 / +19 / +24 (Figma 80:52–80:54) */
+.burger__lines,
+.burger__lines::before,
+.burger__lines::after {
+  position: absolute;
+  width: 19px;
+  height: 1px;
+  background: #000;
+  transition: transform var(--dur) var(--ease);
+}
+
+.burger__lines {
+  top: 19px;
+  left: 10px;
+}
+
+/* Pseudo lines sit on the middle line: left 0 (kept out of the shared rule,
+   or the generated laptop block would shift them by the middle line's offset) */
+.burger__lines::before,
+.burger__lines::after {
+  content: "";
+  left: 0;
+}
+
+.burger__lines::before { top: -5px; }
+.burger__lines::after { top: 5px; }
+
+.burger:hover .burger__lines::before,
+.burger:focus-visible .burger__lines::before {
+  transform: translateX(-2px);
+}
+
+.burger:hover .burger__lines::after,
+.burger:focus-visible .burger__lines::after {
+  transform: translateX(2px);
+}
+
+/* Menu (Figma 254:3059 on the 254:1625 frame, 1920 × 1197): a white card 556 wide,
+   32 from the right, 120 from the top and 47 from the bottom, over a 55 % black overlay.
+   Hover (Figma shows it on the first link): the link fades to 50 % ink and a dot appears
+   at the right. The hours block sits at the card bottom (the footer group × 1.328). */
+
+html.is-dialog-open {
+  overflow: hidden;
+}
+
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  box-sizing: border-box;
+  padding: 120px 32px 47px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.menu__overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--c-overlay);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease);
+}
+
+.menu__panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 556px;
+  min-height: calc(100vh - 167px);
+  margin-left: auto;
+  padding: 0 40px 28px;
+  border-radius: var(--radius-menu);
+  background: var(--c-white);
+  color: var(--c-ink);
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+}
+
+.menu.is-open .menu__overlay,
+.menu.is-open .menu__panel {
+  opacity: 1;
+}
+
+.menu.is-open .menu__panel {
+  transform: none;
+}
+
+/* the 15.5px cross (Figma 254:3060 at 507,33) centred in a 44px hit area */
+.menu__close {
+  position: absolute;
+  top: 19px;
+  right: 19px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: var(--c-ink);
+  transition: background-color 0.35s var(--ease);
+}
+
+.menu__close .icon {
+  --icon-size: 15.5px;
+  transition: transform 0.35s var(--ease);
+}
+
+.menu__close:hover,
+.menu__close:focus-visible {
+  background: var(--c-cream);
+}
+
+.menu__close:hover .icon,
+.menu__close:focus-visible .icon {
+  transform: rotate(90deg);
+}
+
+/* «Меню» at y 50, the rule under it at y 92–93 */
+.menu__label {
+  margin: 50px 0 0;
+  padding-bottom: 18.6px;
+  border-bottom: 1px solid var(--c-ink-50);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--c-ink-50);
+}
+
+.menu__nav {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0 40px;
+}
+
+.menu__link {
+  position: relative;
+  padding-right: 30px;
+  font-size: 38px;
+  font-weight: 500;
+  line-height: 67px;
+  letter-spacing: -0.48px;
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.5s var(--ease) var(--delay, 0s), transform 0.5s var(--ease) var(--delay, 0s), color 0.35s var(--ease);
+}
+
+/* Figma 254:3066: 9px dot, right edge 3px past the rule, centred on the line */
+.menu__link::after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 5.5px);
+  right: -3px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--c-ink-50);
+  opacity: 0;
+  transform: scale(0.4);
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+}
+
+.menu.is-open .menu__link {
+  opacity: 1;
+  transform: none;
+}
+
+.menu.is-open .menu__link:nth-child(2) { --delay: 0.04s; }
+.menu.is-open .menu__link:nth-child(3) { --delay: 0.08s; }
+.menu.is-open .menu__link:nth-child(4) { --delay: 0.12s; }
+.menu.is-open .menu__link:nth-child(5) { --delay: 0.16s; }
+.menu.is-open .menu__link:nth-child(6) { --delay: 0.2s; }
+.menu.is-open .menu__link:nth-child(7) { --delay: 0.24s; }
+.menu.is-open .menu__link:nth-child(8) { --delay: 0.28s; }
+
+.menu__link:hover,
+.menu__link:focus-visible {
+  color: var(--c-ink-50);
+}
+
+.menu__link:hover::after,
+.menu__link:focus-visible::after {
+  opacity: 1;
+  transform: none;
+}
+
+/* Figma 254:3070: rule at y 884–885, «График работы» 21.25px at 914.6, the hours
+   33.2px under it, ending 28 above the card bottom */
+.menu__hours {
+  margin: auto 0 0;
+  padding-top: 29.6px;
+  border-top: 1px solid var(--c-ink-50);
+}
+
+.menu__hours-label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 21.25px;
+  font-weight: 500;
+  line-height: 37.19px;
+}
+
+.menu__hours-label .icon {
+  --icon-size: 17.26px;
+}
+
+.menu__hours-time {
+  display: block;
+  font-size: 33.2px;
+  line-height: 50.47px;
+  white-space: nowrap;
+  color: var(--c-footer-time);
+}
+
+/* Consultation popup (Figma 254:3696, card 254:4755: 1037 × 641 centred in 1920 × 1197,
+   radius 15, over the 55 % overlay). Title 113 below the card top, three 508 × 53 fields
+   10 apart, consent, «Отправить»; 105 below it to the card bottom. After sending, the
+   form fades out (keeping the card height) and the thank-you layer (254:5502) fades in,
+   centred in the card. */
+
+.popup {
+  position: fixed;
+  inset: 0;
+  z-index: 110;
+  display: flex;
+  box-sizing: border-box;
+  padding: 24px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* display: flex above would override the hidden attribute */
+.popup[hidden] {
+  display: none;
+}
+
+.popup__overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--c-overlay);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease);
+}
+
+.popup__panel {
+  position: relative;
+  box-sizing: border-box;
+  width: 1037px;
+  max-width: 100%;
+  min-height: 641px;
+  margin: auto;
+  padding: 113px 24px 105px;
+  border-radius: var(--radius-menu);
+  background: var(--c-white);
+  color: var(--c-ink);
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+}
+
+.popup.is-open .popup__overlay,
+.popup.is-open .popup__panel {
+  opacity: 1;
+}
+
+.popup.is-open .popup__panel {
+  transform: none;
+}
+
+/* the 15.5px cross (Figma 254:4772 at 989,32 in the card) in a 44px hit area */
+.popup__close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: var(--c-black);
+  transition: background-color 0.35s var(--ease);
+}
+
+.popup__close .icon {
+  --icon-size: 15.5px;
+  transition: transform 0.35s var(--ease);
+}
+
+.popup__close:hover,
+.popup__close:focus-visible {
+  background: var(--c-cream);
+}
+
+.popup__close:hover .icon,
+.popup__close:focus-visible .icon {
+  transform: rotate(90deg);
+}
+
+.popup__form,
+.popup__thanks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: opacity 0.4s var(--ease), visibility 0.4s;
+}
+
+.popup__title {
+  max-width: 473px;
+  margin: 0 0 35px;
+  font-size: 53.9px;
+  font-weight: 500;
+  line-height: 50.05px;
+  letter-spacing: -1.62px;
+  text-align: center;
+}
+
+/* positioned: the error text (.field-error) sits inside its field */
+.popup__field {
+  position: relative;
+  width: 508px;
+  max-width: 100%;
+  margin-bottom: 10px;
+}
+
+.popup__form .popup__input {
+  width: 100%;
+  height: 53px;
+  padding: 0 20px 0 30px;
+  border: 1px solid var(--c-ink-15);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  font: 500 14px/16px var(--font);
+  letter-spacing: -0.42px;
+}
+
+.popup__form .popup__input::placeholder {
+  color: var(--c-ink-75);
+}
+
+.popup__form .popup__input:focus-visible {
+  border-color: var(--c-ink-50);
+  outline: none;
+}
+
+/* Figma 254:5480 / 254:5479: the 20px tick-square, the line 9px after it */
+.popup__consent {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 508px;
+  max-width: 100%;
+  margin: 4px 0 22px;
+}
+
+.popup__check {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--c-ink);
+  -webkit-mask: url("../assets/icons/checkbox.svg") center / contain no-repeat;
+  mask: url("../assets/icons/checkbox.svg") center / contain no-repeat;
+  cursor: pointer;
+}
+
+.popup__check:checked {
+  -webkit-mask-image: url("../assets/icons/checkbox-checked.svg");
+  mask-image: url("../assets/icons/checkbox-checked.svg");
+}
+
+.popup__check:focus-visible {
+  outline: none;
+  background: var(--c-hover-ink);
+}
+
+.popup__consent.is-invalid .popup__check {
+  background: var(--c-error);
+}
+
+.popup__consent-text {
+  font-size: 13px;
+  line-height: 1.2;
+  letter-spacing: -0.39px;
+  color: var(--c-ink-70);
+  cursor: pointer;
+}
+
+.popup__consent-text a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color 0.35s var(--ease);
+}
+
+.popup__consent-text a:hover,
+.popup__consent-text a:focus-visible {
+  color: var(--c-ink);
+}
+
+.popup__consent .field-error {
+  top: calc(100% + 3px);
+  left: 29px;
+  right: auto;
+  transform: none;
+}
+
+/* Figma 254:4793: 508 × 53, white label centred, white 42px circle with the paw */
+.popup .popup__btn {
+  --btn-w: 508px;
+  --btn-h: 53px;
+  --btn-pl: 53px;
+  --btn-pr: 53px;
+  --btn-icon: 42px;
+  --btn-icon-inset: 5.5px;
+  --btn-paw: 19px;
+  --btn-fg: var(--c-white);
+  --btn-icon-bg: var(--c-white);
+  --btn-hover-fg: var(--c-white);
+  max-width: 100%;
+}
+
+.popup .popup__back {
+  --btn-w: 364px;
+}
+
+.popup__thanks {
+  position: absolute;
+  inset: 0;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.popup__thanks-title {
+  max-width: 642px;
+  outline: none;
+}
+
+.popup.is-sent .popup__form {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.popup.is-sent .popup__thanks {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.4s var(--ease), visibility 0s; /* visible at once, so its title can take focus */
+}
+
+/* Hero (Figma y 0–1206). One screen high: the title block is pinned to the
+   bottom with Figma's distances, the note to the top. */
+
+.hero {
+  position: relative;
+  height: max(var(--fixed-vh, 100vh), 820px);
+  overflow: hidden;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+}
+
+.hero__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+  animation: hero-zoom 2.4s var(--ease) both;
+}
+
+@keyframes hero-zoom {
+  from { transform: scale(1.08); }
+  to { transform: scale(1); }
+}
+
+/* Hero videos (main.js initHeroVideo): over the still, which is their first frame
+   (watermark removed); they fade in once playing. The home one zooms with the still. */
+.hero__video,
+.cat-hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.8s var(--ease);
+}
+
+.hero__video {
+  object-position: 50% 30%;
+  animation: hero-zoom 2.4s var(--ease) both;
+}
+
+.hero__video.is-playing,
+.cat-hero__video.is-playing {
+  opacity: 1;
+}
+
+/* the veil sits over the still and the video, under the text */
+.hero__bg {
+  isolation: isolate;
+}
+
+.hero__bg::before,
+.cat-hero__card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--hero-veil);
+  pointer-events: none;
+}
+
+.cat-hero__card > :not(picture, video) {
+  z-index: 2;
+}
+
+.hero__inner {
+  height: 100%;
+}
+
+.hero__dot {
+  top: 160px;
+  right: 454px;
+}
+
+/* Figma 80:149: 312.4px at 138.5°, centred on its 234 × 207 box at (1190, 193) */
+.hero__line {
+  top: 296px;
+  right: 457px;
+  width: 312px;
+  transform: rotate(138.5deg);
+}
+
+.hero__note-text {
+  position: absolute;
+  top: 157px;
+  right: 93px;
+  width: 344px;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: -0.75px;
+}
+
+.hero__tag {
+  position: absolute;
+  left: 56px;
+  bottom: 212px;
+  min-width: 298px;
+}
+
+.hero__title {
+  position: absolute;
+  left: 56px;
+  bottom: 59px;
+  width: 939px;
+  font-size: 70px;
+  font-weight: 400;
+  line-height: 63px;
+  letter-spacing: -2.1px;
+}
+
+.hero__actions {
+  position: absolute;
+  right: 45px;
+  bottom: 56px;
+  display: flex;
+  gap: 23px;
+}
+
+/* Why 5000+ (Figma y 1206–3042) */
+
+.why {
+  position: relative;
+  overflow-x: clip;
+}
+
+.why__inner {
+  height: 1836px;
+}
+
+/* Figma 80:19: 2061 × 1764 at (-70, 1273), radial 953 × 1159 at (990, 1235), 80 % */
+.why__glow {
+  position: absolute;
+  top: 67px;
+  left: calc(50% - 1030px);
+  width: 2061px;
+  height: 1764px;
+  background: radial-gradient(953px 1159px at 990px 1235px, var(--glow-80));
+}
+
+.why__shadow {
+  position: absolute;
+  height: auto;
+}
+
+.why__shadow--wide { top: 1242px; left: calc(50% - 374px); width: 608px; }
+.why__shadow--l { top: 1421px; left: calc(50% - 255px); width: 187px; }
+.why__shadow--r { top: 1421px; left: calc(50% - 37px); width: 187px; }
+
+.why__title {
+  font-weight: 500;
+}
+
+.why__lead {
+  position: absolute;
+  top: 280px;
+  left: 72px;
+  font-size: 35px;
+  line-height: 63px;
+  letter-spacing: -1.05px;
+}
+
+.why__number {
+  position: absolute;
+  top: 145px;
+  left: calc(50% - 748px);
+  width: 1553px;
+  height: auto;
+}
+
+.why__tail {
+  position: absolute;
+  top: 611px;
+  left: calc(50% + 639px);
+  z-index: 2;
+  width: 367px;
+  font-size: 35px;
+  line-height: 40px;
+  letter-spacing: -1.05px;
+}
+
+.why__puppy {
+  position: absolute;
+  top: 216px;
+  left: calc(50% - 516px);
+  width: 1024px;
+  height: 1535px;
+}
+
+/* Figma 80:25: #191310 rect blurred 100px, top edge at y 1375 */
+.why__fade {
+  position: absolute;
+  top: 1075px;
+  left: calc(50% - 1421px);
+  width: 2674px;
+  bottom: 0;
+  background: var(--fade-ramp);
+}
+
+.why__nav {
+  top: 1218px;
+  right: 26px;
+}
+
+.why__slider {
+  position: absolute;
+  top: 1307px;
+  left: 0;
+  right: 0;
+  overflow: visible;
+}
+
+.why-card {
+  width: 518px;
+  height: 411px;
+  padding: 14px 13px;
+  box-sizing: border-box;
+}
+
+.why-card__body {
+  position: relative;
+  height: 100%;
+  border-radius: var(--radius-card);
+  background: var(--c-sand);
+  color: var(--c-ink);
+}
+
+.why-card__num {
+  position: absolute;
+  top: 29px;
+  left: 32px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 25px;
+  letter-spacing: -0.45px;
+}
+
+.why-card__title {
+  position: absolute;
+  top: 128px;
+  left: 35px;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 25px;
+  letter-spacing: -0.75px;
+  white-space: nowrap;
+}
+
+.why-card__text {
+  position: absolute;
+  top: 180px;
+  left: 37px;
+  width: 410px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 25px;
+  letter-spacing: -0.42px;
+}
+
+/* Figma text boxes per card (they set the line breaks) */
+.why-card:nth-child(4n + 2) .why-card__text { width: 320px; }
+.why-card:nth-child(4n + 3) .why-card__text { width: 270px; }
+.why-card:nth-child(4n + 4) .why-card__text { width: 211px; }
+
+.why-card__btn {
+  position: absolute;
+  top: 298px;
+  left: 37px;
+}
+
+/* Button eyes (Figma 80:219: card 23,3042 1874 × 1144) */
+
+/* Above the graduates glow, which starts 48px higher (Figma 80:33 lies under the card) */
+.eyes {
+  position: relative;
+  z-index: 3;
+}
+
+.eyes__card {
+  position: relative;
+  margin: 0 23px;
+  height: 1144px;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--c-eyes);
+  color: var(--c-ink);
+}
+
+.eyes__photo {
+  position: absolute;
+  top: -86px;
+  left: -50px;
+  width: calc(100% + 100px);
+  height: 1316px;
+  object-fit: cover;
+}
+
+.eyes__kicker {
+  position: absolute;
+  top: 37px;
+  left: 54px;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 63px;
+  letter-spacing: -0.72px;
+  white-space: nowrap;
+}
+
+.eyes__buy {
+  position: absolute;
+  top: 37px;
+  right: 121px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 63px;
+  letter-spacing: -0.48px;
+  text-transform: uppercase;
+  color: rgba(52, 42, 35, 0.6);
+  transition: color var(--dur) var(--ease);
+}
+
+.eyes__buy:hover,
+.eyes__buy:focus-visible {
+  color: var(--c-ink);
+}
+
+.eyes__icon {
+  --icon-size: 25px;
+  position: absolute;
+  top: 56px;
+  right: 69px;
+  color: var(--c-ink);
+  transform: rotate(90deg);
+}
+
+/* Figma 80:500: dotted rule 886px long, vertical, x 1793, y 97 */
+.eyes__dots {
+  position: absolute;
+  top: 537px;
+  right: -362px;
+  width: 886px;
+  height: 7px;
+  transform: rotate(90deg);
+}
+
+.eyes__title {
+  position: absolute;
+  top: 97px;
+  left: 54px;
+  width: 637px;
+  font-size: 60px;
+  font-weight: 500;
+  line-height: 56px;
+  letter-spacing: -1.8px;
+}
+
+.glass-pill {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  width: 431px;
+  height: 64px;
+  padding-left: 110px;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-pill);
+  background: var(--g-glass-pill);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 38px;
+  letter-spacing: -0.48px;
+  color: var(--c-white);
+}
+
+.glass-pill .icon {
+  --icon-size: 28px;
+  position: absolute;
+  top: 17px;
+  left: 33px;
+}
+
+.eyes__pill--1 { top: 546px; left: calc(50% - 198px); }
+.eyes__pill--2 { top: 706px; left: calc(50% - 2px); }
+.eyes__pill--3 { top: 868px; left: calc(50% + 260px); }
+
+.eyes__subtitle {
+  position: absolute;
+  top: 856px;
+  left: 57px;
+  width: 416px;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 38px;
+  letter-spacing: -1.2px;
+}
+
+.eyes__text {
+  position: absolute;
+  top: 999px;
+  left: 57px;
+  width: 393px;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 29px;
+  letter-spacing: -0.51px;
+}
+
+.eyes__btn {
+  position: absolute;
+  top: 1022px;
+  right: 46px;
+}
+
+/* Graduates + Catalog: shared glow layers (Figma 80:33 over 80:16) */
+
+.glow-wrap {
+  position: relative;
+  overflow-x: clip;
+}
+
+.glow {
+  position: absolute;
+  pointer-events: none;
+}
+
+/* Figma 80:33: 2061 × 2718 at (-20, 4138), radial 1153 × 1384 at (971, 1962) */
+.glow--graduates {
+  z-index: 1;
+  top: -48px;
+  left: calc(50% - 980px);
+  width: 2061px;
+  height: 2718px;
+  background: radial-gradient(1153px 1384px at 971px 1962px, var(--glow-100));
+}
+
+/* Figma 80:16: 2061 × 1764 at (-30, 5917), radial 953 × 1159 at (990, 1235), 80 % */
+.glow--catalog {
+  z-index: 0;
+  top: 1731px;
+  left: calc(50% - 990px);
+  width: 2061px;
+  height: 1764px;
+  background: radial-gradient(953px 1159px at 990px 1235px, var(--glow-80));
+}
+
+.graduates,
+.catalog {
+  position: relative;
+  z-index: 2;
+}
+
+/* Graduates (Figma y 4186–5917) */
+
+.graduates__inner {
+  height: 1731px;
+}
+
+.graduates__title {
+  position: absolute;
+  top: 139px;
+  left: 33px;
+  width: 1092px;
+  /* gradient text: the box must cover the glyphs (40px lines for 50px type); same position */
+  margin: -8px 0;
+  padding: 8px 0;
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: -1.5px;
+}
+
+.graduates__nav {
+  top: 157px;
+  right: 44px;
+}
+
+.graduates__slider {
+  position: absolute;
+  top: 280px;
+  left: 0;
+  right: 0;
+  overflow: visible;
+}
+
+.graduates__col {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 447px;
+}
+
+.review-card {
+  position: relative;
+  width: 447px;
+  height: 602px;
+  overflow: hidden;
+  background: #2a211c;
+}
+
+.review-card__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s var(--ease);
+}
+
+.review-card:hover .review-card__photo {
+  transform: scale(1.05);
+}
+
+.review-card__tags {
+  position: absolute;
+  top: 21px;
+  left: 20px;
+  display: flex;
+  gap: 5px;
+}
+
+.review-card .tag {
+  font-size: 14px;
+  letter-spacing: -0.42px;
+}
+
+.review-card .tag--light { width: 85px; }
+.review-card .tag--city { width: 131px; }
+
+.review-card .tag--quote {
+  justify-content: space-between;
+  width: 181px;
+  margin-left: 8px;
+  padding: 0 11px;
+}
+
+.tag--quote .icon {
+  --icon-size: 13px;
+}
+
+.review-card__more {
+  position: absolute;
+  left: 24px;
+  bottom: 23px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 50px;
+  padding-right: 42px;
+  box-sizing: border-box;
+  border-radius: var(--radius-pill);
+  background: var(--g-glass-dark);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.42px;
+  transition: background-color var(--dur) var(--ease);
+}
+
+.review-card__more .icon {
+  --icon-size: 20px;
+  position: absolute;
+  top: 15px;
+  right: 23px;
+  transition: transform var(--dur) var(--ease);
+}
+
+.review-card__more:hover,
+.review-card__more:focus-visible {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.review-card__more:hover .icon,
+.review-card__more:focus-visible .icon {
+  transform: rotate(-18deg) scale(1.15);
+}
+
+.graduates__btn {
+  position: absolute;
+  top: 1567px;
+  left: calc(50% - 191px);
+}
+
+/* Catalog (Figma y 5917–7832) */
+
+.catalog__inner {
+  height: 1915px;
+}
+
+.catalog__kicker {
+  position: absolute;
+  top: 77px;
+  left: 42px;
+  font-size: 35px;
+  line-height: 40px;
+  letter-spacing: -1.05px;
+}
+
+.catalog__title {
+  position: absolute;
+  top: 184px;
+  left: 42px;
+  right: 53px;
+}
+
+/* Figma width, shrinking with the window when it is narrower; centred when wider */
+.catalog__title img {
+  width: 100%;
+  max-width: 1825px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.catalog__text {
+  position: absolute;
+  top: 624px;
+  right: 52px;
+  width: 639px;
+  font-size: 35px;
+  line-height: 40px;
+  letter-spacing: -1.05px;
+  background-image: var(--g-white-steep);
+}
+
+.catalog__nav {
+  top: 827px;
+  right: 37px;
+}
+
+.catalog__slider {
+  position: absolute;
+  top: 939px;
+  left: 0;
+  right: 0;
+  overflow: visible;
+}
+
+/* Puppy card (Figma 80:501): photo in a 574 × 825 window, glass band across the paws */
+.puppy-card {
+  position: relative;
+  width: 574px;
+  height: 825px;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: #0e1114;
+}
+
+.puppy-card__photo {
+  position: absolute;
+  top: -31px;
+  left: -25px;
+  width: 621px;
+  height: 926px;
+  object-fit: cover;
+  transition: transform 1.2s var(--ease);
+}
+
+/* Figma 80:505: 704 × 242 band rotated -10.55°, centred at (328, 773) */
+.puppy-card__glass {
+  position: absolute;
+  top: 652px;
+  left: -24px;
+  width: 704px;
+  height: 242px;
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(22px);
+  backdrop-filter: blur(22px);
+  transform: rotate(-10.55deg);
+  transition: transform 0.9s var(--ease);
+}
+
+.puppy-card:hover .puppy-card__photo {
+  transform: scale(1.04);
+}
+
+.puppy-card:hover .puppy-card__glass {
+  transform: rotate(-10.55deg) translateY(-14px);
+}
+
+.puppy-card__tags {
+  position: absolute;
+  top: 33px;
+  left: 37px;
+  right: 34px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  row-gap: 12px;
+}
+
+.puppy-card .tag--name { width: 85px; }
+.puppy-card .tag--gender { width: 131px; margin-left: 5px; }
+.puppy-card .tag--color { width: 165px; margin-left: 9px; }
+.puppy-card .tag--size { width: 221px; order: 2; }
+
+/* Line break before the size tag */
+.puppy-card__tags::after {
+  content: "";
+  order: 1;
+  flex-basis: 100%;
+}
+
+.puppy-card__age {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  font-size: 16px;
+  letter-spacing: -0.48px;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.puppy-card__age::before {
+  content: "";
+  width: 4px;
+  height: 4px;
+  margin-right: 11px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.puppy-card__price {
+  position: absolute;
+  top: 724px;
+  left: 29px;
+  padding-top: 26px;
+  font-size: 35px;
+  line-height: 1.22;
+  letter-spacing: -1.05px;
+  white-space: nowrap;
+}
+
+.puppy-card__price-label {
+  position: absolute;
+  top: 0;
+  left: 5px;
+  font-size: 16px;
+  line-height: 1.2;
+  letter-spacing: -0.48px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.puppy-card__btn {
+  position: absolute;
+  z-index: 2;
+  top: 747px;
+  right: 20px; /* Figma x 302 for the 252px button; narrower ones (Продан) stay right-aligned */
+}
+
+/* the whole card opens the product page; the booking button sits above it */
+.puppy-card__link {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.puppy-card__link:focus-visible {
+  outline: 2px solid var(--c-white);
+  outline-offset: -4px;
+}
+
+/* How they grow (Figma 80:968, y 7832–9238) */
+
+.growth {
+  position: relative;
+  overflow-x: clip;
+  background: var(--c-blush);
+  color: var(--c-ink);
+}
+
+.growth__inner {
+  height: 1406px;
+}
+
+.growth__title {
+  position: absolute;
+  top: 126px;
+  left: 25px;
+  font-size: 75px;
+  font-weight: 400;
+  line-height: 93px;
+  letter-spacing: -3px;
+  white-space: nowrap;
+}
+
+.growth__mark {
+  position: absolute;
+  top: 138px;
+  right: 60px;
+  width: 83px;
+  height: auto;
+}
+
+.growth__rule {
+  position: absolute;
+  top: 253px;
+  left: 26px;
+  right: 43px;
+  height: 4px;
+  background: var(--c-ink);
+  transform-origin: left;
+}
+
+.growth__subtitle {
+  position: absolute;
+  top: 336px;
+  left: 30px;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 93px;
+  white-space: nowrap;
+}
+
+.growth__text {
+  position: absolute;
+  top: 363px;
+  right: 88px;
+  width: 514px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.growth__gallery {
+  position: absolute;
+  top: 445px;
+  left: 0;
+  right: 0;
+  height: 890px;
+}
+
+.growth__slider {
+  overflow: visible;
+}
+
+.growth__slide {
+  width: calc(100% - 131px);
+  height: 890px;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+}
+
+.growth__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.growth__slide--top .growth__photo {
+  object-position: 50% 0;
+}
+
+.growth__arrow {
+  position: absolute;
+  top: 384px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 121px;
+  height: 121px;
+  border-radius: 50%;
+  color: #000;
+  transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease);
+}
+
+.growth__arrow .icon {
+  --icon-size: 20px;
+  transition: transform var(--dur) var(--ease);
+}
+
+.growth__arrow--prev {
+  left: 52px;
+  background: var(--c-white);
+}
+
+.growth__arrow--prev .icon {
+  transform: scaleX(-1);
+}
+
+.growth__arrow--next {
+  right: 132px;
+  background: var(--g-arrow-next);
+}
+
+.growth__arrow:hover,
+.growth__arrow:focus-visible {
+  transform: scale(1.06);
+}
+
+.growth__arrow--next:hover .icon,
+.growth__arrow--next:focus-visible .icon {
+  transform: translateX(5px);
+}
+
+.growth__arrow--prev:hover .icon,
+.growth__arrow--prev:focus-visible .icon {
+  transform: scaleX(-1) translateX(5px);
+}
+
+/* Both arrows stay visible as in Figma; the inactive one dims */
+.growth__arrow.swiper-button-disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.growth__btn {
+  position: absolute;
+  z-index: 2;
+  top: 795px;
+  right: 132px;
+}
+
+/* How much (Figma 80:171, y 9238–10691) */
+
+.price {
+  position: relative;
+  z-index: 1;
+}
+
+.price__inner {
+  height: 1453px;
+}
+
+.price__card {
+  position: absolute;
+  top: 100px;
+  left: 32px;
+  right: 33px;
+  height: 1285px;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: #3a2a20;
+}
+
+.price__photo {
+  position: absolute;
+  top: -51px;
+  left: -144px;
+  width: calc(100% + 288px);
+  height: 1387px;
+  object-fit: cover;
+}
+
+.price__title {
+  position: absolute;
+  top: 60px;
+  left: 71px;
+}
+
+.price__rule {
+  top: 231px;
+  left: 69px;
+  width: 379px;
+}
+
+.price__text {
+  position: absolute;
+  top: 264px;
+  left: 76px;
+  width: 369px;
+}
+
+/* Price factors (Figma 80:903–80:922): 790px wide, 399 + 391 columns */
+.price-table {
+  position: absolute;
+  top: 77px;
+  right: 63px;
+  width: 790px;
+  table-layout: fixed;
+}
+
+.price-table th,
+.price-table td {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  vertical-align: middle;
+}
+
+.price-table thead th {
+  height: 57px;
+  padding-left: 34px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: -0.36px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.price-table thead th:first-child {
+  width: 365px;
+}
+
+.price-table tbody th {
+  padding-left: 38px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.42px;
+}
+
+.price-table tbody td {
+  padding: 0 69px 0 36px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: -0.36px;
+}
+
+/* Figma row lines: 9473 / 9530 / 9589 / 9649 / 9710 / 9772 / 9834 */
+.price-table tbody tr:nth-child(1) { height: 57px; }
+.price-table tbody tr:nth-child(2) { height: 59px; }
+.price-table tbody tr:nth-child(3) { height: 60px; }
+.price-table tbody tr:nth-child(4) { height: 61px; }
+.price-table tbody tr:nth-child(5) { height: 62px; }
+.price-table tbody tr:nth-child(6) { height: 62px; }
+
+/* Compact-only parts (shown in media.css ≤1279) */
+.buy__form,
+.care__counter {
+  display: none;
+}
+
+.price__form {
+  position: absolute;
+  top: 1186px;
+  left: 61px;
+  right: 62px;
+}
+
+/* Lead form (Figma 167:26 / 167:47): 1797 × 173 card, two fields and a submit */
+
+.lead-form {
+  height: 173px;
+  color: var(--c-ink);
+}
+
+.lead-form__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 0 50%;
+}
+
+.lead-form__title {
+  position: absolute;
+  top: 43px;
+  left: 44px;
+  width: 415px;
+  font-size: 55px;
+  line-height: 48px;
+  letter-spacing: -1.65px;
+}
+
+.lead-form__field {
+  position: absolute;
+  top: 51px;
+}
+
+.lead-form__field--name { right: 765px; }
+.lead-form__field--phone { right: 431px; }
+
+.field {
+  display: block;
+  width: 309px;
+  height: 72px;
+  padding: 0 20px 0 29px;
+  box-sizing: border-box;
+  border: 1px solid rgba(52, 42, 35, 0.35);
+  border-radius: var(--radius-field);
+  background: rgba(52, 42, 35, 0.02);
+  -webkit-backdrop-filter: blur(27px);
+  backdrop-filter: blur(27px);
+  font: 500 20.7px/1.2 var(--font);
+  letter-spacing: -0.83px;
+  color: var(--c-ink);
+  transition: border-color var(--dur) var(--ease), background-color var(--dur) var(--ease);
+}
+
+.field::placeholder {
+  color: var(--c-ink);
+  opacity: 1;
+  transition: color 0.2s;
+}
+
+.field:hover {
+  border-color: rgba(52, 42, 35, 0.6);
+}
+
+.field:focus {
+  outline: none;
+  border-color: var(--c-ink);
+  background-color: rgba(255, 255, 255, 0.35);
+}
+
+.field:focus::placeholder {
+  color: rgba(52, 42, 35, 0.45);
+}
+
+.field-error {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  font-size: 12px;
+  line-height: 1.2;
+  white-space: nowrap;
+  color: var(--c-error);
+  opacity: 0;
+  transform: translateY(-50%);
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.field-wrap.is-invalid .field {
+  border-color: var(--c-error);
+}
+
+.field-wrap.is-invalid .field::placeholder {
+  color: transparent;
+}
+
+.field-wrap.is-invalid .field-error {
+  opacity: 1;
+}
+
+.lead-form__submit {
+  position: absolute;
+  top: 51px;
+  right: 40px;
+  display: flex;
+  align-items: center;
+  width: 366px;
+  height: 72px;
+  padding: 0 0 0 38px;
+  box-sizing: border-box;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: var(--radius-field);
+  background: var(--c-ink);
+  font-size: 20.77px;
+  font-weight: 500;
+  color: var(--c-sand);
+}
+
+.lead-form__submit::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--c-hover-dark);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.55s var(--ease);
+}
+
+.lead-form__submit .icon {
+  --icon-size: 22px;
+  position: absolute;
+  top: 25px;
+  left: 320px;
+  transition: transform var(--dur) var(--ease);
+}
+
+.lead-form__submit:hover::before,
+.lead-form__submit:focus-visible::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.lead-form__submit:hover .icon,
+.lead-form__submit:focus-visible .icon {
+  transform: translateX(-6px);
+}
+
+.lead-form__status {
+  position: absolute;
+  top: 132px;
+  right: 40px;
+  font-size: 14px;
+  line-height: 1.2;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.lead-form__status.is-visible {
+  opacity: 1;
+}
+
+/* Delivery (Figma y 10691–11678) */
+
+.delivery {
+  position: relative;
+  overflow-x: clip;
+}
+
+.delivery__inner {
+  height: 987px;
+}
+
+/* Figma 80:109: globe at 80 % behind a blurred ellipse mask (981 × 409.5, σ 100) */
+.delivery__globe {
+  position: absolute;
+  top: -245px;
+  left: calc(50% - 1074px);
+  width: 2203px;
+  height: 1240px;
+  opacity: 0.8;
+  -webkit-mask: radial-gradient(1181px 609.5px at 1102px 654.5px, #000 52%, rgba(0, 0, 0, 0.5) 76%, transparent 100%);
+  mask: radial-gradient(1181px 609.5px at 1102px 654.5px, #000 52%, rgba(0, 0, 0, 0.5) 76%, transparent 100%);
+  pointer-events: none;
+}
+
+.delivery__globe-img {
+  width: 100%;
+  height: 100%;
+}
+
+.delivery__card {
+  position: absolute;
+  top: 73px;
+  left: 32px;
+  width: 518px;
+  height: 374px;
+  padding: 13px;
+  box-sizing: border-box;
+}
+
+.delivery__card-body {
+  position: relative;
+  height: 349px;
+  border-radius: var(--radius-card);
+  background: var(--c-sand);
+  color: var(--c-ink);
+}
+
+.delivery__title {
+  position: absolute;
+  top: 48px;
+  left: 37px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 38px;
+  letter-spacing: -0.6px;
+  text-transform: uppercase;
+}
+
+.delivery__text {
+  position: absolute;
+  top: 103px;
+  left: 37px;
+  width: 410px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 25px;
+  letter-spacing: -0.42px;
+}
+
+.delivery__btn {
+  --btn-w: 410px;
+  --btn-pr: 193px;
+  position: absolute;
+  top: 243px;
+  left: 37px;
+}
+
+.delivery__lead {
+  position: absolute;
+  top: 74px;
+  right: -18px;
+  width: 390px;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 26px;
+  letter-spacing: -0.66px;
+}
+
+/* Figma 80:862: 3 × 51 rule at x 1515 */
+.delivery__lead::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: -34px;
+  width: 3px;
+  height: 51px;
+  background: var(--c-line-dark);
+}
+
+.delivery__features {
+  position: absolute;
+  top: 768px;
+  left: 39px;
+  right: 43px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.delivery__features .feature-chip:nth-child(2) { padding-right: 66px; }
+.delivery__features .feature-chip:nth-child(3) { padding-right: 99px; }
+.delivery__features .feature-chip:nth-child(4) { padding-right: 51px; }
+.delivery__features .feature-chip:nth-child(1) { padding-right: 29px; }
+
+/* Kennel or Avito (Figma 80:36, y 11678–13081) */
+
+.avito {
+  position: relative;
+  overflow-x: clip;
+  color: var(--c-ink);
+}
+
+/* Figma: the gradient panel starts 11px from the frame's left edge */
+.avito__bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 11px;
+  right: 0;
+  background: var(--g-avito);
+}
+
+.avito__inner {
+  height: 1403px;
+}
+
+.avito__whatsapp {
+  position: absolute;
+  top: 27px;
+  left: 45px;
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 84px;
+}
+
+.avito__whatsapp .link-dot {
+  margin-left: 13px;
+}
+
+.avito__facts {
+  position: absolute;
+  top: 43px;
+  left: calc(50% - 594px);
+  display: flex;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 57px;
+  letter-spacing: -0.48px;
+}
+
+.avito__facts li {
+  position: relative;
+  white-space: nowrap;
+}
+
+.avito__facts li:nth-child(2) { margin-left: 125px; --rule-x: 64px; }
+.avito__facts li:nth-child(3) { margin-left: 113px; --rule-x: 59px; }
+
+/* Figma 80:164 / 80:165: 28px rules at x 709 and 1216 */
+.avito__facts li + li::before {
+  content: "";
+  position: absolute;
+  top: 16px;
+  left: calc(var(--rule-x) * -1);
+  width: 2px;
+  height: 28px;
+  background: rgba(52, 42, 35, 0.35);
+}
+
+.avito__burger {
+  top: 48px;
+  right: 39px;
+}
+
+.avito__title {
+  position: absolute;
+  top: 213px;
+  left: 45px;
+  width: 1171px;
+  font-size: 80px;
+  font-weight: 500;
+  line-height: 73px;
+  letter-spacing: -2.4px;
+  color: var(--c-ink-deep);
+}
+
+/* Comparison (Figma 80:311–80:314, rules 80:892–80:902): 790 × 539, columns 399 + 391 */
+.compare-table {
+  position: absolute;
+  top: 451px;
+  left: 46px;
+  width: 790px;
+  table-layout: fixed;
+}
+
+.compare-table th,
+.compare-table td {
+  border: 1px solid var(--c-line);
+  vertical-align: middle;
+}
+
+.compare-table thead th {
+  height: 39px;
+  padding-left: 34px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: -0.36px;
+  text-transform: uppercase;
+  color: rgba(52, 42, 35, 0.45);
+}
+
+.compare-table thead th:first-child {
+  width: 365px;
+}
+
+.compare-table td {
+  padding: 0 37px 0 76px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: -0.42px;
+}
+
+/* Figma row lines: 12170 / 12264 / 12343 / 12423 / 12504 / 12583 / 12668 */
+.compare-table tbody tr:nth-child(1) { height: 94px; }
+.compare-table tbody tr:nth-child(2) { height: 79px; }
+.compare-table tbody tr:nth-child(3) { height: 80px; }
+.compare-table tbody tr:nth-child(4) { height: 81px; }
+.compare-table tbody tr:nth-child(5) { height: 79px; }
+.compare-table tbody tr:nth-child(6) { height: 85px; }
+
+.avito__puppy {
+  position: absolute;
+  top: 568px;
+  left: calc(50% - 194px);
+  width: 1075px;
+  height: 821px;
+}
+
+.avito__aside {
+  position: absolute;
+  top: 473px;
+  right: 60px;
+  width: 335px;
+}
+
+.avito__aside-title {
+  margin-left: 2px;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 48px;
+  letter-spacing: -0.66px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.avito__rule {
+  top: 73px;
+  left: 2px;
+  width: 321px;
+}
+
+.avito__aside-text {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 27px;
+  letter-spacing: -0.54px;
+}
+
+.avito__rule + .avito__aside-text {
+  margin-top: 66px;
+}
+
+.avito__aside-text + .avito__aside-text {
+  margin-top: 27px;
+}
+
+.avito__btn {
+  position: absolute;
+  top: 1272px;
+  left: 52px;
+}
+
+/* How to buy (Figma 80:34, y 13081–14920) */
+
+/* Clipped both ways: the rotated glow would otherwise cover the section above */
+.buy {
+  position: relative;
+  overflow: clip;
+}
+
+/* Figma 80:34: radial 1238 × 873 rotated 40.3°, centred at (1001, 13930), 80 % */
+.buy__glow {
+  position: absolute;
+  top: -24px;
+  left: calc(50% - 1197px);
+  width: 2476px;
+  height: 1746px;
+  background: radial-gradient(closest-side, var(--glow-80));
+  transform: rotate(40.3deg);
+  pointer-events: none;
+}
+
+.buy__inner {
+  height: 1839px;
+}
+
+.buy__title {
+  position: absolute;
+  top: 167px;
+  left: 65px;
+}
+
+.buy__rule--l {
+  top: 338px;
+  left: 63px;
+  width: 379px;
+}
+
+.buy__text {
+  position: absolute;
+  width: 369px;
+}
+
+.buy__text--age { top: 371px; left: 70px; }
+.buy__text--media { top: 1032px; left: 73px; }
+.buy__text--sure { top: 592px; left: calc(100% - 456px); }
+
+.buy__subtitle {
+  position: absolute;
+  top: 923px;
+  left: 73px;
+  font-size: 55px;
+  font-weight: 400;
+  line-height: 73px;
+  letter-spacing: -1.65px;
+}
+
+.buy__puppy {
+  position: absolute;
+  top: 94px;
+  left: calc(50% - 570px);
+  width: 1005px;
+  height: 1508px;
+}
+
+.buy__sure {
+  position: absolute;
+  top: 371px;
+  left: calc(100% - 460px);
+}
+
+.buy__rule--r {
+  top: 559px;
+  left: calc(100% - 463px);
+  width: 379px;
+}
+
+.buy__actions {
+  position: absolute;
+  top: 951px;
+  left: calc(100% - 452px);
+  display: flex;
+  flex-direction: column;
+  gap: 29px;
+}
+
+.steps {
+  position: absolute;
+  top: 1436px;
+  left: 63px;
+  right: 43px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.step {
+  position: relative;
+  width: 405px;
+  height: 278px;
+  box-sizing: border-box;
+}
+
+.step__num {
+  position: absolute;
+  top: 26px;
+  left: 25px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--c-sand);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 40px;
+  letter-spacing: -0.42px;
+  text-align: center;
+  color: var(--c-bg);
+}
+
+.step__title {
+  position: absolute;
+  top: 166px;
+  left: 40px;
+  right: 30px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.06;
+  letter-spacing: -0.54px;
+  color: var(--c-sand);
+}
+
+.step__text {
+  position: absolute;
+  top: 199px;
+  left: 40px;
+  width: 309px;
+  font-size: 14px;
+  line-height: 23px;
+  letter-spacing: -0.42px;
+  color: var(--c-muted);
+}
+
+.step:nth-child(2) .step__text { width: 340px; }
+.step:nth-child(3) .step__text { width: 310px; }
+.step:nth-child(4) .step__text { width: 343px; }
+
+/* Video (Figma 80:697: card 18,14979 1880 × 1081) */
+
+.video .container {
+  height: 1200px;
+}
+
+.video__card {
+  position: absolute;
+  top: 59px;
+  left: 18px;
+  right: 22px;
+  height: 1081px;
+  overflow: hidden;
+  border-radius: var(--radius-video);
+  background: #2b2620;
+}
+
+.video__poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video__logo {
+  position: absolute;
+  top: 49px;
+  left: 50px;
+  width: 156px;
+  opacity: 0.55;
+}
+
+.video__hint {
+  position: absolute;
+  top: 59px;
+  right: 51px;
+  width: 156px;
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: -0.48px;
+  text-align: right;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.video__caption {
+  position: absolute;
+  top: 612px;
+  left: 55px;
+  font-size: 16px;
+  line-height: 28px;
+  white-space: nowrap;
+}
+
+.video__text {
+  position: absolute;
+  top: 546px;
+  right: 55px;
+  width: 402px;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+/* Figma 80:707 / 80:706: 1809px rule with a 63 × 6 bar at its end */
+.video__track {
+  position: absolute;
+  top: 643px;
+  left: 0;
+  right: 71px;
+  height: 1px;
+  background: var(--c-white);
+  transform-origin: left;
+}
+
+.video__progress {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 63px;
+  height: 6px;
+  background: var(--c-white);
+}
+
+.video__title {
+  position: absolute;
+  top: 801px;
+  left: 52px;
+  width: 1163px;
+  font-size: 70px;
+  font-weight: 400;
+  line-height: 59px;
+  letter-spacing: -2.1px;
+}
+
+.video__btn {
+  position: absolute;
+  top: 958px;
+  left: 57px;
+}
+
+/* Care (Figma 80:26, y 16120–17720) */
+
+.care {
+  position: relative;
+  overflow-x: clip;
+}
+
+/* Figma 80:27: 1756 × 1508 at (88, 16170), radial 812 × 991 at (843.5, 1055.8), 80 % */
+.care__glow {
+  position: absolute;
+  top: 50px;
+  left: calc(50% - 872px);
+  width: 1756px;
+  height: 1508px;
+  background: radial-gradient(812px 991px at 843.5px 1055.8px, var(--glow-80));
+  /* the gradient runs past the box: fade its last 300px so the cut edge never shows as a line */
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 300px), transparent);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 300px), transparent);
+  pointer-events: none;
+}
+
+.care__inner {
+  height: 1600px;
+}
+
+.care__title {
+  position: absolute;
+  top: 65px;
+  left: calc(50% - 503px);
+  width: 927px;
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 54px;
+  letter-spacing: -1.8px;
+  text-align: center;
+}
+
+.care__shadow {
+  position: absolute;
+  height: auto;
+}
+
+.care__shadow--outer { top: 911px; left: calc(50% - 616px); width: 1175px; }
+.care__shadow--inner { top: 952px; left: calc(50% - 474px); width: 904px; }
+
+/* Figma 80:31: #191310 rect blurred 100px, top edge at y 1217 */
+.care__fade {
+  position: absolute;
+  top: 917px;
+  left: calc(50% - 1211px);
+  width: 2142px;
+  bottom: 0;
+  background: var(--fade-ramp);
+}
+
+.care__puppy {
+  position: absolute;
+  top: 394px;
+  left: calc(50% - 598px);
+  width: 1100px;
+  height: 733px;
+}
+
+.care__card {
+  position: absolute;
+  top: 282px;
+  left: calc(50% + 354px);
+  width: 491px;
+  height: 258px;
+  border-radius: var(--radius-card);
+  background: var(--c-sand);
+  color: var(--c-ink);
+}
+
+.care__card-title {
+  position: absolute;
+  top: 36px;
+  left: 37px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 38px;
+  letter-spacing: -0.54px;
+  text-transform: uppercase;
+}
+
+.care__card-rule {
+  top: 103px;
+  left: 33px;
+  width: 435px;
+}
+
+.care__card-text {
+  position: absolute;
+  top: 135px;
+  left: 37px;
+  width: 410px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 25px;
+  letter-spacing: -0.42px;
+}
+
+.care__dot {
+  top: 395px;
+  left: calc(50% + 289px);
+}
+
+/* Figma 80:152: 455px at 137.94°, centred on its 338 × 305 box at (902, 16548) */
+.care__line {
+  top: 580px;
+  left: calc(50% - 116px);
+  width: 455px;
+  transform: rotate(137.94deg);
+}
+
+.care__item {
+  position: absolute;
+}
+
+.care__item--food { top: 385px; left: calc(50% - 250px); }
+.care__item--bed { top: 566px; left: calc(50% - 702px); }
+.care__item--pads { top: 844px; left: max(16px, calc(50% - 866px)); }
+.care__item--toys { top: 1112px; left: calc(50% - 565px); }
+.care__item--comb { top: 609px; left: calc(50% + 341px); width: 389px; padding-right: 32px; }
+.care__item--vet { top: 916px; left: calc(50% + 477px); padding-right: 19px; }
+.care__item--teeth { top: 1110px; left: calc(50% + 129px); }
+
+.care__form {
+  position: absolute;
+  top: 1371px;
+  left: 62px;
+  right: 61px;
+}
+
+/* Family (Figma 80:863: card 22,17764 1880 × 1448) */
+
+.family {
+  position: relative;
+  z-index: 1;
+}
+
+.family .container {
+  height: 1540px;
+}
+
+.family__card {
+  position: absolute;
+  top: 44px;
+  left: 22px;
+  right: 18px;
+  height: 1448px;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--c-family);
+  color: var(--c-ink);
+}
+
+.family__photo {
+  position: absolute;
+  top: -205px;
+  left: calc(50% - 1276px);
+  width: 2805px;
+  height: 1816px;
+  object-fit: cover;
+}
+
+.family__icon {
+  --icon-size: 25px;
+  position: absolute;
+  top: 46px;
+  right: 39px;
+  transform: rotate(90deg);
+}
+
+.family__kicker {
+  position: absolute;
+  top: 71px;
+  left: calc(50% - 175px);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 63px;
+  letter-spacing: -0.72px;
+  white-space: nowrap;
+}
+
+.family__title {
+  position: absolute;
+  top: 140px;
+  left: calc(50% - 576px);
+  width: 1116px;
+  font-size: 65px;
+  font-weight: 500;
+  line-height: 56px;
+  letter-spacing: -1.95px;
+  text-align: center;
+}
+
+.family__block {
+  position: absolute;
+}
+
+.family__block--kids { top: 424px; right: 57px; width: 488px; }
+.family__block--pets { top: 1106px; left: 66px; width: 418px; }
+
+.family__subtitle {
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 38px;
+  letter-spacing: -1.2px;
+}
+
+.family__block--pets .family__subtitle {
+  width: 416px;
+}
+
+.family__text {
+  width: 420px;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 29px;
+  letter-spacing: -0.51px;
+  color: rgba(52, 42, 35, 0.6);
+}
+
+.family__block--kids .family__text { margin-top: 43px; }
+.family__block--pets .family__text { margin-top: 31px; width: 418px; }
+
+.family__btn {
+  position: absolute;
+  top: 1291px;
+  right: 81px;
+}
+
+/* FAQ (Figma 80:113, y 19260–20560) */
+
+.faq {
+  position: relative;
+  overflow-x: clip;
+  padding-bottom: 32px;
+}
+
+/* Figma 80:113: 2061 × 2219 at (-43, 18790), radial 1151 × 1131 at (971, 1602), 60 % */
+.faq__glow {
+  position: absolute;
+  top: -470px;
+  left: calc(50% - 1003px);
+  width: 2061px;
+  height: 2219px;
+  background: radial-gradient(1151px 1131px at 971px 1602px, var(--glow-60));
+  pointer-events: none;
+}
+
+.faq__head {
+  height: 499px;
+}
+
+.faq__kicker {
+  position: absolute;
+  top: 85px;
+  left: 70px;
+  font-size: 35px;
+  font-weight: 500;
+  line-height: 40px;
+  letter-spacing: -1.05px;
+  background-image: var(--g-warm-steep);
+}
+
+.faq__title {
+  position: absolute;
+  top: 88px;
+  right: 33px;
+}
+
+.faq__title img {
+  width: 849px;
+  height: auto;
+}
+
+.faq__list {
+  position: relative;
+}
+
+/* Item = question row (101px, text centre at 58.5) + panel. Closed panels keep
+   39px (min-height) as the gap to the next question; the accordion animates
+   the rest. Open items get the sand background (Figma 80:115). */
+/* the whole item toggles (main.js initFaq) */
+.faq__item {
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.5s var(--ease);
+}
+
+.faq__heading {
+  position: relative;
+  font: inherit;
+}
+
+.faq__q {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 101px;
+  padding: 28px 140px 0 70px;
+  box-sizing: border-box;
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: -0.75px;
+  text-align: left;
+  color: var(--c-white);
+  transition: color 0.5s var(--ease);
+}
+
+/* a sibling of the heading, positioned in the item: level with the question, centred on the open item (Figma 80:115) */
+.faq__icon {
+  --icon-size: 25px;
+  position: absolute;
+  top: 52.5px; /* centred on the question line (centre 65), as in Figma */
+  right: 27px;
+  pointer-events: none;
+  transform: scaleY(-1);
+  transition: transform 0.5s var(--ease), color 0.5s var(--ease), top 0.5s var(--ease);
+}
+
+.faq__panel {
+  min-height: 39px;
+  overflow: hidden;
+  transition-property: height, visibility;
+  transition-timing-function: var(--ease);
+}
+
+.faq__a {
+  width: 995px;
+  padding: 0 0 52px 70px;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: -0.54px;
+  color: var(--c-ink);
+}
+
+/* accordion-js marks the root .js-enabled; closed panels are not read out */
+.js-enabled .faq__panel {
+  visibility: hidden;
+}
+
+.faq__item.is-active {
+  background-color: var(--c-sand);
+}
+
+.faq__item.is-active .faq__panel {
+  visibility: visible;
+}
+
+/* the answer fades out at once when its item closes (the panel keeps its 39px gap until the
+   height animation ends) and fades in while it opens */
+.js-enabled .faq__a {
+  opacity: 0;
+  transition: opacity 0.25s var(--ease);
+}
+
+.js-enabled.is-active .faq__a {
+  opacity: 1;
+  transition: opacity 0.45s var(--ease) 0.1s;
+}
+
+/* set while main.js initFaq opens the first item: no transitions on load */
+.faq__list.is-initing .faq__item,
+.faq__list.is-initing .faq__q,
+.faq__list.is-initing .faq__icon,
+.faq__list.is-initing .faq__a {
+  transition: none;
+}
+
+.faq__item.is-active .faq__q {
+  font-weight: 500;
+  color: var(--c-ink);
+}
+
+.faq__item.is-active .faq__icon {
+  top: calc(50% - 12.5px);
+  color: #000;
+  transform: none;
+}
+
+.faq__item:has(.faq__q:hover) .faq__icon,
+.faq__item:has(.faq__q:focus-visible) .faq__icon {
+  transform: scaleY(-1) translate(3px, -3px);
+}
+
+.faq__item.is-active:has(.faq__q:hover) .faq__icon,
+.faq__item.is-active:has(.faq__q:focus-visible) .faq__icon {
+  transform: translate(3px, -3px);
+}
+
+/* Footer (Figma 80:800 … 80:858, y 20560–21918) */
+
+.footer {
+  position: relative;
+  overflow: hidden;
+}
+
+.footer .container {
+  height: 1358px;
+}
+
+/* Contacts card (Figma 80:800: 18,20610 1880 × 460, radius 20) */
+.contact-card {
+  position: absolute;
+  top: 50px;
+  left: 18px;
+  right: 22px;
+  height: 460px;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background: #d8cac1;
+  color: var(--c-black);
+}
+
+/* Figma 80:802: radial 847 × 1181 rotated 40.25°, centred at (832, 221) */
+.contact-card__bg {
+  position: absolute;
+  top: -960px;
+  left: -15px;
+  width: 1694px;
+  height: 2362px;
+  background: radial-gradient(closest-side, #fbf4f0, #d8cac1);
+  transform: rotate(40.25deg);
+}
+
+.contact-card__puppy {
+  position: absolute;
+  top: 44px;
+  left: calc(50% - 294px);
+  width: 525px;
+  height: 401px;
+}
+
+.contact-card__label {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  white-space: nowrap;
+}
+
+.contact-card__label .icon {
+  --icon-size: 19px;
+}
+
+.contact-card__label--right {
+  justify-content: flex-end;
+  gap: 12px;
+  margin-right: 5px;
+}
+
+.contact-card__call {
+  position: absolute;
+  top: 58px;
+  left: 60px;
+}
+
+.contact-card__phone {
+  display: block;
+  margin-top: 9px;
+  font-size: 35px;
+  line-height: 38px;
+  white-space: nowrap;
+  transition: color var(--dur) var(--ease);
+}
+
+.contact-card__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 66px;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.contact-card__more .icon {
+  --icon-size: 26px;
+  color: var(--c-ink);
+  transition: transform var(--dur) var(--ease);
+}
+
+.contact-card__phone:hover,
+.contact-card__phone:focus-visible {
+  color: var(--c-hover-ink);
+}
+
+.contact-card__more:hover .icon,
+.contact-card__more:focus-visible .icon {
+  transform: translate(4px, -4px);
+}
+
+.contact-card__year {
+  position: absolute;
+  top: 363px;
+  left: 67px;
+  display: flex;
+  align-items: center;
+  height: 61px;
+}
+
+.contact-card__copy {
+  font-size: 20px;
+  line-height: 1.2;
+  color: #000;
+}
+
+.contact-card__year-rule {
+  width: 240px;
+  height: 1px;
+  margin-left: 32px;
+  background: var(--c-year-rule);
+}
+
+.to-top {
+  display: grid;
+  place-items: center;
+  width: 61px;
+  height: 61px;
+  margin-left: 41px;
+  border-radius: 50%;
+  background: var(--c-ink);
+  color: var(--c-arrow-light);
+  transition: transform var(--dur) var(--ease);
+}
+
+.to-top .icon {
+  --icon-size: 14px;
+  transform: rotate(-90deg);
+}
+
+.to-top:hover,
+.to-top:focus-visible {
+  transform: translateY(-4px);
+}
+
+.contact-card__place {
+  position: absolute;
+  top: 58px;
+  right: 58px;
+  text-align: right;
+}
+
+.contact-card__address {
+  margin-top: 9px;
+  font-size: 35px;
+  line-height: 38px;
+  white-space: nowrap;
+}
+
+.socials {
+  position: absolute;
+  top: 325px;
+  right: 63px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 13px;
+}
+
+.socials__row {
+  display: flex;
+  gap: 56px;
+}
+
+.socials__link {
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+  line-height: 42px;
+  white-space: nowrap;
+}
+
+/* Footer columns */
+
+.footer__columns {
+  position: absolute;
+  top: 623px;
+  left: 43px;
+  right: 0;
+}
+
+.footer__group {
+  position: absolute;
+  top: 0;
+}
+
+.footer__group--main { left: 0; }
+.footer__group--policy { left: calc(50% - 229px); }
+.footer__group--contacts { left: calc(100% - 351px); }
+
+.footer__title {
+  font-size: 35px;
+  line-height: 41px;
+  letter-spacing: -1.05px;
+  white-space: nowrap;
+}
+
+.footer__links {
+  margin-top: 14px;
+  font-size: 18px;
+  line-height: 44px;
+  letter-spacing: -0.54px;
+  color: var(--c-footer-link);
+}
+
+.footer__links a {
+  white-space: nowrap;
+  transition: color var(--dur) var(--ease);
+}
+
+.footer__links a:hover,
+.footer__links a:focus-visible {
+  color: var(--c-sand);
+}
+
+.footer__divider {
+  position: absolute;
+  top: 1178px;
+  left: 43px;
+  right: 55px;
+  height: 1px;
+  background: var(--c-footer-link);
+  transform-origin: left;
+}
+
+.footer__logo {
+  position: absolute;
+  top: 1251px;
+  left: 43px;
+}
+
+.footer__hours {
+  position: absolute;
+  top: 1233px;
+  left: 237px;
+}
+
+.footer__hours-label {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 28px;
+}
+
+.footer__hours-label .icon {
+  --icon-size: 13px;
+}
+
+.footer__hours-time {
+  display: block;
+  font-size: 25px;
+  line-height: 38px;
+  white-space: nowrap;
+  color: var(--c-footer-time);
+}
+
+.footer__legal {
+  position: absolute;
+  top: 1244px;
+  font-size: 14px;
+  line-height: 38px;
+  letter-spacing: -0.42px;
+  white-space: nowrap;
+  color: var(--c-legal);
+}
+
+.footer__legal--name {
+  right: 678px;
+  text-transform: uppercase;
+}
+
+.footer__legal--ogrn { left: calc(100% - 630px); }
+.footer__legal--inn { left: calc(100% - 409px); }
+
+.footer__dev {
+  position: absolute;
+  top: 1248px;
+  left: calc(100% - 197px);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.42px;
+  color: var(--c-legal);
+  transition: color var(--dur) var(--ease);
+}
+
+.footer__dev img {
+  width: 57px;
+  height: auto;
+}
+
+.footer__dev:hover,
+.footer__dev:focus-visible {
+  color: var(--c-white);
+}
+
+/* ===== Catalog page (Figma 109:2, 1920 × 8794) ===== */
+
+/* Hero card (Figma 109:954: 16,16 1888 × 1213, radius 15). Above the list glow. */
+.cat-hero {
+  position: relative;
+  z-index: 3;
+  /* one screen (--fixed-vh, set in <head>), like the home hero; Figma 1229 */
+  height: max(var(--fixed-vh, 100vh), 820px);
+}
+
+/* The card fills the screen below its 16px margin; the text group is pinned to
+   its bottom with the Figma distances (card 1213 high) */
+.cat-hero__card {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  bottom: 0;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--c-hero-card);
+}
+
+/* No zoom-in (client): on mobile the photo ends above the text, and its edge slid up under the dark fade */
+.cat-hero__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cat-hero__tag {
+  position: absolute;
+  bottom: 235px;
+  left: 40px;
+  min-width: 328px;
+}
+
+.cat-hero__title {
+  position: absolute;
+  bottom: 82px;
+  left: 40px;
+  width: 939px;
+  font-size: 70px;
+  font-weight: 400;
+  line-height: 63px;
+  letter-spacing: -2.1px;
+}
+
+/* Right column: Figma x 1424 = 480px from the card's right edge */
+.cat-hero__text {
+  position: absolute;
+  bottom: 191px;
+  left: calc(100% - 480px);
+  width: 440px; /* Figma 425: Chrome's Helvetica sets ~2 % wider, keeps Figma's 3 lines */
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: -0.48px;
+}
+
+.cat-hero__btn {
+  position: absolute;
+  bottom: 79px;
+  left: calc(100% - 480px);
+}
+
+/* List + reserve + graduates share two glows (Figma 109:957, 109:1064) */
+.cat-wrap {
+  position: relative;
+  overflow-x: clip;
+}
+
+/* Figma 109:957: 2061 × 1714 at (-30, 1127), radial 1082 × 1278 at (957.5, 495), 80 % */
+.glow--cat-list {
+  top: -102px;
+  left: calc(50% - 990px);
+  width: 2061px;
+  height: 1714px;
+  background: radial-gradient(1082px 1278px at 957.5px 495px, var(--glow-80));
+}
+
+/* Figma 109:1064: the "how to buy" glow of the home page (radial 1238 × 873 at 40.3°), centred at (1001, 3970) */
+.glow--cat-reserve {
+  top: 1868px;
+  left: calc(50% - 1197px);
+  width: 2476px;
+  height: 1746px;
+  background: radial-gradient(closest-side, var(--glow-80));
+  transform: rotate(40.3deg);
+}
+
+/* Puppy grid (Figma 109:959…: 3 × 613.4 × 881.9 cards at x 25 / 656.5 / 1288, rows 1327 / 2230).
+   Cards keep the Figma proportions and grow with the screen. */
+.cat-list {
+  position: relative;
+  z-index: 2;
+  padding: 98px 18.5px 139px 25px;
+}
+
+.cat-list__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 21px 18.2px;
+}
+
+/* The home card (574 × 825) at ×1.0686 (Figma 109:959): every size below is the
+   home value × 1.0686; the photo and the glass band are sized to the card.
+   Two classes: beats the fixed .puppy-card sizes of the laptop/compact blocks */
+.cat-list__grid .puppy-card--grid {
+  width: auto;
+  height: auto;
+  aspect-ratio: 613.375 / 881.892;
+  border-radius: 8.55px;
+}
+
+.puppy-card--grid .puppy-card__photo {
+  top: -33.13px;
+  left: -26.72px;
+  width: calc(100% + 50.35px);
+  height: auto;
+  aspect-ratio: 621 / 926;
+}
+
+.puppy-card--grid .puppy-card__glass {
+  top: auto;
+  bottom: -73.4px;
+  left: -25.65px;
+  width: calc(100% + 138.9px);
+  height: 258.6px;
+}
+
+/* Second tag row 48px below the first (the home card: 57px); the line-break ::after adds a gap too */
+.puppy-card--grid .puppy-card__tags {
+  top: 35.26px;
+  left: 39.54px;
+  right: 36.33px;
+  row-gap: 6.41px;
+}
+
+.puppy-card--grid .tag {
+  height: 35.26px;
+  padding: 0 10.69px;
+  border-radius: 3.21px;
+  font-size: 17.1px;
+  letter-spacing: -0.51px;
+}
+
+.puppy-card--grid .tag--name { width: 90.83px; }
+.puppy-card--grid .tag--gender { width: 139.99px; margin-left: 5.34px; }
+.puppy-card--grid .tag--color { width: 176.32px; margin-left: 9.62px; }
+.puppy-card--grid .tag--size { width: 236.16px; }
+
+.puppy-card--grid .puppy-card__age {
+  font-size: 17.1px;
+  letter-spacing: -0.51px;
+}
+
+.puppy-card--grid .puppy-card__age::before {
+  width: 4.27px;
+  height: 4.27px;
+  margin-right: 11.75px;
+}
+
+.puppy-card--grid .puppy-card__price {
+  top: auto;
+  bottom: 34.84px;
+  left: 30.99px;
+  padding-top: 27.78px;
+  font-size: 37.4px;
+  letter-spacing: -1.12px;
+}
+
+.puppy-card--grid .puppy-card__price-label {
+  left: 5.34px;
+  font-size: 17.1px;
+  letter-spacing: -0.51px;
+}
+
+.puppy-card--grid .puppy-card__btn {
+  --btn-h: 53.43px;
+  --btn-w: 269.29px;
+  --btn-pl: 25.65px;
+  --btn-pr: 64.12px;
+  --btn-icon: 42.74px;
+  --btn-icon-inset: 5.34px;
+  --btn-paw: 18.17px;
+  top: auto;
+  bottom: 30.24px;
+  left: auto;
+  right: 21.37px;
+  font-size: 17.1px;
+  letter-spacing: -0.51px;
+}
+
+.puppy-card--grid .btn--plain { --btn-pr: 25.65px; }
+.puppy-card--grid .btn--sold { --btn-w: 177.39px; }
+
+.puppy-card--grid .tag--status {
+  width: 135.71px;
+  margin-left: 9.62px;
+}
+
+.puppy-card--grid .tag--status::before {
+  width: 4.27px;
+  height: 4.27px;
+  margin-right: 8.55px;
+}
+
+/* Status tag: second row, after the size (catalog grid, product «похожие») */
+.tag--status {
+  order: 2;
+  width: 127px;
+  margin-left: 9px;
+}
+
+.tag--status::before {
+  content: "";
+  width: 4px;
+  height: 4px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.puppy-card--sold .puppy-card__price {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Label-only pill (no icon circle) */
+.btn--plain {
+  --btn-pr: var(--btn-pl);
+}
+
+/* "Забронировать без звонка" (Figma 150:44, 192:80): 365 wide, label from 46px */
+.btn--book {
+  --btn-w: 365px;
+  --btn-pl: 46px;
+  justify-content: flex-start;
+}
+
+/* Sold: grey, not clickable (Figma 109:1002) */
+.btn--sold {
+  --btn-bg: var(--c-sold);
+  --btn-fg: var(--c-white);
+  --btn-hover-bg: var(--c-sold);
+  --btn-hover-fg: var(--c-white);
+  --btn-w: 166px;
+  cursor: default;
+}
+
+/* Outlined pill (Figma 150:55) */
+.btn--outline {
+  --btn-bg: transparent;
+  --btn-hover-bg: rgba(52, 42, 35, 0.08);
+  --btn-w: 254px;
+  --btn-pr: var(--btn-pl);
+  border: 1px solid var(--c-ink);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+}
+
+/* Reserve (Figma 149:24–150:56, y 3251–4536) + the steps (109:1089…, y 4182) */
+.reserve {
+  position: relative;
+  z-index: 2;
+}
+
+.reserve__inner {
+  height: 1285px;
+}
+
+/* Figma 149:28: 63,3251 1510 × 831.5, radius 17; the text column takes the last 317px */
+.reserve__card {
+  position: absolute;
+  top: 0;
+  left: 63px;
+  right: 347px;
+  height: 831.5px;
+  overflow: hidden;
+  border-radius: 17px;
+  background: var(--c-reserve-card);
+}
+
+.reserve__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reserve__title {
+  position: absolute;
+  top: 461px; /* Figma 456: its 80px empty line pushes the big lines 5px lower */
+  left: 50px;
+  width: 444px;
+  font-weight: 400;
+  letter-spacing: -2.4px;
+  color: var(--c-ink);
+}
+
+.reserve__title-small {
+  display: block;
+  font-size: 35px;
+  line-height: 59px;
+}
+
+.reserve__title-big {
+  display: block;
+  font-size: 75px;
+  line-height: 65px;
+}
+
+.reserve__actions {
+  position: absolute;
+  top: 718px;
+  left: 50px;
+  display: flex;
+  gap: 20px;
+}
+
+.reserve__aside {
+  position: absolute;
+  top: 0;
+  left: calc(100% - 317px);
+  width: 303px;
+}
+
+.reserve__heading {
+  font-weight: 500;
+  line-height: 59px;
+  letter-spacing: -1.2px;
+}
+
+.reserve__heading-small {
+  display: block;
+  font-size: 35px;
+  font-weight: 400;
+}
+
+.reserve__heading-big {
+  display: block;
+  font-size: 75px;
+}
+
+.reserve__text {
+  position: absolute;
+  left: 0;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 28px;
+  letter-spacing: -0.48px;
+}
+
+.reserve__text p + p {
+  margin-top: 28px;
+}
+
+.reserve__text--terms {
+  top: 149px;
+  width: 284px;
+}
+
+.reserve__subtitle {
+  position: absolute;
+  top: 670px;
+  left: 0;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 59px;
+  letter-spacing: -1.2px;
+  white-space: nowrap;
+}
+
+.reserve__text--health {
+  top: 749px;
+  width: 303px;
+}
+
+.reserve .steps {
+  top: 931px;
+}
+
+/* Step arrows and the cell photos of the how-to grid exist only ≤1279 (media.css) */
+.reserve__nav,
+.howto__cell-photo {
+  display: none;
+}
+
+/* Graduates on the catalog page end 167px earlier (next title at Figma y 6212) */
+.graduates--short .graduates__inner {
+  height: 1564px;
+}
+
+/* the catalog frames (109:2, 194:16) have no «Смотреть всех выпускников» */
+.graduates--short .graduates__btn {
+  display: none;
+}
+
+/* How to buy grid (Figma 192:43–192:89, y 6212–7340) */
+.howto {
+  position: relative;
+  padding: 112px 36px 100px;
+}
+
+.howto__title {
+  width: 930px;
+  font-size: 55px;
+  font-weight: 400;
+  line-height: 50px;
+  letter-spacing: -1.65px;
+  background-image: linear-gradient(126.91deg, #f5decc 34.04%, #645248 182.06%);
+}
+
+.howto__btn {
+  position: absolute;
+  top: 133px;
+  right: 36px;
+}
+
+/* 4 × 2 square cells (462px at 1920) over one photo; dark cells cover it */
+.howto__grid {
+  position: relative;
+  margin-top: 104px;
+}
+
+.howto__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.howto__cells {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: auto;
+}
+
+.howto__cell {
+  position: relative;
+  aspect-ratio: 1;
+  color: var(--c-sand);
+}
+
+.howto__cell--dark {
+  background: var(--c-cell);
+}
+
+.howto__cell--wide {
+  grid-column: span 2;
+  aspect-ratio: 2;
+}
+
+.howto__cell--1 { grid-area: 1 / 1; }
+.howto__cell--2 { grid-area: 1 / 2; }
+.howto__cell--3 { grid-area: 1 / 4; }
+.howto__cell--4 { grid-area: 2 / 1 / 3 / 3; }
+.howto__cell--5 { grid-area: 2 / 3; }
+.howto__cell--6 { grid-area: 2 / 4; }
+
+.howto__num {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  font-size: 18px;
+  line-height: 18px;
+  letter-spacing: -0.54px;
+}
+
+.howto__name {
+  position: absolute;
+  top: 26px;
+  left: 80px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 25px;
+  letter-spacing: -0.48px;
+}
+
+.howto__text {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  font-size: 16px;
+  line-height: 18px;
+  letter-spacing: -0.48px;
+}
+
+/* Text widths: Figma + 20px (Chrome's Helvetica sets ~2 % wider; same line breaks) */
+.howto__cell--1 .howto__text { width: 232px; }
+.howto__cell--2 .howto__text { width: 289px; }
+.howto__cell--3 .howto__text { width: 249px; }
+.howto__cell--4 .howto__text { width: 291px; }
+.howto__cell--5 .howto__text { width: 235px; }
+.howto__cell--6 .howto__text { width: 276px; }
+
+/* "6/6" in the empty third cell, right-aligned 30px from its edge */
+.howto__count {
+  position: absolute;
+  top: calc(50% - 80px);
+  right: calc(25% + 30px);
+  font-size: 55px;
+  line-height: 50px;
+  letter-spacing: -1.65px;
+  color: var(--c-sand);
+}
+
+/* Hairlines (Figma 192:49–192:52, white 25 %) */
+.howto__line {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.25);
+  pointer-events: none;
+}
+
+.howto__line--h { top: 50%; left: 0; right: 0; height: 1px; }
+.howto__line--v { top: 0; bottom: 0; left: 50%; width: 1px; }
+.howto__line--v1 { top: 0; height: 50%; left: 25%; width: 1px; }
+.howto__line--v3 { top: 0; height: 50%; left: 75%; width: 1px; }
+
+/* ===== Reviews page (Figma 158:295, 1920 × 7960) ===== */
+
+/* Hero (Figma 0–1229): one screen, full bleed; the group is pinned to the bottom */
+.page-hero {
+  position: relative;
+  z-index: 3; /* above the graduates glow, which starts 102px higher */
+  height: max(var(--fixed-vh, 100vh), 820px);
+  overflow: hidden;
+}
+
+.page-hero__bg {
+  position: absolute;
+  inset: 0;
+}
+
+.page-hero__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+}
+
+.page-hero__inner {
+  height: 100%;
+}
+
+.page-hero__tag {
+  position: absolute;
+  left: 46px;
+  bottom: 335px;
+  min-width: 314px;
+}
+
+/* Figma 158:914: 285px Light, cap top at y 933, baseline 1138 */
+.page-hero__title {
+  position: absolute;
+  left: 46px;
+  bottom: 25px;
+  font-size: 285px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -8.55px;
+  white-space: nowrap;
+}
+
+/* Mobile-only lead in the hero (media.css) */
+.page-hero__text {
+  display: none;
+}
+
+.page-hero__btn {
+  position: absolute;
+  right: 34px;
+  bottom: 94px;
+}
+
+/* Graduates + its glow (Figma 158:301: the catalog list glow) */
+.rv-wrap {
+  position: relative;
+  overflow-x: clip;
+}
+
+.glow--rv {
+  top: -102px;
+  left: calc(50% - 990px);
+  width: 2061px;
+  height: 1714px;
+  background: radial-gradient(1082px 1278px at 957.5px 495px, var(--glow-80));
+}
+
+/* Figma: title 11px below the hero end + 139, three rows of cards (y 1520 / 2140 / 2760) */
+.graduates--reviews {
+  padding-top: 11px;
+}
+
+.graduates--reviews .graduates__inner {
+  height: 2272px;
+}
+
+/* Trust (Figma y 4918–5950): globe photo (158:1060, its top 100px are under the growth section) */
+.rv-trust {
+  position: relative;
+  overflow: hidden;
+}
+
+.rv-trust__globe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1095px;
+  object-fit: cover;
+  object-position: 50% 100%;
+}
+
+.rv-trust__inner {
+  height: 1032px;
+}
+
+.rv-trust__title {
+  position: absolute;
+  top: 170px;
+  left: 45px;
+  width: 644px;
+  padding-bottom: 12px; /* gradient text: the box must cover the descenders */
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: -1.5px;
+  background-image: linear-gradient(125.44deg, #f5decc 34.04%, #645248 182.06%);
+}
+
+/* Figma 158:1113: 3px rule, 51 high, at x 1393 */
+.rv-trust__rule {
+  position: absolute;
+  top: 173px;
+  left: calc(100% - 527px);
+  width: 3px;
+  height: 51px;
+  background: var(--c-line-dark);
+}
+
+.rv-trust__lead {
+  position: absolute;
+  top: 170px;
+  left: calc(100% - 494px);
+  width: 470px; /* Figma 443: Chrome's Helvetica sets wider; keeps Figma's two lines */
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 26px;
+  letter-spacing: -0.66px;
+}
+
+.rv-trust__card {
+  position: absolute;
+  top: 358px;
+  left: 45px;
+  width: 491px;
+  height: 380px;
+  border-radius: var(--radius-card);
+  background: var(--c-sand);
+  color: var(--c-ink);
+}
+
+.rv-trust__card-title {
+  position: absolute;
+  top: 48px;
+  left: 37px;
+  width: 270px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.6px;
+}
+
+.rv-trust__card-text {
+  position: absolute;
+  top: 120px;
+  left: 37px;
+  width: 410px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 25px;
+  letter-spacing: -0.42px;
+}
+
+/* Figma 158:1069: dark pill 410 wide, label from 66px */
+.rv-trust__btn {
+  --btn-w: 410px;
+  --btn-pl: 66px;
+  position: absolute;
+  top: 265px;
+  left: 37px;
+  justify-content: flex-start;
+}
+
+/* What they say (Figma y 5950–6617): text reviews slider */
+.rv-say {
+  position: relative;
+  overflow-x: clip;
+}
+
+.rv-say__inner {
+  height: 667px;
+}
+
+.rv-say__title {
+  position: absolute;
+  /* Figma: 25px line box at 58 (the glyphs overflow it); a 50px box centred on the same line */
+  top: 45.5px;
+  left: 45px;
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 50px;
+  white-space: nowrap;
+  background-image: linear-gradient(144.68deg, #f5decc 34.04%, #645248 182.06%);
+}
+
+.rv-say__nav {
+  top: 42px;
+  right: 24px;
+}
+
+.rv-say__slider {
+  position: absolute;
+  top: 135px;
+  left: 0;
+  right: 0;
+  overflow: visible;
+}
+
+/* Text review card (Figma 159:1573: 557 × 432) */
+.say-card {
+  position: relative;
+  width: 557px;
+  height: 432px;
+  border-radius: var(--radius-sm);
+  background: var(--c-review-card);
+}
+
+.say-card__avatar {
+  position: absolute;
+  top: 46px;
+  left: 27px;
+  width: 63px;
+  height: 65px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.say-card__name {
+  position: absolute;
+  top: 32px;
+  left: 110px;
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 63px;
+  white-space: nowrap;
+  color: var(--c-review-name-dim);
+}
+
+.say-card__first {
+  margin-right: 0.25em;
+  color: var(--c-review-name);
+}
+
+.say-card__badge {
+  width: 18px;
+  height: auto;
+  margin-left: 12px;
+}
+
+.say-card__role {
+  position: absolute;
+  top: 75px;
+  left: 111px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 35px;
+  color: var(--c-review-role);
+}
+
+/* Figma 159:1581…: five 15 × 15 stars, 19.75 apart, from x 432 */
+.say-card__stars {
+  position: absolute;
+  top: 60px;
+  left: 432px;
+  display: flex;
+  gap: 4.5px;
+  color: var(--c-star);
+}
+
+.say-card__stars .icon {
+  --icon-size: 15.25px;
+}
+
+.say-card__rule {
+  position: absolute;
+  top: 130px;
+  left: 27px;
+  width: 499px;
+  height: 1px;
+  background: var(--c-review-rule);
+}
+
+.say-card__text {
+  position: absolute;
+  top: 181px;
+  left: 27px;
+  width: 485px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 32px;
+  color: var(--c-review-text);
+}
+
+.say-card__text p + p {
+  margin-top: 32px;
+}
+
+/* ===== Product page (Figma 116:5 «Карточка товара», 1920 × 4889) ===== */
+
+/* Hero: the shared page hero + the price on the right (Figma 116:840/841) */
+.page-hero--product .page-hero__tag {
+  min-width: 328px;
+}
+
+.page-hero__price {
+  position: absolute;
+  right: 32px;
+  bottom: 168px;
+  font-size: 55px;
+  line-height: 75px;
+  letter-spacing: -1.65px;
+  white-space: nowrap;
+}
+
+.page-hero__price-label {
+  position: absolute;
+  right: 8px;
+  bottom: 65px;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.48px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Mobile-only parts (media.css): the rule under the hero title, the gallery arrows */
+.page-hero__rule,
+.pd__arrow {
+  display: none;
+}
+
+/* Product + similar share the glow (Figma 116:11: the catalog list glow) */
+.pd-wrap {
+  position: relative;
+  overflow-x: clip;
+}
+
+.glow--pd {
+  top: -102px;
+  left: calc(50% - 990px);
+  width: 2061px;
+  height: 1714px;
+  background: radial-gradient(1082px 1278px at 957.5px 495px, var(--glow-80));
+}
+
+.pd,
+.similar {
+  position: relative;
+  z-index: 1;
+}
+
+/* Product block (Figma y 1229–2360). The info column is in flow, so the block grows and shrinks
+   with the accordion; it is never shorter than the photo column (Figma 1131). */
+.pd__inner {
+  min-height: 1131px;
+}
+
+/* Figma 117:907: the photo, a Swiper of one slide per thumbnail (main.js initGallery) */
+.pd__stage {
+  position: absolute;
+  top: 121px;
+  left: 25px;
+  width: 873px;
+  height: 938px;
+}
+
+.pd__stage .swiper-slide {
+  height: 100%;
+}
+
+.pd__photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  -webkit-user-drag: none;
+}
+
+/* Figma 118:966…: four 128 × 227 thumbnails at x 912 */
+.pd__thumbs {
+  position: absolute;
+  top: 122px;
+  left: 912px;
+  display: flex;
+  flex-direction: column;
+  gap: 9.33px;
+}
+
+.pd__thumb {
+  display: block;
+  width: 128px;
+  height: 227px;
+  overflow: hidden;
+  opacity: 0.85;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.pd__thumb.is-active,
+.pd__thumb:hover,
+.pd__thumb:focus-visible {
+  opacity: 1;
+}
+
+.pd__thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Right column: Figma x 1115–1882; the accordion flows from y 326, 58 below it to the similar block */
+.pd__info {
+  position: relative;
+  width: 767px;
+  margin-left: calc(100% - 805px);
+  padding: 326px 0 58px;
+}
+
+.pd__name {
+  position: absolute;
+  top: 101px;
+  left: 0;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 75px;
+  letter-spacing: -1.2px;
+}
+
+.pd__price {
+  position: absolute;
+  top: 102px;
+  right: 5px;
+  font-size: 27px;
+  line-height: 75px;
+  letter-spacing: -0.81px;
+  white-space: nowrap;
+}
+
+.pd__rule {
+  position: absolute;
+  top: 178px;
+  left: 5px;
+  width: 758px;
+  height: 1px;
+  background: var(--c-pd-rule);
+}
+
+.pd__actions {
+  position: absolute;
+  top: 211px;
+  left: 0;
+  display: flex;
+  gap: 14px;
+}
+
+/* Figma 159:1678: glass pill 276 × 50, label centred left of a 40px outlined circle */
+.pd__share {
+  --btn-h: 50px;
+  --btn-w: 276px;
+  --btn-pl: 24px;
+  --btn-pr: 54px;
+}
+
+.pd__share-icon {
+  position: absolute;
+  top: 5px;
+  right: 7px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 39px;
+  border: 1px solid var(--glass-border);
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.pd__share-icon .icon {
+  --icon-size: 13px;
+}
+
+/* Accordion (Figma 117:867–118:987): 54px rows, chevron up when open */
+.pd-acc {
+  position: relative;
+  left: 4px;
+  width: 763px;
+}
+
+.pd-acc__heading {
+  margin: 0;
+  font: inherit;
+}
+
+.pd-acc__q {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 54px;
+  border-bottom: 1px solid var(--c-pd-border);
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  color: var(--c-white);
+}
+
+.pd-acc__icon {
+  --icon-size: 11px;
+  position: absolute;
+  top: calc(50% - 5.5px);
+  right: 4px;
+  transition: transform var(--dur) var(--ease);
+}
+
+/* Figma: the chevron points up on open items */
+.is-active > .pd-acc__heading .pd-acc__icon {
+  transform: scaleY(-1);
+}
+
+.pd-acc__panel,
+.pd-sub__panel {
+  overflow: hidden;
+  transition-property: height, visibility;
+  transition-timing-function: var(--ease);
+}
+
+/* accordion-js marks each item .js-enabled; closed panels are not read out */
+.pd-acc__item.js-enabled:not(.is-active) > .pd-acc__panel,
+.pd-sub__item.js-enabled:not(.is-active) > .pd-sub__panel {
+  visibility: hidden;
+}
+
+.pd-acc__text {
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--c-pd-text);
+}
+
+.pd-parents__text {
+  width: 740px;
+  padding-top: 43px;
+}
+
+/* Figma 118:944 / 118:949: 147 × 198 windows on the puppy photo (236 × 351 at -44, -51) */
+.pd-parents {
+  display: flex;
+  gap: 21px;
+  padding-top: 43px;
+}
+
+.pd-parents__item {
+  position: relative;
+  width: 147px;
+  height: 198px;
+  overflow: hidden;
+}
+
+.pd-parents__photo {
+  position: absolute;
+  top: -51px;
+  left: -44px;
+  width: 236px;
+  height: 351px;
+  object-fit: cover;
+}
+
+.pd-acc__about {
+  width: 740px;
+  padding: 43px 0 60px;
+}
+
+.pd-acc__included {
+  width: 460px;
+  padding-top: 43px;
+}
+
+/* Similar puppies (Figma y 2360–3551): the catalog slider, cards from x 33 */
+.similar__inner {
+  height: 1191px;
+}
+
+.similar__title {
+  position: absolute;
+  top: 139px;
+  left: 33px;
+  width: 583px;
+  margin: -8px 0;
+  padding: 8px 0;
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: -1.5px;
+  background-image: linear-gradient(122.8deg, #f5decc 34.04%, #645248 182.06%);
+}
+
+.similar__nav {
+  top: 154px;
+  right: 38px;
+}
+
+/* Figma: the second tag row 45px below the first (the home card: 57px) */
+.similar .puppy-card__tags {
+  row-gap: 6px;
+}
+
+.similar__slider {
+  position: absolute;
+  top: 266px;
+  left: 0;
+  right: 0;
+  overflow: visible;
+}
+
+/* ===== About page (Figma 118:1676 «О нашем питомнике», 1920 × 14396) ===== */
+
+/* Hero: the catalog hero card (Figma 118:1683) with its own text column and a bigger button */
+.cat-hero--about .cat-hero__tag {
+  min-width: 343px;
+}
+
+.cat-hero--about .cat-hero__title {
+  bottom: 47px;
+  width: 992px;
+}
+
+.cat-hero--about .cat-hero__text {
+  left: calc(100% - 511px);
+  bottom: 150px;
+  width: 480px; /* Figma 465: Chrome's Helvetica sets wider; keeps Figma's 4 lines */
+}
+
+.cat-hero--about .cat-hero__btn {
+  left: calc(100% - 511px);
+  bottom: 44px;
+}
+
+/* Figma 118:2254: 316 × 66, label centred left of a 55px circle */
+.ab-hero__btn {
+  --btn-h: 66px;
+  --btn-w: 316px;
+  --btn-pl: 0px;
+  --btn-pr: 61px;
+  --btn-icon: 55px;
+  --btn-icon-inset: 6px;
+  --btn-paw: 23px;
+}
+
+/* О нас (Figma y 1229–2480) */
+.ab-intro {
+  position: relative;
+  overflow-x: clip;
+}
+
+/* Figma 118:2266: 2061 × 895 at (-36, 1230), radial 1082 × 667 at (957.5, 258.5), 80 % */
+.ab-intro__glow,
+.dl-intro__glow {
+  position: absolute;
+  top: 1px;
+  left: calc(50% - 996px);
+  width: 2061px;
+  height: 895px;
+  background: radial-gradient(1081.5px 667px at 957.5px 258.5px, var(--glow-80));
+  pointer-events: none;
+}
+
+.ab-intro__inner {
+  height: 1251px;
+}
+
+.ab-intro__kicker {
+  position: absolute;
+  top: 130px;
+  left: 56px;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: -0.54px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.ab-intro__title {
+  position: absolute;
+  top: 219px;
+  left: 41px;
+}
+
+.ab-intro__title img {
+  width: 1317px;
+  height: auto;
+}
+
+.ab-intro__slider {
+  position: absolute;
+  top: 695px;
+  left: 0;
+  right: 0;
+  overflow: visible;
+}
+
+.ab-intro__slide {
+  width: 757.72px;
+}
+
+.ab-intro__photo {
+  width: 100%;
+  height: 377px;
+  border-radius: var(--radius-video);
+  object-fit: cover;
+}
+
+.ab-intro__caption {
+  margin-top: 29.6px;
+  font-size: 25px;
+  line-height: 30px;
+  letter-spacing: -0.75px;
+  background: linear-gradient(83.87deg, #fff 0.68%, #343434 145.62%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Documents (Figma y 2480–3830): a photo card with glass document cards in a slider */
+.ab-docs__inner {
+  height: 1350px;
+}
+
+.ab-docs__card {
+  position: absolute;
+  top: 62.6px;
+  left: 16px;
+  right: 16px;
+  height: 1206.7px;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--c-hero-card);
+}
+
+.ab-docs__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ab-docs__title {
+  position: absolute;
+  top: 60px;
+  left: 40px;
+  width: 992px;
+  font-size: 70px;
+  font-weight: 400;
+  line-height: 63px;
+  letter-spacing: -2.1px;
+}
+
+.ab-docs__text {
+  position: absolute;
+  top: 216px;
+  left: 40px;
+  width: 735px;
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: -0.54px;
+}
+
+.ab-docs__logo {
+  position: absolute;
+  top: 60px;
+  right: 40px;
+  width: 142px;
+  height: auto;
+}
+
+.ab-docs__nav {
+  position: absolute;
+  z-index: 2;
+  top: 1103px;
+  left: 40px;
+  display: flex;
+  gap: 14px;
+}
+
+/* Figma 159:1212 / 159:1213: white 64px circles */
+.ab-docs__arrow {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--c-white);
+  color: var(--c-ink);
+  transition: background-color var(--dur) var(--ease);
+}
+
+.ab-docs__arrow:hover,
+.ab-docs__arrow:focus-visible {
+  background: var(--c-sand);
+}
+
+.ab-docs__arrow .icon {
+  --icon-size: 14px;
+}
+
+.ab-docs__arrow--prev .icon {
+  transform: scaleX(-1);
+}
+
+.ab-docs__arrow.swiper-button-disabled {
+  opacity: 0.5;
+}
+
+/* cut on the left, so cards sliding out never pass under the arrows (the card clips the
+   right edge). overflow, not clip-path: a clip-path would stop the cards' backdrop blur */
+.ab-docs__slider {
+  position: absolute;
+  top: 633px;
+  left: 700px;
+  right: 0;
+  overflow: hidden;
+}
+
+/* Figma 159:1214…: glass cards 481 × 537 */
+.ab-doc {
+  position: relative;
+  width: 481px;
+  height: 537px;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-lg);
+  background: rgba(0, 0, 0, 0.02);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+}
+
+.ab-doc__title {
+  position: absolute;
+  top: 40px;
+  left: 30px;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 26px;
+  letter-spacing: -0.9px;
+  white-space: nowrap;
+}
+
+.ab-doc__rule {
+  position: absolute;
+  top: 91px;
+  left: 30px;
+  right: 48px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.ab-doc__text {
+  position: absolute;
+  top: 115px;
+  left: 30px;
+  width: 385px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 26px;
+  letter-spacing: -0.54px;
+}
+
+.ab-doc__btn {
+  --btn-w: 219px;
+  position: absolute;
+  top: 457px;
+  left: 30px;
+}
+
+/* Care conditions (Figma y 3830–5300) */
+.ab-care {
+  position: relative;
+  overflow-x: clip;
+}
+
+/* Figma 118:2274: the home care glow (1756 × 1508, radial 812 × 991 at 843.5, 1055.8), at (117, 3944.6) */
+.ab-care__glow {
+  position: absolute;
+  top: 114.6px;
+  left: calc(50% - 843px);
+  width: 1756px;
+  height: 1508px;
+  background: radial-gradient(812px 991px at 843.5px 1055.8px, var(--glow-80));
+  /* the gradient runs past the box: fade its last 300px so the cut edge never shows as a line */
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 300px), transparent);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 300px), transparent);
+  pointer-events: none;
+}
+
+.ab-care__inner {
+  height: 1470px;
+}
+
+.ab-care__title {
+  position: absolute;
+  top: 89.6px;
+  left: calc(50% - 474px);
+  width: 927px;
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 54px;
+  letter-spacing: -1.8px;
+  text-align: center;
+}
+
+.ab-care__lead {
+  position: absolute;
+  top: 250.6px;
+  left: calc(50% - 316px);
+  width: 632px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: -0.48px;
+  text-align: center;
+  color: var(--c-pd-text);
+}
+
+/* Figma 118:2275 / 118:2276: blurred ellipses under the bag, rotated -10.56° and skewed */
+.ab-care__shadow {
+  position: absolute;
+  border-radius: 50%;
+  transform: rotate(-10.56deg) skewX(-3.88deg);
+  pointer-events: none;
+}
+
+.ab-care__shadow--outer {
+  top: 1123.8px;
+  left: calc(50% - 320.3px);
+  width: 619.7px;
+  height: 153.4px;
+  background: rgba(16, 13, 12, 0.7);
+  filter: blur(23.7px);
+}
+
+.ab-care__shadow--inner {
+  top: 1138px;
+  left: calc(50% - 254.2px);
+  width: 495.2px;
+  height: 122.5px;
+  background: #1b1817;
+  filter: blur(10.4px);
+}
+
+/* Figma 118:2278: #191310 rect blurred 100px, top edge at y 5111 */
+.ab-care__fade {
+  position: absolute;
+  top: 981px;
+  left: 0;
+  right: 0;
+  height: 600px;
+  background: var(--fade-ramp);
+  pointer-events: none;
+}
+
+.ab-care__puppy {
+  position: absolute;
+  top: 544.6px;
+  left: calc(50% - 385px);
+  width: 691px;
+  height: auto;
+}
+
+.ab-care__card {
+  top: 346.6px;
+  left: calc(50% + 383px);
+}
+
+/* Figma 118:2285: 309 wide (home card: 410), three lines */
+.ab-care__card .care__card-text {
+  width: 320px;
+}
+
+.ab-care__dot {
+  top: 459.6px;
+  left: calc(50% + 318px);
+}
+
+/* Figma 118:2282: 455px at 137.94°, centred on its 338 × 305 box at (931, 4322.6) */
+.ab-care__line {
+  top: 645.1px;
+  left: calc(50% - 87.6px);
+  width: 455.27px;
+  transform: rotate(137.94deg);
+}
+
+.ab-care__item {
+  position: absolute;
+}
+
+.ab-care__item--comfort { top: 908.6px; left: calc(50% - 837px); }
+.ab-care__item--coat { top: 630.6px; left: calc(50% - 673px); }
+.ab-care__item--space { top: 449.6px; left: calc(50% - 221px); }
+.ab-care__item--clean { top: 673.6px; left: calc(50% + 370px); width: 389px; }
+.ab-care__item--toys { top: 980.6px; left: calc(50% + 506px); }
+.ab-care__item--social { top: 1176.6px; left: calc(50% - 536px); }
+.ab-care__item--vet { top: 1174.6px; left: calc(50% + 158px); }
+
+/* Our story (Figma y 5300–6765): the home «Как купить» layout */
+/* Arrows for the intro, care and vet rows and the story glow exist only ≤1279 (media.css) */
+.ab-intro__nav,
+.ab-care__nav,
+.ab-vet__nav,
+.ab-story__glow {
+  display: none;
+}
+
+.ab-story {
+  position: relative;
+  overflow-x: clip;
+}
+
+.ab-story__inner {
+  height: 1465px;
+}
+
+/* two lines on desktop («которая становится / частью семьи», 780px) */
+.ab-story__title {
+  position: absolute;
+  top: 20px;
+  left: 103px;
+  width: 800px;
+  letter-spacing: -1.05px;
+}
+
+.ab-story__rule--l { top: 257px; left: 101px; width: 379px; }
+.ab-story__rule--r { top: 478px; left: calc(100% - 425px); width: 379px; }
+
+.ab-story__text {
+  position: absolute;
+  width: 369px;
+}
+
+.ab-story__text--intro { top: 290px; left: 108px; }
+.ab-story__text--persons { top: 951px; left: 111px; }
+.ab-story__text--help { top: 511px; left: calc(100% - 418px); }
+
+.ab-story__subtitle {
+  position: absolute;
+  top: 842px;
+  left: 111px;
+  font-size: 55px;
+  font-weight: 400;
+  line-height: 73px;
+  letter-spacing: -1.65px;
+  white-space: nowrap;
+}
+
+.ab-story__puppy {
+  position: absolute;
+  top: 100px;
+  left: calc(50% - 415px);
+  width: 884px;
+  height: 1325px;
+}
+
+.ab-story__help {
+  position: absolute;
+  top: 290px;
+  left: calc(100% - 422px);
+}
+
+.ab-story__actions {
+  position: absolute;
+  top: 870px;
+  left: calc(100% - 414px);
+  display: flex;
+  flex-direction: column;
+  gap: 29px;
+}
+
+/* Daily life (Figma y 6765–8106): the home growth section, a two-line title and the text on top */
+.growth--about .growth__inner {
+  height: 1341px;
+}
+
+.growth--about .growth__title {
+  width: 714px;
+  font-size: 60px;
+  line-height: 60px;
+  letter-spacing: -2.4px;
+  white-space: normal;
+}
+
+.growth--about .growth__rule {
+  top: 306px;
+}
+
+.growth--about .growth__text {
+  top: 131px;
+  right: 201px;
+  width: 590px;
+  line-height: 28px;
+}
+
+.growth--about .growth__gallery {
+  top: 366px;
+}
+
+.growth--about .growth__btn {
+  --btn-w: 297px;
+  --btn-pl: 26px;
+}
+
+/* Vet protocols (Figma y 8106–9267) + the glow behind vet, video and FAQ (118:2429) */
+.ab-vet {
+  position: relative;
+  overflow-x: clip;
+}
+
+.ab-vet__glow {
+  position: absolute;
+  top: 698px;
+  left: calc(50% - 1003px);
+  width: 2061px;
+  height: 3180px;
+  background: radial-gradient(1147px 1618px at 971px 2295.8px, var(--glow-60));
+  pointer-events: none;
+}
+
+.faq--about .faq__glow {
+  display: none;
+}
+
+.ab-vet__inner {
+  height: 1161px;
+}
+
+.ab-vet__title {
+  position: absolute;
+  top: 150px;
+  left: 70px;
+  width: 715px;
+  padding-bottom: 12px;
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 60px;
+  letter-spacing: -1.8px;
+  background-image: linear-gradient(109.35deg, #f5decc 34.04%, #645248 182.06%);
+}
+
+.ab-vet__text {
+  position: absolute;
+  top: 150px;
+  left: calc(100% - 522px);
+  width: 502px;
+}
+
+.ab-vet__slider {
+  position: absolute;
+  top: 427px;
+  left: 0;
+  right: 0;
+  overflow: visible;
+}
+
+.ab-vet__slide {
+  width: 424px;
+}
+
+.ab-vet__photo {
+  width: 100%;
+  height: 546.85px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+}
+
+.ab-vet__caption {
+  margin-top: 20.15px;
+  font-size: 15px;
+  line-height: 1.3;
+  letter-spacing: -0.45px;
+  color: var(--c-sand);
+}
+
+/* Video (Figma 159:1634): the home card; 25px more before the FAQ */
+.video--about .container {
+  height: 1225px;
+}
+
+/* Visit (Figma y 11792–13049) */
+.ab-visit__inner {
+  height: 1257px;
+}
+
+.ab-visit__card {
+  position: absolute;
+  top: 63px;
+  left: 23px;
+  right: 23px;
+  height: 1144px;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--c-eyes);
+  color: var(--c-ink);
+}
+
+.ab-visit__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ab-visit__title {
+  position: absolute;
+  top: 56px;
+  left: 54px;
+  width: 637px;
+  font-size: 60px;
+  font-weight: 500;
+  line-height: 56px;
+  letter-spacing: -1.8px;
+}
+
+/* Figma 127:82: light pill 353 × 64, label from 39px */
+.ab-visit__btn {
+  --btn-w: 353px;
+  --btn-pl: 39px;
+  position: absolute;
+  top: 225px;
+  left: 54px;
+  justify-content: flex-start;
+}
+
+.ab-visit__hint {
+  position: absolute;
+  top: 37px;
+  right: 115px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 63px;
+  letter-spacing: -0.48px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: rgba(52, 42, 35, 0.6);
+}
+
+/* Figma 127:9: the circle arrow turned down, a dashed line under it (127:50) */
+.ab-visit__icon {
+  --icon-size: 25px;
+  position: absolute;
+  top: 56px;
+  right: 69px;
+  color: var(--c-ink);
+  transform: rotate(90deg);
+}
+
+.ab-visit__track {
+  position: absolute;
+  top: 97px;
+  right: 81px;
+  height: 886px;
+  border-left: 1px dashed rgba(52, 42, 35, 0.35);
+}
+
+.ab-visit__pill--1 { top: 574px; left: calc(50% - 545px); }
+.ab-visit__pill--2 { top: 695px; left: calc(50% - 430px); }
+.ab-visit__pill--3 { top: 540px; left: calc(50% + 219px); }
+.ab-visit__pill--4 { top: 661px; left: calc(50% + 334px); width: 471px; }
+
+.ab-visit__subtitle {
+  position: absolute;
+  top: 900px;
+  left: 57px;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 38px;
+  letter-spacing: -1.2px;
+  white-space: nowrap;
+}
+
+.ab-visit__text {
+  position: absolute;
+  top: 999px;
+  left: 57px;
+  width: 475px;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 29px;
+  letter-spacing: -0.51px;
+}
+
+.ab-visit__catalog {
+  --btn-w: 353px;
+  position: absolute;
+  top: 1022px;
+  right: 46px;
+}
+
+/* ===== Contacts page (Figma 159:1757 «Контакты», 1920 × 2557) ===== */
+
+/* Hero (Figma 0–1229): one screen, full-bleed photo; phone / e-mail / address at the top
+   right, tag, title and form pinned to the bottom left, socials to the bottom right */
+.ct-hero {
+  position: relative;
+  height: max(var(--fixed-vh, 100vh), 820px);
+  overflow: hidden;
+}
+
+.ct-hero__bg {
+  position: absolute;
+  inset: 0;
+  isolation: isolate;
+}
+
+.ct-hero__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Figma 169:186: black → clear, 372 high from y −139 (63 % at the top edge), under the header */
+/* light veil over the photo, so the contacts, title and form read clearly (desktop; the
+   compact layouts have their own dark ramps) */
+.ct-hero__bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(to left, rgba(25, 19, 16, 0.4), rgba(25, 19, 16, 0) 40%), var(--hero-veil); /* + a shade under the contacts on the right */
+  pointer-events: none;
+}
+
+.ct-hero__bg::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 233px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.63), rgba(0, 0, 0, 0));
+}
+
+.ct-hero__inner {
+  height: 100%;
+}
+
+.ct-hero__tag {
+  position: absolute;
+  left: 46px;
+  bottom: 494px;
+  min-width: 312px;
+}
+
+/* Figma 159:2123: 220px Light, cap top at y 770, baseline 928 */
+.ct-hero__title {
+  position: absolute;
+  left: 46px;
+  bottom: 250px;
+  font-size: 220px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -6.6px;
+  white-space: nowrap;
+}
+
+/* Figma 159:2466–161:4: label + sparkle, value under it, right-aligned at x 1884 */
+.ct-info {
+  position: absolute;
+  top: 214px;
+  right: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 33px;
+  margin: 0;
+  text-align: right;
+  color: var(--c-light);
+}
+
+.ct-info__item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.ct-info__label {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  color: var(--c-light-dim);
+}
+
+.ct-info__label .icon {
+  --icon-size: 19px;
+  color: var(--c-light);
+}
+
+.ct-info__value {
+  margin: 11px 4px 0 0;
+  font-size: 35px;
+  line-height: 38px;
+  white-space: nowrap;
+}
+
+.ct-info__value a {
+  transition: color var(--dur) var(--ease);
+}
+
+.ct-info__value a:hover,
+.ct-info__value a:focus-visible {
+  color: var(--c-sand);
+}
+
+/* Form (Figma 159:2492–159:2507): 224 / 224 / 412 columns, three 52px rows 15 apart;
+   the comment spans the rows, the submit the first two columns */
+.ct-form {
+  position: absolute;
+  left: 48px;
+  bottom: 39px;
+  display: grid;
+  grid-template-columns: 224px 224px 412px;
+  grid-template-rows: repeat(3, 52px);
+  gap: 15px 18.5px;
+}
+
+.ct-form__field {
+  position: relative;
+}
+
+.ct-form__field--name { grid-area: 1 / 1; }
+.ct-form__field--phone { grid-area: 1 / 2; }
+.ct-form__field--email { grid-area: 2 / 1; }
+.ct-form__field--type { grid-area: 2 / 2; z-index: 4; }
+.ct-form__field--comment { grid-area: 1 / 3 / 4 / 4; }
+
+/* Two classes: the generated laptop block repeats the light .field shorthands after this */
+.ct-form .field {
+  width: 100%;
+  height: 52px;
+  padding: 0 20px 0 21px;
+  border-color: var(--glass-border);
+  border-radius: 5px;
+  background: var(--glass-fill);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  font-size: 15px;
+  letter-spacing: -0.6px;
+  color: var(--c-white);
+}
+
+.ct-form .field::placeholder {
+  color: var(--c-white);
+}
+
+.ct-form .field:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.ct-form .field:focus {
+  border-color: var(--c-white);
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.ct-form .field:focus::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.ct-form .field-wrap.is-invalid .field {
+  border-color: var(--c-error-light);
+}
+
+.ct-form .field-error {
+  color: var(--c-error-light);
+}
+
+/* element + two classes: beats the laptop copy of .ct-form .field { height } */
+.ct-form textarea.ct-form__comment {
+  height: 100%;
+  padding: 15px 20px 15px 27px;
+  line-height: 1.4;
+  resize: none;
+}
+
+/* Custom dropdown (CLAUDE.md → Custom dropdown; main.js initDropdown) */
+.dropdown {
+  position: relative;
+  height: 100%;
+}
+
+.dropdown__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdown__value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Figma 159:2507: a 7px white triangle, 12px from the field's right edge */
+.dropdown__arrow {
+  flex: none;
+  width: 0;
+  height: 0;
+  margin-right: -8px;
+  border-top: 5.25px solid currentColor;
+  border-left: 3.5px solid transparent;
+  border-right: 3.5px solid transparent;
+  transition: transform var(--dur) var(--ease);
+}
+
+.dropdown__toggle[aria-expanded="true"] .dropdown__arrow {
+  transform: rotate(180deg);
+}
+
+.dropdown__list {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 5;
+  padding: 6px 0;
+  border: 1px solid var(--glass-border);
+  border-radius: 5px;
+  background: rgba(25, 19, 16, 0.92);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  opacity: 0;
+  translate: 0 -8px;
+  transition: opacity 0.3s var(--ease), translate 0.3s var(--ease);
+}
+
+.dropdown__list.is-open {
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* contacts form: the list opens upwards, above the field (the form sits at the screen bottom) */
+.ct-form .dropdown__list {
+  top: auto;
+  bottom: calc(100% + 6px);
+  translate: 0 8px;
+}
+
+.ct-form .dropdown__list.is-open {
+  translate: 0 0;
+}
+
+.dropdown__list:focus,
+.dropdown__list:focus-visible {
+  outline: none;
+}
+
+.dropdown__option {
+  padding: 10px 21px;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.6px;
+  color: var(--c-white);
+  cursor: pointer;
+}
+
+.dropdown__option:hover,
+.dropdown__option.is-active {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.dropdown__option[aria-selected="true"] {
+  color: var(--c-sand);
+}
+
+/* Figma 159:2502: white 466 × 52, label from 22px, the enter icon 29px from the right */
+.ct-form__submit {
+  grid-area: 3 / 1 / 4 / 3;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 0 0 22px;
+  border-radius: 5px;
+  background: var(--c-white);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--c-black);
+  transition: background-color var(--dur) var(--ease);
+}
+
+.ct-form__submit .icon {
+  --icon-size: 16px;
+  position: absolute;
+  top: 18px;
+  right: 29px;
+  transition: transform var(--dur) var(--ease);
+}
+
+.ct-form__submit:hover,
+.ct-form__submit:focus-visible {
+  background: var(--c-sand);
+}
+
+.ct-form__submit:hover .icon,
+.ct-form__submit:focus-visible .icon {
+  transform: translateX(-6px);
+}
+
+.ct-form__status {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  font-size: 14px;
+  line-height: 1.2;
+  color: var(--c-light);
+}
+
+/* Socials (Figma 159:2480–159:2516): the footer list, light, bottom right.
+   Two classes: the generated laptop block repeats .socials { top } after this */
+.ct-hero .ct-hero__socials {
+  top: auto;
+  right: 33px;
+  bottom: 51px;
+  gap: 12px;
+  color: var(--c-light);
+}
+
+.ct-hero__socials .socials__row {
+  gap: 49px;
+}
+
+.ct-hero__socials .socials__row:first-child {
+  gap: 56px;
+}
+
+.ct-hero__socials .link-dot {
+  background: rgba(235, 235, 235, 0.05);
+}
+
+.ct-hero__socials .link-dot::after {
+  background: var(--c-light);
+}
+
+/* Map (Figma 159:2462: 12,1241 1895 × 487, radius 15): Leaflet, main.js initMap */
+.ct-map {
+  padding: 12px 13px 0 12px;
+}
+
+.ct-map__frame {
+  position: relative;
+  height: 487px;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--c-map);
+}
+
+.ct-map__fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--c-sand);
+}
+
+.ct-map__frame.is-ready .ct-map__fallback {
+  display: none;
+}
+
+.ct-map .leaflet-container {
+  background: var(--c-map);
+  font: inherit;
+}
+
+/* OpenStreetMap's light tiles turned into the dark Figma map (only the tiles, not the pin) */
+.ct-map .leaflet-tile-pane {
+  filter: invert(1) hue-rotate(180deg) brightness(0.8) contrast(0.85) saturate(0.08);
+}
+
+.ct-map__pin {
+  background: url("../assets/icons/pin.svg") center / contain no-repeat;
+}
+
+.ct-map .leaflet-control-attribution {
+  background: rgba(25, 19, 16, 0.7);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.ct-map .leaflet-control-attribution a {
+  color: inherit;
+}
+
+.ct-map .leaflet-bar {
+  border: 1px solid var(--glass-border-soft);
+}
+
+.ct-map .leaflet-bar a {
+  border-color: var(--glass-border-soft);
+  background: rgba(25, 19, 16, 0.85);
+  color: var(--c-light);
+}
+
+.ct-map .leaflet-bar a:hover,
+.ct-map .leaflet-bar a:focus-visible {
+  background: var(--c-hover-dark);
+  color: var(--c-white);
+}
+
+/* Footer: the page itself is the contacts, so the footer has no contacts card and starts with
+   the columns (Figma 1828 = 100 below the map instead of 623 below the footer top) */
+body:has(.ct-map) .footer .contact-card {
+  display: none;
+}
+
+body:has(.ct-map) .footer .container {
+  margin-top: -523px;
+}
+
+/* ===== Delivery page (Figma 174:2 «Доставка», 1920 × 8042) ===== */
+
+/* Hero: the about hero card; a shorter tag, the text 3 lines (its top at Figma y 967) */
+.cat-hero--delivery .cat-hero__tag {
+  min-width: 283px;
+}
+
+.cat-hero--delivery .cat-hero__text {
+  bottom: 178px;
+}
+
+/* Intro (Figma y 1229–2364): kicker, the МАЛЬТИПУ word, button left, text right */
+.dl-intro {
+  position: relative;
+  overflow-x: clip;
+}
+
+.dl-intro__inner {
+  height: 1135px;
+}
+
+.dl-intro__kicker {
+  position: absolute;
+  top: 206px;
+  left: 62px;
+  font-size: 35px;
+  line-height: 40px;
+  letter-spacing: -1.05px;
+}
+
+/* Figma 174:541: the glyphs span 54–1856 × 1528–1786 */
+.dl-intro__title {
+  position: absolute;
+  top: 299.5px;
+  left: 54px;
+  right: 63px;
+}
+
+.dl-intro__title img {
+  width: 100%;
+  max-width: 1803px;
+  height: auto;
+}
+
+/* Figma 174:545: 293 × 64, label from 49px */
+.dl-intro__btn {
+  --btn-w: 293px;
+  --btn-pl: 49px;
+  position: absolute;
+  top: 713px;
+  left: 56px;
+  justify-content: flex-start;
+}
+
+.dl-intro__text {
+  position: absolute;
+  top: 713px;
+  right: 94px;
+  width: 612px; /* Figma 597: Chrome's Helvetica is wider; keeps Figma's lines */
+  font-size: 35px;
+  line-height: 40px;
+  letter-spacing: -1.05px;
+  background-image: var(--g-white-steep);
+}
+
+.dl-intro__text p + p {
+  margin-top: 40px;
+}
+
+
+/* Cities (Figma 3829–4590): title and button 18 below the section top, the table
+   (255:7246, 790 wide, Figma's uneven row heights) at 109,100. Behind them the
+   delivery globe at 80 % through Figma's blurred-ellipse mask (254:25), darkened on the
+   left by a blurred shade (257:12). Both start above the section, so they sit behind
+   the story block (z-index below the page content, as in Figma's layer order). */
+.dl-cities {
+  position: relative;
+  overflow-x: clip;
+}
+
+.dl-cities__inner {
+  height: 761px;
+}
+
+/* phones only (compact template): the home delivery block in place of the table */
+.dl-cities__delivery {
+  display: none;
+}
+
+.dl-cities__globe {
+  position: absolute;
+  top: -195.4px;
+  right: -228px;
+  z-index: -2;
+  width: 1402.5px;
+  height: 789.3px;
+  opacity: 0.8;
+  /* Figma's blurred ellipse, intersected with fades along the box's left and top edges:
+     the ellipse is still half opaque there, which drew a hard line at x 746 */
+  -webkit-mask-image: url("../assets/images/decor/globe-mask.svg"), linear-gradient(to right, transparent, #000 260px), linear-gradient(to bottom, transparent, #000 200px);
+  mask-image: url("../assets/images/decor/globe-mask.svg"), linear-gradient(to right, transparent, #000 260px), linear-gradient(to bottom, transparent, #000 200px);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 1830.2px 997px, 100% 100%, 100% 100%;
+  mask-size: 1830.2px 997px, 100% 100%, 100% 100%;
+  -webkit-mask-position: -499.4px -53.6px, 0 0, 0 0;
+  mask-position: -499.4px -53.6px, 0 0, 0 0;
+  -webkit-mask-composite: source-in, source-in;
+  mask-composite: intersect;
+}
+
+.dl-cities__globe-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dl-cities__shade {
+  position: absolute;
+  top: -375px;
+  left: -140px;
+  z-index: -1;
+  width: 866px;
+  height: 1006px;
+  background: var(--c-shade);
+  filter: blur(17.55px);
+  /* its right edge fades out instead of ending in a line over the globe's edge */
+  -webkit-mask-image: linear-gradient(to right, #000 55%, transparent);
+  mask-image: linear-gradient(to right, #000 55%, transparent);
+}
+
+/* the 8px padding keeps the gradient under the descenders (line box 40 < font 50) */
+.dl-cities__title {
+  position: absolute;
+  top: 18px;
+  left: 108px;
+  margin: -8px 0;
+  padding: 8px 0;
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: -1.5px;
+  white-space: nowrap;
+}
+
+.dl-cities__btn {
+  --btn-w: 320px;
+  --btn-pl: 30px;
+  position: absolute;
+  top: 18px;
+  right: 46px;
+  justify-content: flex-start;
+}
+
+.dl-cities__table {
+  position: absolute;
+  top: 100px;
+  left: 109px;
+  width: 790px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.dl-cities__table th,
+.dl-cities__table td {
+  box-sizing: border-box;
+  border: 1px solid var(--c-table-rule);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.dl-cities__table thead th {
+  height: 58px;
+  padding: 0 0 0 34px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 48px;
+  letter-spacing: -0.36px;
+  text-transform: uppercase;
+  color: var(--c-white-45);
+}
+
+.dl-cities__table thead th:first-child {
+  width: 399px;
+}
+
+.dl-cities__table thead th + th {
+  padding-left: 35px;
+}
+
+.dl-cities__table tbody th {
+  padding: 0 0 0 38px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.42px;
+}
+
+/* the city lists keep Figma's two lines: its 286 (Поволжье 342) + ~6 % for Chrome's wider Helvetica */
+.dl-cities__table td {
+  padding: 0 50px 0 37px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: -0.36px;
+}
+
+.dl-cities__table tbody tr:nth-child(4) td {
+  padding-right: 0;
+}
+
+.dl-cities__table tbody tr:nth-child(1) { height: 57px; }
+.dl-cities__table tbody tr:nth-child(2) { height: 59px; }
+.dl-cities__table tbody tr:nth-child(3) { height: 60px; }
+.dl-cities__table tbody tr:nth-child(4) { height: 61px; }
+.dl-cities__table tbody tr:nth-child(5),
+.dl-cities__table tbody tr:nth-child(6) { height: 62px; }
+
+/* How to meet (Figma y 3829–5177): hand with the phone, its screen photo, three glass cards */
+.dl-meet {
+  position: relative;
+  overflow-x: clip;
+}
+
+/* Figma 174:73: the about care glow, 160 above the section */
+.dl-meet__glow {
+  position: absolute;
+  top: -160px;
+  left: calc(50% - 843px);
+  width: 1756px;
+  height: 1508px;
+  background: radial-gradient(812px 991px at 843.5px 1055.8px, var(--glow-80));
+  /* the gradient runs past the box: fade its last 300px so the cut edge never shows as a line */
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 300px), transparent);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 300px), transparent);
+  pointer-events: none;
+}
+
+.dl-meet__inner {
+  height: 1348px;
+}
+
+.dl-meet__title {
+  position: absolute;
+  top: 44px;
+  left: calc(50% - 252px);
+  width: 505px;
+  padding-bottom: 8px;
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 54px;
+  letter-spacing: -1.8px;
+  text-align: center;
+}
+
+/* Figma 175:559: 1029 × 1029 at (446, 4148) */
+.dl-meet__hand {
+  position: absolute;
+  top: 319px;
+  left: calc(50% - 514px);
+  width: 1029px;
+  height: auto;
+}
+
+/* Figma 175:582: the phone screen 333 × 672 at (792, 4241), radius 50 */
+.dl-meet__screen {
+  position: absolute;
+  top: 412px;
+  left: calc(50% - 168px);
+  width: 333px;
+  height: 672px;
+  overflow: hidden;
+  border-radius: 50px;
+}
+
+.dl-meet__screen-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Figma 175:571…: 487 × 233 glass cards, radius 19 */
+/* the phone slider's wrapper (main.js SLIDERS.dlcards, ≤767); no box above it */
+.dl-meet__slider {
+  display: contents;
+}
+
+.dl-card {
+  position: absolute;
+  width: 487px;
+  height: 233px;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 19px;
+  background: rgba(255, 255, 255, 0.15);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  color: var(--c-white);
+}
+
+.dl-card .icon {
+  --icon-size: 21px;
+  position: absolute;
+  top: 28px;
+  left: 30px;
+}
+
+.dl-card__title {
+  position: absolute;
+  top: 124px;
+  left: 30px;
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.75px;
+}
+
+.dl-card__text {
+  position: absolute;
+  top: 161px;
+  left: 30px;
+  font-size: 16px;
+  line-height: 1.3;
+  letter-spacing: -0.48px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.dl-card--pickup { top: 303px; left: calc(50% - 465px); }
+.dl-card--russia { top: 507px; left: calc(50% + 147px); }
+.dl-card--abroad { top: 834px; left: calc(50% - 549px); }
+
+.dl-card--pickup .dl-card__text { width: 403px; }
+.dl-card--russia .dl-card__text { width: 338px; }
+.dl-card--abroad .dl-card__text { width: 285px; }
+
+/* Everything you get (Figma 175:613: 17,5177 1887 × 290, radius 20; section to the FAQ at 5532) */
+.dl-kit {
+  position: relative;
+  z-index: 1; /* above the FAQ glow, which starts at the card */
+}
+
+.dl-kit .container {
+  height: 355px;
+}
+
+.dl-kit__card {
+  position: absolute;
+  top: 0;
+  left: 17px;
+  right: 16px;
+  height: 290px;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(97.47deg, var(--c-blush) 4.49%, var(--c-reserve-card) 97.14%);
+  color: var(--c-ink);
+}
+
+.dl-kit__title {
+  position: absolute;
+  top: 85px;
+  left: 53px;
+  width: 547px;
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 60px;
+  letter-spacing: -2.4px;
+}
+
+/* Four columns of up to 250px between x 698 and 1866, spread when narrower */
+.dl-kit__list {
+  position: absolute;
+  top: 81px;
+  left: 681px;
+  right: 38px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 250px));
+  justify-content: space-between;
+}
+
+.dl-kit__num {
+  display: block;
+  font-size: 45px;
+  line-height: 28px;
+}
+
+.dl-kit__text {
+  margin-top: 13px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 28px;
+}
+
+/* FAQ: the home FAQ with four questions; 37px below them puts the footer card at Figma 6747 */
+.faq--delivery {
+  padding-bottom: 37px;
+}
+
+/* its glow (Figma 189:225) starts at the kit card, 60 % */
+.faq--delivery .faq__glow {
+  top: -355px;
+  height: 1656px;
+  background: radial-gradient(1149px 846px at 971px 1195.5px, var(--glow-60));
+}
+
+/* ═══ FAQ page (faq.html, Figma 178:2880 «FAQ», 1920 × 3260) ═══
+   head 0, 683 · eight questions 683, 1189 (the home accordion) · footer 1912 (card 1962) */
+
+.faq--page {
+  padding-bottom: 70px;
+}
+
+/* Figma 178:2880: closed rows from the third question on are 135 apart (140 above) */
+.faq--page .faq__item:nth-child(n + 3) .faq__panel {
+  min-height: 34px;
+}
+
+/* Figma 178:2886: the blog head glow */
+.faq-page__glow {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 990px);
+  width: 2061px;
+  height: 1833px;
+  background: radial-gradient(1081.5px 1366px at 957.5px 529.4px, var(--glow-80));
+  pointer-events: none;
+}
+
+.faq--page .faq__head {
+  height: 683px;
+}
+
+.faq-page__tag {
+  position: absolute;
+  top: 223px;
+  left: 46px;
+  min-width: 227px;
+}
+
+/* the SVG is cut to the glyph box (Figma glyphs 1038,226 849 × 334) */
+.faq--page .faq__title {
+  top: 226px;
+}
+
+.faq--page .faq__title img {
+  display: block;
+}
+
+/* ═══ Blog (blog.html, Figma 177:1789 «Блог», 1920 × 5815) ═══
+   head 0, 880 · articles 880, 2193 · questions 3073, 1391 (blush 1341) · footer 4464 */
+
+.blog-head {
+  position: relative;
+  overflow-x: clip;
+}
+
+/* Figma 177:1795: the delivery intro glow, 1833 high */
+.blog-head__glow {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 990px);
+  width: 2061px;
+  height: 1833px;
+  background: radial-gradient(1081.5px 1366px at 957.5px 529.4px, var(--glow-80));
+  pointer-events: none;
+}
+
+.blog-head__inner {
+  height: 880px;
+}
+
+.blog-head__tag {
+  position: absolute;
+  top: 223px;
+  left: 46px;
+  min-width: 326px;
+}
+
+/* the SVG is cut to the glyph box (Figma glyphs 46,315 843 × 270) */
+.blog-head__title {
+  position: absolute;
+  top: 315px;
+  left: 46px;
+  width: 843px;
+}
+
+.blog-head__title img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Figma 530: Chrome's wider Helvetica keeps the three lines at 545 */
+.blog-head__lead {
+  position: absolute;
+  top: 368px;
+  right: 36px;
+  width: 545px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 34px;
+  letter-spacing: -0.54px;
+}
+
+/* Articles: filters, two large cards, then rows of three */
+.blog-list {
+  position: relative;
+  z-index: 1;
+}
+
+.blog-list__inner {
+  padding: 32px 46px 149px;
+}
+
+.blog-list__filters {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  gap: 16px;
+}
+
+/* Figma 177:2219: a cream pill 59 high, the label 34 in, a 40px dark circle with the arrow */
+.blog-filter.dropdown {
+  height: auto;
+}
+
+.blog-filter__toggle {
+  height: 59px;
+  gap: 27px;
+  padding: 0 10px 0 34px;
+  border-radius: var(--radius-pill);
+  background: var(--c-cream);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 25px;
+  color: var(--c-ink);
+  transition: background-color 0.35s var(--ease);
+}
+
+/* Figma widths 198 / 232 as minimums (longer labels widen the pill) */
+[data-blog-filter="category"] .blog-filter__toggle {
+  min-width: 198px;
+}
+
+[data-blog-filter="sort"] .blog-filter__toggle {
+  min-width: 232px;
+}
+
+.blog-filter__toggle:hover,
+.blog-filter__toggle:focus-visible {
+  background: var(--c-blush);
+}
+
+.blog-filter__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--c-black);
+  color: var(--c-white);
+}
+
+.blog-filter__icon .icon {
+  --icon-size: 12px;
+  transform: rotate(90deg);
+  transition: transform 0.35s var(--ease);
+}
+
+.blog-filter__toggle[aria-expanded="true"] .blog-filter__icon .icon {
+  transform: rotate(-90deg);
+}
+
+/* the list: no Figma design — a cream panel under the pill */
+.blog-filter .blog-filter__list {
+  top: calc(100% + 8px);
+  right: auto;
+  min-width: 100%;
+  width: max-content;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: var(--radius-xl);
+  background: var(--c-cream);
+  box-shadow: 0 20px 40px var(--c-black-30);
+}
+
+.blog-filter__list .dropdown__option {
+  padding: 12px 20px;
+  border-radius: var(--radius-card);
+  font-size: 16px;
+  letter-spacing: -0.48px;
+  color: var(--c-ink);
+}
+
+.blog-filter__list .dropdown__option:hover,
+.blog-filter__list .dropdown__option.is-active {
+  background: var(--c-blush);
+}
+
+.blog-filter__list .dropdown__option[aria-selected="true"] {
+  color: var(--c-hover-ink);
+}
+
+.blog-list__featured {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+  margin-top: 41px;
+}
+
+.blog-list__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 99px 21.5px;
+  margin-top: 121px;
+}
+
+.blog-list__featured:empty,
+.blog-list__grid:empty {
+  display: none;
+}
+
+.blog-list__empty {
+  margin-top: 60px;
+  font-size: 22px;
+  color: var(--c-cream);
+}
+
+.post__link {
+  display: block;
+  color: inherit;
+}
+
+/* Figma 177:2178 / 177:2128: 899 × 662 and 595 × 378, radius 20 */
+.post__media {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  aspect-ratio: 595 / 378;
+}
+
+.blog-list__featured .post__media {
+  aspect-ratio: 899 / 662;
+}
+
+.post__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease);
+}
+
+/* Figma 177:2249: the photo's left edge 5px out of the card */
+.post__photo--left {
+  object-position: 3% 50%;
+}
+
+.post__link:hover .post__photo,
+.post__link:focus-visible .post__photo {
+  transform: scale(1.03);
+}
+
+.post__date {
+  position: absolute;
+  top: 31px;
+  left: 30px;
+  min-width: 131px;
+}
+
+/* Figma 177:2170: a 49px circle (its 69.3 box is the 45° rotation), 17 from the photo's top and right */
+.post__arrow {
+  position: absolute;
+  top: 17px;
+  right: 17px;
+  display: grid;
+  place-items: center;
+  width: 49px;
+  height: 49px;
+  border-radius: 50%;
+  background: var(--c-white);
+  color: var(--c-ink);
+  transition: background-color 0.35s var(--ease);
+}
+
+.blog-list__featured .post__arrow {
+  top: 22px;
+  right: 21px;
+}
+
+/* Figma 177:2171: the arrow image fills a 20px box */
+.post__arrow .icon {
+  --icon-size: 20px;
+}
+
+.post__link:hover .post__arrow,
+.post__link:focus-visible .post__arrow {
+  background: var(--c-blush);
+}
+
+.post__title {
+  display: block;
+  margin-top: 22px;
+  font-size: 30px;
+  line-height: 41px;
+  letter-spacing: -0.9px;
+  color: var(--c-cream);
+}
+
+.blog-list__featured .post__title {
+  margin-top: 25px;
+}
+
+/* the grid titles break where Figma does; one line in the large row */
+.blog-list__featured .post__title br {
+  display: none;
+}
+
+/* Questions (Figma 178:2308): a blush band, title and lead, the ®, a 4px rule, the photo card */
+.blog-cta {
+  position: relative;
+  padding-bottom: 50px;
+}
+
+.blog-cta__inner {
+  height: 1341px;
+  background: var(--c-blush);
+  color: var(--c-ink);
+}
+
+.blog-cta__title {
+  position: absolute;
+  top: 126px;
+  left: 25px;
+  width: 956px;
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 60px;
+  letter-spacing: -2.4px;
+}
+
+/* Figma 613: Chrome's wider Helvetica keeps the four lines at 625; on narrow laptops it
+   narrows (more lines) so it stays right of the title */
+.blog-cta__lead {
+  position: absolute;
+  top: 131px;
+  right: 167px;
+  width: min(625px, calc(100% - 1178px));
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 28px;
+}
+
+.blog-cta__mark {
+  position: absolute;
+  top: 138px;
+  right: 60px;
+  width: 83px;
+  height: auto;
+}
+
+.blog-cta__rule {
+  position: absolute;
+  top: 306px;
+  left: 26px;
+  right: 43px;
+  height: 4px;
+  background: var(--c-ink);
+}
+
+.blog-cta__card {
+  position: absolute;
+  top: 366px;
+  left: 25px;
+  right: 43px;
+  height: 890px;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+}
+
+.blog-cta__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 37%;
+}
+
+.blog-cta__actions {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+  display: flex;
+  gap: 20px;
+}
+
+/* Figma 178:2345: a plain 251 × 64 pill */
+.blog-cta__ask {
+  --btn-w: 251px;
+  --btn-pl: 24px;
+  --btn-pr: 24px;
+}
+
+/* Figma 178:2335: 288 × 64, the label centred left of the circle */
+.blog-cta__btn {
+  --btn-w: 288px;
+  --btn-pl: 0px;
+}
+
+/* ═══ Article (article.html, Figma 178:2515 «Статья», 1920 × 6810) ═══
+   head 0, 1478 · body 1478, 3138 · more articles 4616, 856 · footer 5472 */
+
+.article-head {
+  position: relative;
+  overflow-x: clip;
+}
+
+/* Figma 178:2521: the blog head glow */
+.article-head__glow {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 990px);
+  width: 2061px;
+  height: 1833px;
+  background: radial-gradient(1081.5px 1366px at 957.5px 529.4px, var(--glow-80));
+  pointer-events: none;
+}
+
+.article-head__inner {
+  height: 1478px;
+}
+
+.article-head__date {
+  position: absolute;
+  top: 223px;
+  left: 46px;
+  min-width: 153px;
+}
+
+.article-head__title {
+  position: absolute;
+  top: 344px;
+  left: 46px;
+  width: 899px;
+  margin: -8px 0;
+  padding: 8px 0;
+  font-size: 100px;
+  font-weight: 400;
+  line-height: 90px;
+  letter-spacing: -3px;
+}
+
+/* Figma 774: Chrome's wider Helvetica keeps the two lines at 800 */
+.article-head__lead {
+  position: absolute;
+  top: 578px;
+  left: 43px;
+  width: 800px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 34px;
+  letter-spacing: -0.54px;
+  color: var(--c-white-50);
+}
+
+.article-head__photo {
+  position: absolute;
+  top: 806px;
+  left: 19px;
+  right: 20px;
+  height: 672px;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+}
+
+.article-head__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Body: the intro, then the text column with its photo, then the date */
+.article-body {
+  position: relative;
+}
+
+.article-body__inner {
+  padding: 160px 0 61px 372px;
+}
+
+.article-body__intro {
+  width: 1247px;
+  max-width: calc(100% - 46px);
+  margin: -8px 0;
+  padding: 8px 0;
+  font-size: 96px;
+  font-weight: 300;
+  line-height: 93px;
+  letter-spacing: -2.88px;
+}
+
+/* Figma 1023: Chrome's wider Helvetica keeps every paragraph's line count (6, 7, 5, 4, 3) from 1050 */
+.article-body__text {
+  width: 1055px;
+  max-width: calc(100% - 46px);
+  margin-top: 108px;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 54px;
+  letter-spacing: -0.9px;
+  color: var(--c-white-50);
+}
+
+.article-body__text p + p {
+  margin-top: 54px;
+}
+
+/* Figma 178:2813: 1042 × 672 at x 368, 59 under the text, 100 above the next paragraph */
+.article-body__figure {
+  width: 1042px;
+  max-width: 100%;
+  height: 672px;
+  margin: 59px 0 100px -4px;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+}
+
+.article-body__figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.article-body__date {
+  margin-top: 130px;
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 57px;
+  letter-spacing: -0.63px;
+  color: var(--c-cream);
+}
+
+/* More articles: the product page's slider block, the blog cards as slides */
+.similar--article {
+  overflow-x: clip;
+}
+
+.similar--article .similar__inner {
+  height: 856px;
+}
+
+.similar--article .similar__title {
+  left: 46px;
+}
+
+.similar--article .similar__nav {
+  right: 46px;
+}
+
+.similar--article .similar__slider {
+  top: 275px;
+}
+
+.similar--article .post {
+  width: 595px;
+}
+
+/* ═══ Products page (shop.html, Figma 175:700 «Товары для мальтипу», 1920 × 6838) ═══
+   hero 0, 1229 · products 1229, 1878 · why 3107, 1243 · puppies for sale 4350, 1208 · footer 5558 */
+
+/* Hero: the catalog card, title and text centred at the top (Figma 175:716 / 175:769) */
+/* Figma 204:3: the video 1.225× the cover size, centred, top-aligned (its bottom 8 % below the
+   card): the box is 109.1 % of the card high; the still is its first frame, sized the same */
+.cat-hero--shop .cat-hero__photo,
+.cat-hero--shop .cat-hero__video {
+  height: 109.1%;
+  object-position: 50% 0;
+}
+
+.cat-hero--shop .cat-hero__title {
+  top: 247px;
+  bottom: auto;
+  left: 50%;
+  width: auto;
+  translate: -50% 0;
+  white-space: nowrap;
+}
+
+/* Figma 427: Chrome's wider Helvetica keeps the two lines at 440 */
+.cat-hero--shop .cat-hero__text {
+  top: 335px;
+  bottom: auto;
+  left: 50%;
+  width: 440px;
+  translate: -50% 0;
+  text-align: center;
+}
+
+/* Products: three 574 × 825 cards a row, 18 apart; the cards narrow (not the content) on
+   screens below the frame's proportions */
+.shop-list {
+  position: relative;
+  overflow-x: clip;
+}
+
+/* Figma 175:819: the delivery intro glow */
+.shop-list__glow {
+  top: 1px;
+  left: calc(50% - 996px);
+  width: 2061px;
+  height: 895px;
+  background: radial-gradient(1081.5px 667px at 957.5px 258.5px, var(--glow-80));
+}
+
+/* in flow (more cards add rows; «Показать ещё» below them): 80 + two rows + 130 = Figma 1878 */
+.shop-list__inner {
+  padding: 80px 81px 130px;
+}
+
+.shop-list__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 574px));
+  justify-content: center;
+  gap: 18px;
+}
+
+/* «Показать ещё» (main.js initShowMore): centred under a card grid; cards beyond one step are
+   hidden (the double attribute beats the cards' own display rules), new ones fade up */
+[data-show-more] > [hidden][hidden] {
+  display: none;
+}
+
+.show-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 64px;
+}
+
+.show-more[hidden] {
+  display: none;
+}
+
+.is-revealed {
+  animation: show-more-in 0.6s var(--ease) both;
+}
+
+@keyframes show-more-in {
+  from {
+    opacity: 0;
+    translate: 0 30px;
+  }
+}
+
+/* Figma 175:1151: radial brown card, the bed photo, a white 10 % band tilted -10.55° */
+.shop-card {
+  position: relative;
+  height: 825.3px;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: radial-gradient(480px 506px at 312px 393px, var(--c-shop-1) 0, var(--c-shop-2) 50%, var(--c-shop-3) 75%, var(--c-shop-4) 100%);
+  color: var(--c-white);
+}
+
+.shop-card__glass {
+  position: absolute;
+  top: 645.9px;
+  left: -18px;
+  width: 704px;
+  height: 307px;
+  background: rgba(255, 255, 255, 0.1);
+  transform: rotate(-10.55deg);
+  pointer-events: none;
+}
+
+.shop-card__photo {
+  position: absolute;
+  top: 267px;
+  left: calc(50% - 244px);
+  width: 492px;
+  height: auto;
+}
+
+.shop-card__title {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  font-size: 35px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -1.05px;
+}
+
+.shop-card__size {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  min-width: 161px;
+}
+
+/* Figma 179 wide, right-aligned */
+.shop-card__text {
+  position: absolute;
+  top: 665px;
+  right: 24px;
+  width: 186px;
+  font-size: 16px;
+  line-height: 1.2;
+  letter-spacing: -0.48px;
+  text-align: right;
+}
+
+.shop-card__price {
+  position: absolute;
+  top: 724px;
+  left: 29px;
+  font-size: 35px;
+  line-height: 1.2;
+  letter-spacing: -1.05px;
+  white-space: nowrap;
+}
+
+.shop-card__price-label {
+  display: block;
+  margin-bottom: 6.8px;
+  font-size: 16px;
+  letter-spacing: -0.48px;
+  color: var(--c-white-60);
+}
+
+/* Figma 175:1076: 173 × 50, the label centred left of the circle */
+.shop-card__btn {
+  --btn-w: 173px;
+  --btn-pl: 21px;
+  position: absolute;
+  top: 736px;
+  right: 20px;
+}
+
+/* Why our products (Figma 175:1200: card 23,3107 1874 × 1144, radius 15) */
+.shop-why {
+  position: relative;
+}
+
+.shop-why__inner {
+  height: 1243px;
+}
+
+.shop-why__card {
+  position: absolute;
+  top: 0;
+  left: 23px;
+  right: 23px;
+  height: 1144px;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  color: var(--c-ink);
+}
+
+.shop-why__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.shop-why__title {
+  position: absolute;
+  top: 56px;
+  left: 54px;
+  width: 637px;
+  font-size: 60px;
+  font-weight: 500;
+  line-height: 56px;
+  letter-spacing: -1.8px;
+}
+
+/* Figma 175:1251: 375 × 64, the label centred in the space left of the circle */
+.shop-why__btn {
+  --btn-w: 375px;
+  --btn-pl: 0px;
+  position: absolute;
+  top: 225px;
+  left: 54px;
+}
+
+/* Figma 175:1211 + 175:1209: uppercase kicker, the round arrow (pointing down) after it */
+.shop-why__kicker {
+  position: absolute;
+  top: 37px;
+  right: 69px;
+  display: flex;
+  align-items: center;
+  gap: 19px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 63px;
+  letter-spacing: -0.48px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--c-ink-60);
+}
+
+.shop-why__kicker .icon {
+  --icon-size: 25px;
+  color: var(--c-ink);
+  transform: rotate(90deg);
+}
+
+/* Figma 175:1263: dashed 4/4, black 30 %, from under the arrow down 886 */
+.shop-why__line {
+  position: absolute;
+  top: 97px;
+  right: 81px;
+  width: 1px;
+  height: 886px;
+  background: repeating-linear-gradient(to bottom, var(--c-black-30) 0 4px, transparent 4px 8px);
+}
+
+.shop-why__pills {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.shop-why .shop-why__pill {
+  width: auto;
+  padding-right: 40px;
+}
+
+.shop-why__pill--1 { top: 598px; left: calc(50% - 542px); min-width: 386px; }
+.shop-why__pill--2 { top: 719px; left: calc(50% - 427px); min-width: 398px; }
+.shop-why__pill--3 { top: 511px; left: calc(50% + 83px); min-width: 389px; }
+.shop-why__pill--4 { top: 632px; left: calc(50% + 258px); min-width: 384px; }
+
+.shop-why__question {
+  position: absolute;
+  top: 933px;
+  left: 57px;
+  width: 442px;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 38px;
+  letter-spacing: -1.2px;
+}
+
+.shop-why__text {
+  position: absolute;
+  top: 1029px;
+  left: 57px;
+  width: 350px;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 29px;
+  letter-spacing: -0.51px;
+}
+
+/* Figma 175:1261: a plain 353 × 64 pill, no circle */
+.shop-why__consult {
+  --btn-w: 353px;
+  --btn-pl: 24px;
+  --btn-pr: 24px;
+  position: absolute;
+  top: 1022px;
+  right: 46px;
+}
+
+/* Puppies for sale: the product page slider with its own head (Figma 4350–5500; footer card at 5550) */
+/* the slider runs past the screen edge (the product page clips it in .pd-wrap) */
+.similar--shop {
+  overflow-x: clip;
+}
+
+.similar--shop .similar__inner {
+  height: 1150px;
+}
+
+.similar--shop .similar__title {
+  left: 45px;
+  width: 374px;
+}
+
+/* Figma 175:1545: a plain 308 × 64 pill */
+.similar__all {
+  --btn-w: 308px;
+  --btn-pl: 24px;
+  --btn-pr: 24px;
+  position: absolute;
+  top: 134px;
+  right: 476px;
+}
+
+/* Figma 175:1453 / 175:1454: the lead with a 3px rule 33 to its left */
+.similar__lead {
+  position: absolute;
+  top: 139px;
+  left: calc(100% - 405px);
+  width: 350px; /* Figma 336: Chrome's wider Helvetica keeps the two lines */
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 26px;
+  letter-spacing: -0.66px;
+}
+
+.similar__lead::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: -33px;
+  width: 3px;
+  height: 51px;
+  background: var(--c-line-dark);
+}
+
+.similar--shop .similar__slider {
+  top: 275px;
+}
+
+/* arrows only on phones (compact template) */
+.similar--shop .similar__nav {
+  display: none;
+}
+
+/* Glass frames shared by the "why" cards, the delivery card and the steps */
+.why-card,
+.delivery__card,
+.step {
+  border: 1px solid var(--glass-frame);
+  border-radius: var(--radius-card);
+  background: rgba(255, 255, 255, 0.015);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+}
+
+/* Animations (AOS custom effects). Built-in effects overwrite transform;
+   these use the individual properties so they compose with the element's own transform. */
+
+[data-aos="reveal"] {
+  clip-path: inset(0 0 100% 0);
+  transition-property: clip-path;
+}
+
+[data-aos="reveal"].aos-animate {
+  clip-path: inset(0 0 0 0);
+}
+
+[data-aos="draw"] {
+  scale: 0 1;
+  transition-property: scale;
+}
+
+[data-aos="draw"].aos-animate {
+  scale: 1 1;
+}
+
+[data-aos="rise"] {
+  opacity: 0;
+  translate: 0 60px;
+  transition-property: opacity, translate;
+}
+
+[data-aos="rise"].aos-animate {
+  opacity: 1;
+  translate: 0 0;
+}
+
+[data-aos="pop"] {
+  opacity: 0;
+  scale: 0.6;
+  transition-property: opacity, scale;
+}
+
+[data-aos="pop"].aos-animate {
+  opacity: 1;
+  scale: 1;
+}
+
+/* Big display words: rise inside a window */
+[data-aos="mask-up"] {
+  clip-path: inset(0 0 100% 0);
+  translate: 0 30%;
+  transition-property: clip-path, translate;
+}
+
+[data-aos="mask-up"].aos-animate {
+  clip-path: inset(0 0 0 0);
+  translate: 0 0;
+}
+
+/* LCP guard: the hero title waits at 1 % until AOS takes over (see <head>);
+   if AOS never runs, it shows after 3 s */
+.aos-pending .hero__title,
+.aos-pending .cat-hero__title,
+.aos-pending .page-hero__title {
+  opacity: 0.01;
+  animation: aos-fallback 0s 3s forwards;
+}
+
+@keyframes aos-fallback {
+  to { opacity: 1; }
+}
+
+/* Parallax layers (main.js → PARALLAX) */
+[data-parallax] {
+  will-change: translate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

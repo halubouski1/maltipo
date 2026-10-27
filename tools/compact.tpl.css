@@ -1,0 +1,5176 @@
+  /* ≤1279: the mobile Figma frame 80:969 (360 × 20547), every value × --m.
+     Template for tools/build-compact.mjs (macros T/L/R/M, see there). */
+
+  /* ── Shared ── */
+
+  .container {
+    height: auto;
+  }
+
+  .br-design,
+  .label-desktop {
+    display: none;
+  }
+
+  .br-compact {
+    display: inline;
+  }
+
+  .label-compact {
+    display: inline;
+  }
+
+  /* Buttons: full-width pills with the label on the left (Figma mobile), scaled with the layout */
+  .btn {
+    --btn-h: M(64);
+    --btn-icon: M(51);
+    --btn-icon-inset: M(7);
+    --btn-paw: M(21);
+    justify-content: flex-start;
+    min-width: 0;
+    padding: 0 M(70) 0 M(30);
+    font-size: M(16);
+    letter-spacing: M(-0.48);
+  }
+
+  .btn--whatsapp {
+    --btn-icon: M(43);
+    --btn-icon-inset: M(10);
+  }
+
+  .slider-btn {
+    width: M(60);
+    height: M(58);
+  }
+
+  .slider-btn::after {
+    width: M(16);
+    height: M(16);
+  }
+
+  .feature-chip {
+    flex: none;
+    width: M(320);
+    height: M(94);
+    padding: 0 M(20) 0 M(101);
+    font-size: M(15);
+    letter-spacing: M(-0.45);
+  }
+
+  .feature-chip__icon {
+    top: M(26);
+    left: M(31);
+    width: M(40);
+    height: M(40);
+  }
+
+  .feature-chip__icon::after {
+    width: M(17);
+    height: M(17);
+  }
+
+  /* Chip rows that scroll sideways (delivery, care): start at the column, run to the screen edges */
+  .chip-row {
+    position: absolute;
+    left: 0;
+    right: 0;
+    display: flex;
+    gap: M(10);
+    padding: 0 calc(50% - 160px * var(--m));
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 calc(50% - 160px * var(--m));
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .chip-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .chip-row > * {
+    position: relative;
+    top: auto;
+    left: auto;
+    scroll-snap-align: start;
+  }
+
+  .lead-form {
+    width: M(320);
+    height: M(376);
+  }
+
+  .lead-form__bg {
+    object-position: 50% 50%;
+  }
+
+  .lead-form__title {
+    top: M(45);
+    left: M(25);
+    width: M(250);
+    font-size: M(35);
+    line-height: M(31);
+    letter-spacing: M(-1.05);
+  }
+
+  .lead-form .lead-form__field {
+    top: M(157);
+    left: M(25);
+    right: auto;
+  }
+
+  .lead-form .lead-form__field--phone {
+    top: M(220);
+  }
+
+  .lead-form .field {
+    width: M(270);
+    height: M(53);
+    padding-left: M(19);
+    font-size: M(14);
+    letter-spacing: M(-0.56);
+  }
+
+  .lead-form .lead-form__submit {
+    top: M(283);
+    left: M(25);
+    right: auto;
+    width: M(270);
+    height: M(53);
+    padding-left: M(19);
+    font-size: M(14);
+  }
+
+  .lead-form__submit .icon {
+    --icon-size: M(18);
+    top: M(17.5);
+    left: M(235);
+  }
+
+  .lead-form .lead-form__status {
+    top: M(343);
+    left: M(25);
+    right: auto;
+    font-size: M(12);
+  }
+
+  /* ── Header (Figma 80:986–80:997) ── */
+  @sec 0
+
+  .header__inner {
+    height: M(80);
+  }
+
+  .header__logo,
+  .header__nav,
+  .header__social {
+    display: none;
+  }
+
+  .header .burger {
+    top: T(20);
+    left: L(21);
+    right: auto;
+  }
+
+  .burger {
+    width: M(39);
+    height: M(39);
+    border-radius: M(6);
+  }
+
+  .burger__lines,
+  .burger__lines::before,
+  .burger__lines::after {
+    width: M(19);
+    background: #413421;
+  }
+
+  .burger__lines {
+    top: M(19);
+    left: M(10);
+  }
+
+  .burger__lines::before { top: M(-5); }
+  .burger__lines::after { top: M(5); }
+
+  .header__call {
+    top: T(18);
+    left: auto;
+    right: R(341);
+    min-width: M(124);
+    height: M(41);
+    padding: 0 M(14);
+    font-size: M(12);
+    font-weight: 400;
+    color: #000;
+  }
+
+  /* ── Hero (Figma y 0–1004) ── */
+  @sec 0
+
+  /* One screen high (--fixed-vh, set in <head>); the note stays at the top, the tag,
+     title and buttons are pinned to the bottom with the Figma distances (frame 1004 high).
+     min-height keeps the two groups apart on short screens. */
+  .hero {
+    /* min-height: on short phones the video (its puppy in the top ~520) stays clear of the
+       dark ramp and the bottom group (358 from the bottom); was 604 = note + 30 + group */
+    height: max(var(--fixed-vh, 100vh), M(880));
+  }
+
+  /* the bottom group is anchored to the inner box, so it must fill the hero */
+  .hero .hero__inner {
+    height: 100%;
+  }
+
+  .hero__photo,
+  .hero__video {
+    object-position: 50% 0;
+  }
+
+  /* Figma 80:1262: #191310 blurred 75px with its top edge at y 571, then the solid
+     background under the photo (from y 774): anchored to the bottom of the screen */
+  .hero__bg::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: M(658);
+    background: linear-gradient(to bottom, rgba(25, 19, 16, 0) 0, rgba(25, 19, 16, 0.16) M(75), rgba(25, 19, 16, 0.5) M(225), rgba(25, 19, 16, 0.84) M(300), #191310 M(428));
+  }
+
+  .hero__dot {
+    top: T(175);
+    left: L(21);
+    right: auto;
+  }
+
+  .hero__line {
+    top: T(262);
+    left: L(28.97);
+    right: auto;
+    width: M(89.07);
+    transform: rotate(61.13deg);
+  }
+
+  .hero__note-text {
+    top: T(171);
+    left: L(68);
+    right: auto;
+    width: M(202);
+    font-size: M(14);
+    line-height: M(15);
+    letter-spacing: M(-0.42);
+  }
+
+  .hero__tag {
+    top: auto;
+    left: L(20);
+    bottom: M(332);
+    min-width: M(180);
+    height: M(26);
+    gap: M(11.4);
+    padding: 0 M(14) 0 M(18);
+    font-size: M(10);
+    letter-spacing: M(-0.3);
+  }
+
+  .hero__tag .icon {
+    --icon-size: M(10.63);
+  }
+
+  .hero__title {
+    top: auto;
+    left: L(20);
+    bottom: M(216);
+    width: M(326);
+    font-size: M(35);
+    line-height: M(33);
+    letter-spacing: M(-1.05);
+  }
+
+  .hero__actions {
+    top: auto;
+    left: L(20);
+    right: auto;
+    bottom: M(48);
+    flex-direction: column;
+    gap: M(10);
+  }
+
+  .hero__btn {
+    width: M(320);
+  }
+
+  /* ── Why 5000+ (Figma y 1004–2355) ── */
+  @sec 1004
+
+  .why__inner {
+    height: M(1351);
+  }
+
+  /* Figma 81:1292: 1078 × 923 at (-349, 1004), radial 499 × 606 at (518, 646), 80 % */
+  .why__glow {
+    top: T(1004);
+    left: L(-349.45);
+    width: M(1078.2);
+    height: M(922.84);
+    background: radial-gradient(M(498.7) M(606.2) at M(517.92) M(646.09), var(--glow-80));
+  }
+
+  .why__shadow--wide { top: T(1597.15); left: L(-27.8); width: M(361.2); }
+  .why__shadow--l { top: T(1704.87); left: L(48.5); width: M(112.4); }
+  .why__shadow--r { top: T(1704.87); left: L(162.7); width: M(112.4); }
+
+  .why__lead {
+    top: T(1056);
+    left: L(20);
+    font-size: M(21);
+    line-height: M(63);
+    letter-spacing: M(-0.63);
+  }
+
+  .why__number {
+    top: T(1111.3);
+    left: L(18.4);
+    width: M(340.7);
+  }
+
+  .why__puppy {
+    top: T(1108);
+    left: L(-78);
+    width: M(496);
+    height: M(744);
+  }
+
+  /* Figma 81:1298: #191310 blurred 100px, top edge at y 1600 */
+  .why__fade {
+    top: T(1300);
+    left: 0;
+    width: auto;
+    right: 0;
+    background: linear-gradient(to bottom, rgba(25, 19, 16, 0) 0, rgba(25, 19, 16, 0.16) M(200), rgba(25, 19, 16, 0.5) M(300), rgba(25, 19, 16, 0.84) M(400), #191310 M(600));
+  }
+
+  .why__tail {
+    top: T(1352);
+    left: auto;
+    right: R(340);
+    width: M(137);
+    font-size: M(16);
+    line-height: M(24);
+    letter-spacing: M(-0.48);
+    text-align: right;
+  }
+
+  .why__nav {
+    top: T(2177);
+    left: L(114);
+    right: auto;
+  }
+
+  .why__slider {
+    top: T(1777);
+    left: L(20);
+    right: auto;
+    width: M(320);
+  }
+
+  .why .why-card {
+    width: M(320);
+    height: M(370);
+    padding: 0;
+    border: 0;
+    background: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  @card 20 1777
+
+  .why .why-card__body {
+    border-radius: M(7.82);
+  }
+
+  .why .why-card__num {
+    top: T(1796.77);
+    left: L(39.86);
+    font-size: M(12);
+    line-height: M(16.3);
+    letter-spacing: M(-0.36);
+  }
+
+  .why .why-card__title {
+    top: T(1860.29);
+    left: L(39.81);
+    font-size: M(21);
+    line-height: M(21);
+    letter-spacing: M(-0.63);
+  }
+
+  .why .why-card .why-card__text {
+    top: T(1896);
+    left: L(41);
+    width: M(264);
+    font-size: M(15);
+    line-height: M(21);
+    letter-spacing: M(-0.45);
+  }
+
+  .why .why-card__btn {
+    top: T(2057);
+    left: L(40);
+    width: M(280);
+    justify-content: center;
+    padding: 0 M(57) 0 0;
+  }
+  @end
+
+  /* ── Button eyes (Figma card 20,2355 320 × 953) ── */
+  @sec 2355
+
+  .eyes .container {
+    height: M(1043);
+  }
+
+  .eyes__card {
+    position: absolute;
+    top: T(2355);
+    left: L(20);
+    width: M(320);
+    height: M(953);
+    margin: 0;
+    border-radius: M(12);
+    background: #d4ac9e;
+  }
+  @card 20 2355
+
+  /* Figma 194:14: 557 × 990 at (-89, 2274); 194:15 fills the strip below with #d4ac9e */
+  .eyes__photo {
+    top: T(2274);
+    left: L(-89);
+    width: M(557);
+    height: M(990);
+  }
+
+  .eyes__buy,
+  .eyes__icon,
+  .eyes__dots {
+    display: none;
+  }
+
+  .eyes__kicker {
+    top: T(2385);
+    left: L(40);
+    font-size: M(15);
+    line-height: M(21);
+    letter-spacing: M(-0.45);
+  }
+
+  .eyes__kicker .emoji {
+    margin-left: M(10);
+    font-size: M(15);
+  }
+
+  .eyes__title {
+    top: T(2416);
+    left: L(40);
+    width: M(295);
+    font-size: M(35);
+    line-height: M(33);
+    letter-spacing: M(-1.05);
+  }
+
+  .eyes .glass-pill {
+    width: M(246);
+    height: M(39);
+    padding-left: M(48);
+    font-size: M(13);
+    line-height: M(13);
+    letter-spacing: M(-0.39);
+  }
+
+  .eyes .glass-pill .icon {
+    --icon-size: M(18);
+    top: M(10);
+    left: M(18);
+  }
+
+  .eyes__pill--1 { top: T(2730); left: L(34); }
+  .eyes__pill--2 { top: T(2776); left: L(57); }
+  .eyes__pill--3 { top: T(2822); left: L(80); }
+
+  .eyes__subtitle {
+    top: T(3003);
+    left: L(40);
+    width: M(273);
+    font-size: M(21);
+    line-height: M(21);
+    letter-spacing: M(-0.63);
+  }
+
+  .eyes__text {
+    top: T(3060);
+    left: L(41.19);
+    width: M(264);
+    font-size: M(15);
+    line-height: M(21);
+    letter-spacing: M(-0.45);
+  }
+
+  .eyes__btn {
+    top: T(3184);
+    left: L(40);
+    right: auto;
+    width: M(280);
+  }
+  @end
+
+  /* ── Graduates (Figma y 3398–4242) + Catalog (4242–5311): one glow ── */
+  @sec 3398
+
+  .glow--catalog {
+    display: none;
+  }
+
+  /* Figma 82:1397: 2061 × 1671 centred at y 3428, radial 1154 × 863 at (1008.5, 810) */
+  .glow--graduates {
+    top: T(3428);
+    left: calc(50% - 1030.5px * var(--m));
+    width: M(2061);
+    height: M(1671);
+    background: radial-gradient(M(1153.8) M(862.5) at M(1008.5) M(809.75), var(--glow-100));
+  }
+
+  .graduates__inner {
+    height: M(844);
+  }
+
+  .graduates__title {
+    top: T(3428);
+    left: L(20);
+    width: M(320);
+    font-size: M(35);
+    line-height: M(33);
+    letter-spacing: M(-1.05);
+    background-image: linear-gradient(99.25deg, #f5decc 34.04%, #645248 182.06%);
+  }
+
+  .graduates__nav {
+    top: T(4094);
+    left: L(114);
+    right: auto;
+  }
+
+  .graduates__slider {
+    top: T(3633);
+    left: L(20);
+    right: auto;
+    width: M(320);
+  }
+
+  .graduates__btn {
+    display: none;
+  }
+
+  /* One row on phones: the second card of each column is hidden */
+  .graduates__col {
+    width: M(320);
+  }
+
+  .graduates__col .review-card + .review-card {
+    display: none;
+  }
+
+  .review-card {
+    width: M(320);
+    height: M(431.22);
+  }
+
+  /* Figma 82:1436 / 82:1437: dark blurred bands at the top and bottom */
+  .review-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(19, 19, 19, 0.25), rgba(19, 19, 19, 0) M(110)),
+      linear-gradient(to top, rgba(19, 19, 19, 0.35), rgba(19, 19, 19, 0) M(136));
+    pointer-events: none;
+  }
+
+  .review-card__tags {
+    z-index: 1;
+    top: M(13.63);
+    left: M(14);
+  }
+
+  .review-card .tag {
+    height: M(28.7);
+    font-size: M(12);
+    letter-spacing: M(-0.36);
+    border-radius: M(2.57);
+  }
+
+  .review-card .tag--light { width: M(73); }
+  .review-card .tag--city { width: M(78); }
+  .review-card .tag--quote { display: none; }
+
+  .review-card__more {
+    z-index: 1;
+    left: M(17);
+    bottom: auto;
+    top: M(378);
+    width: M(286.6);
+    height: M(35.8);
+    justify-content: flex-start;
+    padding: 0 0 0 M(18.8);
+    background: rgba(255, 255, 255, 0.1);
+    font-size: M(13);
+    letter-spacing: M(-0.39);
+  }
+
+  .review-card__more .icon {
+    --icon-size: M(14.33);
+    top: M(10.75);
+    right: M(16.46);
+  }
+
+  @sec 4242
+
+  .catalog__inner {
+    height: M(1069);
+  }
+
+  .catalog__kicker {
+    top: T(4272);
+    left: L(24);
+    font-size: M(16);
+    line-height: M(33);
+    letter-spacing: M(-0.48);
+    background-image: linear-gradient(92.22deg, #fff 0.21%, #999 166.48%);
+  }
+
+  .catalog__title {
+    top: T(4313.7);
+    left: L(24);
+    right: auto;
+  }
+
+  .catalog__title img {
+    width: M(311.8);
+    max-width: none;
+    margin: 0;
+  }
+
+  .catalog__text {
+    top: T(4438);
+    left: L(147);
+    right: auto;
+    width: M(193);
+    font-size: M(16);
+    line-height: M(21);
+    letter-spacing: M(-0.48);
+    background-image: linear-gradient(96.09deg, #fff 3.23%, #999 150.71%);
+  }
+
+  .catalog__nav {
+    top: T(5133);
+    left: L(114);
+    right: auto;
+  }
+
+  .catalog__slider {
+    top: T(4643);
+    left: L(20);
+    right: auto;
+    width: M(320);
+  }
+
+  .puppy-card {
+    width: M(320);
+    height: M(460.09);
+    border-radius: M(4.46);
+  }
+  @card 20 4643
+
+  .puppy-card__photo {
+    top: T(4625.72);
+    left: L(6.06);
+    width: M(346.27);
+    height: M(516.14);
+  }
+
+  /* Figma 82:1490: 392 × 135 band rotated -10.55°, centred at (202.9, 5073.9) */
+  .puppy-card__glass {
+    top: T(5006.4);
+    left: L(6.66);
+    width: M(392.47);
+    height: M(135);
+  }
+
+  .puppy-card:hover .puppy-card__glass {
+    transform: rotate(-10.55deg) translateY(M(-8));
+  }
+
+  .puppy-card__tags {
+    top: T(4657.84);
+    left: L(35);
+    right: auto;
+    width: M(260);
+    row-gap: M(9);
+  }
+
+  .puppy-card .tag {
+    height: M(23.66);
+    font-size: M(11.42);
+    letter-spacing: M(-0.34);
+    border-radius: M(2.14);
+  }
+
+  .puppy-card .tag--name { width: M(59.7); }
+  .puppy-card .tag--gender { width: M(69.85); margin-left: M(4.5); }
+  .puppy-card .tag--color { width: M(100.26); margin-left: M(4.5); }
+  .puppy-card .tag--size { width: M(132.93); }
+
+  /* Figma: the age moves to the second row, after the size */
+  .puppy-card .puppy-card__age {
+    order: 3;
+    margin-left: M(12);
+    font-size: M(11.42);
+    letter-spacing: M(-0.34);
+  }
+
+  .puppy-card__age::before {
+    width: M(2.86);
+    height: M(2.86);
+    margin-right: M(7.6);
+  }
+
+  .puppy-card__price {
+    top: T(5052.62);
+    left: L(35.17);
+    padding-top: M(14.5);
+    font-size: M(20);
+    letter-spacing: M(-0.6);
+  }
+
+  .puppy-card__price-label {
+    left: M(2.78);
+    font-size: M(10);
+    letter-spacing: M(-0.3);
+  }
+
+  .puppy-card .puppy-card__btn {
+    --btn-h: M(29);
+    --btn-w: M(141);
+    --btn-icon: M(22.6);
+    --btn-icon-inset: M(3.3);
+    --btn-paw: M(9.5);
+    top: T(5053);
+    left: L(184);
+    width: M(141);
+    justify-content: center;
+    padding: 0 M(26) 0 0;
+    font-size: M(10);
+    letter-spacing: M(-0.3);
+  }
+  @end
+
+  /* ── How they grow (Figma y 5311–6256) ── */
+  @sec 5311
+
+  .growth__inner {
+    height: M(945);
+  }
+
+  .growth__mark {
+    top: T(5335.6);
+    left: L(21.6);
+    right: auto;
+    width: M(39.7);
+  }
+
+  .growth__title {
+    top: T(5395);
+    left: L(20);
+    width: M(320);
+    font-size: M(35);
+    line-height: M(33);
+    letter-spacing: M(-1.05);
+    white-space: normal;
+  }
+
+  .growth__rule {
+    top: T(5487);
+    left: L(20);
+    right: auto;
+    width: M(320);
+    height: M(4);
+  }
+
+  .growth__subtitle {
+    top: T(5551);
+    left: L(20);
+    font-size: M(21);
+    line-height: M(21);
+  }
+
+  .growth__text {
+    top: T(5587);
+    left: L(20);
+    right: auto;
+    width: M(242);
+    font-size: M(14);
+    line-height: M(19);
+  }
+
+  .growth__gallery {
+    top: T(5746);
+    left: L(20);
+    right: auto;
+    width: M(320);
+    height: M(326);
+  }
+
+  /* the reveal entrance ends at inset(0): leave room for the arrows above and the button below */
+  .growth__gallery[data-aos="reveal"].aos-animate {
+    clip-path: inset(M(-80) 0 M(-90) 0);
+  }
+  @card 20 5746
+
+  .growth__slide {
+    width: 100%;
+    height: M(326);
+    border-radius: M(10);
+  }
+
+  /* Figma 82:1551: the arrows sit above the photo, on the right */
+  .growth__arrow {
+    top: T(5673);
+    width: M(60);
+    height: M(58);
+  }
+
+  .growth__arrow .icon {
+    --icon-size: M(16);
+  }
+
+  .growth__arrow--prev { left: L(208); }
+  .growth__arrow--next { left: L(280.54); right: auto; }
+
+  /* Figma 82:1570: dark, full width, under the photo */
+  .growth .growth__btn {
+    --btn-bg: var(--c-ink);
+    --btn-fg: var(--c-sand);
+    --btn-icon-bg: var(--c-sand);
+    --btn-icon-fg: var(--c-ink);
+    --btn-hover-bg: var(--c-hover-dark);
+    --btn-hover-fg: var(--c-white);
+    top: T(6092);
+    left: L(20);
+    right: auto;
+    width: M(320);
+    justify-content: center;
+    padding: 0 M(58) 0 0;
+  }
+  @end
+
+  /* ── How much (Figma y 6256–7515): photo full width, no form here ── */
+  @sec 6256
+
+  .price {
+    z-index: auto;
+  }
+
+  .price__inner {
+    height: M(1259);
+  }
+
+  .price__card {
+    top: T(6256);
+    left: 0;
+    right: 0;
+    height: M(1307);
+    border-radius: 0;
+  }
+
+  /* Figma 194:11: 585 × 1039 at (-103, 6197). Full width with cover, so wider
+     screens get no empty sides (at 360 the crop moves < 10px) */
+  .price__photo {
+    top: T(6197);
+    left: 0;
+    width: 100%;
+    height: M(1039);
+  }
+
+  /* Figma 83:1591: #35281d → #191310 band, blurred 34px, from y 7036 */
+  .price__card::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: T(7002);
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(53, 40, 29, 0) 0, #35281d M(68), #191310 M(386));
+  }
+
+  .price__title {
+    top: T(6319);
+    left: L(20);
+  }
+
+  .price__title .split-title__small {
+    font-size: M(21);
+    font-weight: 500;
+    line-height: M(21);
+    letter-spacing: M(-0.63);
+  }
+
+  .price__title .split-title__big {
+    font-size: M(65);
+    line-height: M(73);
+    letter-spacing: M(-1.95);
+  }
+
+  .price__rule {
+    top: T(6423);
+    left: L(20);
+    width: M(320);
+  }
+
+  .price__text {
+    top: T(6443);
+    left: L(20);
+    width: M(320);
+    font-size: M(16);
+    line-height: M(25);
+    letter-spacing: M(-0.48);
+    color: #d7c8bf;
+  }
+
+  .price-table {
+    z-index: 1;
+    top: T(6979);
+    left: L(10);
+    right: auto;
+    width: M(340);
+  }
+
+  .price-table thead th {
+    height: M(42);
+    padding-left: M(15);
+    font-size: M(12);
+    letter-spacing: M(-0.36);
+  }
+
+  .price-table thead th:first-child {
+    width: M(108);
+  }
+
+  .price-table tbody th {
+    padding: 0 M(10) 0 M(15);
+    font-size: M(12);
+    line-height: M(12);
+    letter-spacing: M(-0.36);
+  }
+
+  .price-table tbody td {
+    padding: 0 M(8) 0 M(15);
+    font-size: M(12);
+    line-height: M(16);
+    letter-spacing: M(-0.36);
+  }
+
+  /* Figma row lines: 7021 / 7095 / 7165 / 7207 / 7276 / 7348 / 7435 */
+  .price-table tbody tr:nth-child(1) { height: M(74); }
+  .price-table tbody tr:nth-child(2) { height: M(70); }
+  .price-table tbody tr:nth-child(3) { height: M(42); }
+  .price-table tbody tr:nth-child(4) { height: M(69); }
+  .price-table tbody tr:nth-child(5) { height: M(72); }
+  .price-table tbody tr:nth-child(6) { height: M(87); }
+
+  .price__form {
+    display: none;
+  }
+
+  /* ── Delivery (Figma y 7515–8621) ── */
+  @sec 7515
+
+  .delivery {
+    z-index: 2;
+  }
+
+  .delivery__inner {
+    height: M(1106);
+  }
+
+  /* Figma 83:1642: globe 1385 × 780 at (-513, 7753) at 80 %, blurred ellipse mask 679 × 283 at (180, 8129) */
+  .delivery__globe {
+    top: T(7752.94);
+    left: L(-513.09);
+    width: M(1385.37);
+    height: M(779.68);
+    -webkit-mask: radial-gradient(M(816.6) M(421.2) at M(693) M(375.7), #000 52%, rgba(0, 0, 0, 0.5) 76%, transparent 100%);
+    mask: radial-gradient(M(816.6) M(421.2) at M(693) M(375.7), #000 52%, rgba(0, 0, 0, 0.5) 76%, transparent 100%);
+  }
+
+  .delivery__card {
+    top: T(7515);
+    left: L(20);
+    width: M(320);
+    height: M(360);
+    padding: 0;
+    border: 0;
+    background: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  @card 20 7515
+
+  .delivery__card-body {
+    height: M(360);
+    border-radius: M(12);
+  }
+
+  .delivery__title {
+    top: T(7555);
+    left: L(40);
+    font-size: M(21);
+    line-height: M(21);
+    letter-spacing: M(-0.63);
+  }
+
+  .delivery__text {
+    top: T(7591);
+    left: L(40);
+    width: M(249);
+    font-size: M(15);
+    line-height: M(21);
+    letter-spacing: M(-0.45);
+  }
+
+  .delivery .delivery__btn {
+    --btn-w: 0px;
+    top: T(7768);
+    left: L(40);
+    width: M(280);
+    padding: 0 M(70) 0 M(30);
+  }
+  @end
+
+  /* Figma 224; Chrome's wider Helvetica needs 240 for the frame's two lines */
+  .delivery__lead {
+    top: T(7915);
+    left: L(40);
+    right: auto;
+    width: M(240);
+    font-size: M(16);
+    line-height: M(26);
+    letter-spacing: M(-0.48);
+  }
+
+  .delivery__lead::before {
+    top: 0;
+    left: M(-20);
+    width: M(3);
+    height: M(51);
+  }
+
+  .delivery__features {
+    top: T(8407);
+    justify-content: flex-start;
+  }
+
+  .delivery .delivery__features .feature-chip {
+    padding-right: M(20);
+  }
+
+  .delivery .delivery__features .feature-chip:nth-child(1) { padding-right: M(40); }
+  .delivery .delivery__features .feature-chip:nth-child(2) { padding-right: M(99); }
+
+  /* ── Kennel or Avito (Figma y 8621–10223) ── */
+  @sec 8621
+
+  .avito__bg {
+    left: 0;
+    background: linear-gradient(to bottom, #847975 -32.615%, #fdf5e9); /* Figma: the ramp starts above the layer (t = 0.246 at its top) */
+  }
+
+  .avito__inner {
+    height: M(1602);
+  }
+
+  .avito__whatsapp {
+    top: T(8625);
+    left: L(30);
+    font-size: M(25);
+    line-height: M(84);
+  }
+
+  .avito__whatsapp .link-dot {
+    margin-left: M(10);
+  }
+
+  .avito__facts {
+    display: none;
+  }
+
+  .avito .avito__burger {
+    top: T(8648);
+    left: L(284);
+    right: auto;
+  }
+
+  .avito__title {
+    top: T(8755);
+    left: L(30);
+    width: M(284);
+    font-size: M(35);
+    line-height: M(33);
+    letter-spacing: M(-1.05);
+    color: var(--c-ink);
+  }
+
+  .compare-table {
+    top: T(8937);
+    left: L(10);
+    width: M(340);
+  }
+
+  .compare-table thead th {
+    height: M(42);
+    padding-left: M(15);
+    font-size: M(12);
+    letter-spacing: M(-0.36);
+  }
+
+  .compare-table thead th:first-child {
+    width: M(134);
+  }
+
+  .compare-table thead th + th {
+    padding-left: M(24);
+  }
+
+  .compare-table td {
+    padding: 0 M(14) 0 M(15);
+    font-size: M(12);
+    font-weight: 400;
+    line-height: M(12);
+    letter-spacing: M(-0.36);
+  }
+
+  .compare-table td + td {
+    padding: 0 M(15) 0 M(24);
+    font-weight: 500;
+    line-height: M(16);
+  }
+
+  /* Figma row lines: 9062 / 9158 / 9242 / 9329 / 9425 / 9505 */
+  .compare-table tbody tr:nth-child(1) { height: M(83); }
+  .compare-table tbody tr:nth-child(2) { height: M(96); }
+  .compare-table tbody tr:nth-child(3) { height: M(84); }
+  .compare-table tbody tr:nth-child(4) { height: M(87); }
+  .compare-table tbody tr:nth-child(5) { height: M(96); }
+  .compare-table tbody tr:nth-child(6) { height: M(80); }
+
+  .avito .avito__btn {
+    --btn-bg: var(--c-cream);
+    top: T(9535);
+    left: L(10);
+    width: M(280);
+  }
+
+  .avito__aside {
+    top: T(9659);
+    left: L(18);
+    right: auto;
+    width: M(320);
+  }
+
+  .avito__aside-title {
+    margin-left: 0;
+    font-size: M(21);
+    line-height: M(28);
+    letter-spacing: M(-0.63);
+  }
+
+  .avito__rule {
+    top: M(28);
+    left: 0;
+    width: M(250);
+  }
+
+  .avito .avito__aside-text {
+    font-size: M(15);
+    line-height: M(21);
+    letter-spacing: M(-0.45);
+  }
+
+  .avito .avito__rule + .avito__aside-text {
+    width: M(288);
+    margin-top: M(20);
+  }
+
+  .avito .avito__aside-text + .avito__aside-text {
+    margin-top: 0;
+  }
+
+  /* Figma 194:9: 556 × 329 window at (-46, 9894), photo aligned to its top */
+  .avito__puppy {
+    top: T(9894);
+    left: L(-46);
+    width: M(556);
+    height: M(329);
+    object-fit: cover;
+    object-position: 50% 0;
+  }
+
+  /* ── How to buy (Figma y 10223–13715), with the first form ── */
+  @sec 10223
+
+  .buy__inner {
+    height: M(3492);
+  }
+
+  /* Figma 83:1743: radial 997 × 758 rotated 53.4°, centred at (195, 11072), 80 % */
+  .buy__glow {
+    top: T(10313.8);
+    left: L(-802.3);
+    width: M(1994.8);
+    height: M(1516.4);
+    transform: rotate(53.4deg);
+  }
+
+  .buy__title,
+  .buy__sure {
+    left: L(20);
+  }
+
+  .buy__title { top: T(10343); }
+  .buy__sure { top: T(13156); }
+
+  .buy .split-title__small {
+    font-size: M(21);
+    font-weight: 500;
+    line-height: M(21);
+    letter-spacing: M(-0.63);
+  }
+
+  .buy .split-title__big {
+    font-size: M(65);
+    line-height: M(73);
+    letter-spacing: M(-1.95);
+  }
+
+  .buy__rule--l { top: T(10445); left: L(20); width: M(320); }
+  .buy__rule--r { top: T(13258); left: L(20); width: M(320); }
+
+  .buy__text {
+    width: M(320);
+    font-size: M(16);
+    line-height: M(25);
+    letter-spacing: M(-0.48);
+  }
+
+  .buy__text p + p {
+    margin-top: M(25);
+  }
+
+  .buy__text--age { top: T(10465); left: L(20); }
+  .buy__text--media { top: T(10970); left: L(20); }
+  .buy__text--sure { top: T(13278); left: L(20); }
+
+  .buy__subtitle {
+    top: T(10869);
+    left: L(20);
+    font-size: M(45);
+    line-height: M(73);
+    letter-spacing: M(-1.35);
+  }
+
+  /* Figma 83:1751: rule under "Фото и Видео" */
+  .buy__subtitle::after {
+    content: "";
+    position: absolute;
+    top: M(81);
+    left: 0;
+    width: M(320);
+    height: 1px;
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .buy__puppy {
+    top: T(11112);
+    left: L(-22);
+    width: M(487);
+    height: M(730);
+  }
+
+  .steps {
+    top: T(11681);
+    left: L(20);
+    right: auto;
+    width: M(320);
+    flex-direction: column;
+    gap: M(15.35);
+  }
+
+  .step {
+    width: M(320);
+    height: M(219.65);
+    border-radius: M(9.48);
+  }
+  @card 20 11681
+
+  .step__num {
+    top: T(11701);
+    left: L(40);
+    width: M(31.6);
+    height: M(31.6);
+    font-size: M(11.06);
+    line-height: M(31.6);
+  }
+
+  .step__title {
+    top: T(11812.16);
+    left: L(39.6);
+    font-size: M(16);
+    letter-spacing: M(-0.48);
+  }
+
+  .steps .step .step__text {
+    top: T(11838);
+    left: L(40);
+    width: M(256); /* Figma 244: Chrome's Helvetica sets wider; keeps Figma's two lines */
+    font-size: M(13);
+    line-height: M(18.17);
+    letter-spacing: M(-0.39);
+  }
+
+  .steps .step:nth-child(2) .step__text,
+  .steps .step:nth-child(3) .step__text { width: M(263); }
+  .steps .step:nth-child(4) .step__text { width: M(283); }
+  @end
+
+  .buy__form {
+    display: block;
+    position: absolute;
+    top: T(12693);
+    left: L(20);
+  }
+
+  .buy__actions {
+    top: T(13577);
+    left: L(18);
+    gap: M(10);
+  }
+
+  .buy__actions .btn {
+    width: M(320);
+  }
+
+  /* ── Video (Figma card 18,13835 320 × 730) ── */
+  @sec 13715
+
+  .video .container {
+    height: M(1007);
+  }
+
+  .video__card {
+    top: T(13835);
+    left: L(18);
+    right: auto;
+    width: M(320);
+    height: M(730);
+    overflow: visible;
+    background: none;
+  }
+  @card 18 13835
+
+  .video__poster {
+    border-radius: M(10);
+  }
+
+  /* the reveal entrance ends at inset(0): leave room for the button below the card */
+  .video__card[data-aos="reveal"].aos-animate {
+    clip-path: inset(0 0 M(-100) 0);
+  }
+
+  .video__logo {
+    top: T(13852);
+    left: L(33);
+    width: M(156);
+  }
+
+  .video__hint {
+    top: T(13859);
+    right: R(323);
+    width: M(110);
+    font-size: M(12);
+    letter-spacing: M(-0.36);
+  }
+
+  .video__text {
+    display: none;
+  }
+
+  .video__caption {
+    top: T(14356);
+    left: L(38);
+    width: M(170);
+    font-size: M(13);
+    line-height: M(14);
+    white-space: normal;
+  }
+
+  .video__track {
+    top: T(14395);
+    left: L(38);
+    width: M(280);
+  }
+
+  .video__progress {
+    width: M(63);
+    height: M(6);
+  }
+
+  .video__title {
+    top: T(14425);
+    left: L(38);
+    width: M(270);
+    font-size: M(30);
+    line-height: M(30);
+    letter-spacing: M(-0.9);
+  }
+
+  .video__btn {
+    top: T(14575);
+    left: L(20);
+    width: M(320);
+  }
+  @end
+
+  /* ── Care (Figma y 14722–16005), with the second form ── */
+  @sec 14722
+
+  .care__inner {
+    height: M(1283);
+  }
+
+  .care__form {
+    top: T(14732);
+    left: L(20);
+    right: auto;
+  }
+
+  /* Figma 83:1820: 1186 × 1018 at (-314, 15112), radial 548 × 669 at (569.5, 713), 80 % */
+  .care__glow {
+    top: T(15112);
+    left: L(-314.1);
+    width: M(1185.7);
+    height: M(1018.2);
+    background: radial-gradient(M(548.4) M(668.8) at M(569.54) M(712.88), var(--glow-80));
+  }
+
+  .care__title {
+    top: T(15199);
+    left: L(32);
+    width: M(296);
+    font-size: M(35);
+    line-height: M(35);
+    letter-spacing: M(-1.05);
+    background-image: linear-gradient(101.69deg, #f5decc 3.39%, #453931 263.08%);
+  }
+
+  .care__shadow--outer { top: T(15677.7); left: L(-156.9); width: M(824); }
+  .care__shadow--inner { top: T(15714.4); left: L(-51.97); width: M(623.6); }
+
+  .care__fade {
+    top: T(15599.8);
+    left: 0;
+    width: auto;
+    right: 0;
+    background: linear-gradient(to bottom, rgba(25, 19, 16, 0) 0, rgba(25, 19, 16, 0.16) M(200), rgba(25, 19, 16, 0.5) M(300), rgba(25, 19, 16, 0.84) M(400), #191310 M(600));
+  }
+
+  .care__puppy {
+    top: T(15344.34);
+    left: L(-129.23);
+    width: M(742.5);
+    height: M(495);
+  }
+
+  .care__card {
+    display: none;
+  }
+
+  .care__dot {
+    top: T(15369);
+    left: L(37);
+  }
+
+  .care__line {
+    top: T(15419.5);
+    left: L(64.1);
+    width: M(57.8);
+    transform: rotate(37.27deg);
+  }
+
+  /* Figma 83:1844: "1/6" counter over the chip row */
+  .care__counter {
+    display: block;
+    position: absolute;
+    top: T(15856);
+    left: L(23);
+    font-size: M(15);
+    font-weight: 500;
+    line-height: 1.06;
+    letter-spacing: M(-0.45);
+    color: var(--c-sand);
+  }
+
+  .care__counter-total {
+    color: rgba(222, 202, 189, 0.55);
+  }
+
+  .care__items {
+    top: T(15881);
+    padding: 0 calc(50% - 157px * var(--m));
+    scroll-padding: 0 calc(50% - 157px * var(--m));
+  }
+
+  .care .care__item {
+    width: M(320);
+    padding-right: M(20);
+  }
+
+  /* ── Family (Figma card 20,16005 320 × 1309) ── */
+  @sec 16005
+
+  .family .container {
+    height: M(1488);
+  }
+
+  .family__card {
+    top: T(16005);
+    left: L(20);
+    right: auto;
+    width: M(320);
+    height: M(1309);
+    border-radius: M(12);
+  }
+  @card 20 16005
+
+  /* Figma 83:2302: 1358 × 879 at (-496.4, 16005) */
+  .family__photo {
+    top: T(16005);
+    left: L(-496.4);
+    width: M(1357.84);
+    height: M(879.1);
+  }
+
+  /* Figma 83:2308: #e5c9be blurred 20px from y 16840: the photo fades into the card colour */
+  .family__card::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: T(16800);
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(229, 201, 190, 0) 0, #e5c9be M(80));
+  }
+
+  .family__icon {
+    --icon-size: M(14);
+    z-index: 1;
+    top: T(16031);
+    left: L(322);
+    right: auto;
+  }
+
+  .family__kicker {
+    z-index: 1;
+    top: T(16035);
+    left: L(69);
+    font-size: M(15);
+    line-height: M(21);
+    letter-spacing: M(-0.45);
+  }
+
+  .family__kicker .emoji {
+    margin-left: M(10);
+    font-size: M(15);
+  }
+
+  .family__title {
+    z-index: 1;
+    top: T(16066);
+    left: L(50);
+    width: M(260);
+    font-size: M(35);
+    line-height: M(33);
+    letter-spacing: M(-1.05);
+  }
+
+  .family__block {
+    z-index: 1;
+  }
+
+  .family .family__block--kids { top: T(16806); left: L(40); right: auto; width: M(286); }
+  .family .family__block--pets { top: T(17112); left: L(40); width: M(286); }
+
+  .family .family__subtitle {
+    width: M(277);
+    font-size: M(21);
+    line-height: M(21);
+    letter-spacing: M(-0.63);
+  }
+
+  .family .family__block .family__text {
+    width: M(286);
+    margin-top: M(15);
+    font-size: M(15);
+    line-height: M(21);
+    letter-spacing: M(-0.45);
+  }
+
+  .family__btn {
+    display: none;
+  }
+  @end
+
+  /* ── FAQ (Figma y 17493–18336) ── */
+  @sec 17493
+
+  .faq {
+    padding-bottom: M(120);
+  }
+
+  .faq__glow,
+  .faq__title {
+    display: none;
+  }
+
+  .faq__head {
+    height: M(109);
+  }
+
+  .faq__kicker {
+    top: T(17523);
+    left: L(20);
+    width: M(290);
+    font-size: M(30);
+    line-height: M(34);
+    letter-spacing: M(-0.9);
+    background-image: linear-gradient(107.14deg, #f5decc 34.04%, #645248 182.06%);
+  }
+
+  /* Closed: 40 above each question; open: a 40 gap, then the sand panel with 40 inside */
+  .faq__q {
+    height: auto;
+    padding: M(40) calc(50% - 68px * var(--m)) 0 calc(50% - 160px * var(--m));
+    font-size: M(18);
+    line-height: M(18);
+    letter-spacing: M(-0.54);
+  }
+
+  .faq__item:nth-child(n + 3) .faq__q {
+    padding-right: calc(50% - 29px * var(--m));
+  }
+
+  .faq__item:nth-child(2) .faq__q {
+    padding-right: calc(50% - 55px * var(--m));
+  }
+
+  .faq__icon {
+    --icon-size: M(25);
+    top: M(47);
+    left: auto;
+    right: R(340);
+  }
+
+  /* the mobile frame keeps the open item's arrow at its question */
+  .faq__item.is-active .faq__icon {
+    top: M(47);
+  }
+
+  .faq__item {
+    transition: background-color 0.5s var(--ease), margin 0.5s var(--ease);
+  }
+
+  .faq__item.is-active {
+    margin-top: M(40);
+  }
+
+  .faq__panel {
+    min-height: 0;
+  }
+
+  .faq__a {
+    box-sizing: border-box;
+    width: calc(50% + 135px * var(--m));
+    padding: M(15) 0 M(30) calc(50% - 160px * var(--m));
+    font-size: M(15);
+    line-height: M(23);
+    letter-spacing: M(-0.45);
+  }
+
+  /* ── Footer (Figma y 18336–20547) ── */
+  @sec 18336
+
+  .footer .container {
+    height: M(2255);
+  }
+
+  .contact-card {
+    top: T(18336);
+    left: L(20);
+    right: auto;
+    width: M(320);
+    height: M(845);
+    border-radius: M(12);
+  }
+  @card 20 18336
+
+  /* Figma 83:2348: radial 1028 × 1767 rotated 78.1°, centred at (124.8, 441) */
+  .contact-card__bg {
+    top: T(17010.2);
+    left: L(-882.9);
+    width: M(2055.4);
+    height: M(3533.6);
+    transform: rotate(78.1deg);
+  }
+
+  .contact-card__puppy {
+    top: T(18529);
+    left: L(-31);
+    width: M(517);
+    height: M(395);
+  }
+
+  .contact-card__label {
+    font-size: M(20);
+    line-height: M(28);
+  }
+
+  .contact-card__label .icon {
+    --icon-size: M(19);
+  }
+
+  .contact-card__call {
+    top: T(19066);
+    left: L(40);
+  }
+
+  .contact-card__call .contact-card__label,
+  .contact-card__phone {
+    display: none;
+  }
+
+  .contact-card__more {
+    gap: M(10);
+    margin-top: 0;
+    font-size: M(16);
+    line-height: M(16);
+  }
+
+  .contact-card__more .icon {
+    --icon-size: M(21);
+  }
+
+  /* Figma 83:2361: "© 2026" line box 93px from y 19088 */
+  .contact-card__year {
+    top: T(19088);
+    left: L(40);
+    height: M(93);
+  }
+
+  .contact-card__copy {
+    font-size: M(20);
+  }
+
+  .contact-card__year-rule {
+    width: M(198);
+    margin-left: M(16);
+  }
+
+  /* Figma 83:2362: the to-top button sits above the year line, on the right */
+  .contact-card__year .to-top {
+    position: absolute;
+    top: M(-34);
+    left: M(239);
+    width: M(41);
+    height: M(41);
+    margin: 0;
+  }
+
+  .to-top .icon {
+    --icon-size: M(9.4);
+  }
+
+  .contact-card__place {
+    top: T(18376);
+    left: L(40);
+    right: auto;
+    text-align: left;
+  }
+
+  .contact-card__label--right {
+    justify-content: flex-start;
+    margin-right: 0;
+  }
+
+  .contact-card__address {
+    width: M(265);
+    margin-top: M(15);
+    font-size: M(21);
+    line-height: M(24);
+    white-space: normal;
+  }
+
+  .socials {
+    top: T(18949);
+    left: L(40);
+    right: auto;
+    align-items: flex-start;
+  }
+
+  .socials__row:first-child {
+    display: none;
+  }
+
+  .socials__row {
+    flex-wrap: wrap;
+    width: M(280);
+    gap: M(13) M(37);
+  }
+
+  .socials__link {
+    font-size: M(21);
+    line-height: M(21);
+  }
+  @end
+
+  .footer__columns {
+    top: T(19281);
+    left: L(20);
+    right: auto;
+  }
+
+  .footer__group {
+    left: 0;
+  }
+
+  /* the site's first column has one link more than the frame (Товары): everything below it sits 44 lower */
+  .footer__group--policy { top: M(477); left: 0; }
+  .footer__group--contacts { top: M(734); left: 0; }
+
+  .footer__title {
+    font-size: M(25);
+    line-height: M(41);
+    letter-spacing: M(-0.75);
+  }
+
+  .footer__links {
+    margin-top: M(14);
+    font-size: M(18);
+    line-height: M(44);
+    letter-spacing: M(-0.54);
+  }
+
+  .footer__divider {
+    top: T(20258);
+    left: L(20);
+    right: auto;
+    width: M(320);
+  }
+
+  .footer__logo {
+    top: T(20279);
+    left: L(20);
+    width: M(134);
+  }
+
+  .footer__dev {
+    top: T(20284);
+    left: L(199);
+    gap: M(9);
+    font-size: M(14);
+    line-height: M(18);
+    letter-spacing: M(-0.42);
+  }
+
+  .footer__dev img {
+    width: M(57);
+  }
+
+  .footer__hours {
+    top: T(20380);
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+
+  .footer__hours-label {
+    justify-content: center;
+    gap: M(9);
+    font-size: M(13.84);
+    line-height: M(24.2);
+  }
+
+  .footer__hours-label .icon {
+    --icon-size: M(11.24);
+  }
+
+  .footer__hours-time {
+    font-size: M(21.62);
+    line-height: M(32.86);
+  }
+
+  .footer__legal {
+    top: T(20535);
+    font-size: M(14);
+    line-height: M(38);
+    letter-spacing: M(-0.42);
+  }
+
+  .footer__legal--name {
+    top: T(20497);
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+
+  .footer__legal--ogrn { left: L(22); }
+  .footer__legal--inn { left: L(213); }
+
+  /* Figma: 51px before the last question (40 elsewhere) */
+  .faq__item:last-child .faq__q {
+    padding-top: M(51);
+  }
+
+  /* ══ Catalog page (catalog.html, Figma mobile 194:16, 360 × 10647) ══
+     The frame shows 4 cards; the page has 6, so everything after the list sits
+     2 × 480 lower than in the frame (sections are in flow, positions section-relative). */
+
+  /* ── Hero card (Figma 194:17: 10,10 340 × 764; text 194:23–194:59) ── */
+  @sec 0
+
+  /* One screen high (--fixed-vh) like the home hero: the card ends 75 above the
+     screen bottom (Figma 1025 / 1100), the photo fills it down to 251 above the card
+     bottom (Figma 774), the text group is pinned to the card bottom (card 1015 high).
+     min-height keeps a strip of photo above the tag on short screens. */
+  /* min-height: on short phones the photo/video stays visible above the dark ramp and the text */
+  .cat-hero {
+    height: max(var(--fixed-vh, 100vh), M(940));
+  }
+
+  .cat-hero__card {
+    top: T(10);
+    bottom: M(75);
+    left: L(10);
+    right: auto;
+    width: M(340);
+    height: auto;
+    border-radius: M(10);
+    background: none;
+  }
+
+  .cat-hero__photo {
+    height: calc(100% - 251px * var(--m));
+    object-position: 50% 0;
+  }
+
+  /* Figma 204:15: the video 1224 × 689 at (-302, -42) in the card, under the dark fade */
+  .cat-hero__card > .cat-hero__video {
+    z-index: 0;
+    inset: auto;
+    top: M(-42);
+    left: M(-302);
+    width: M(1224);
+    height: M(689);
+    object-fit: fill;
+    /* cut at the photo bottom (card = hero − 85, photo = card − 251; video top −42):
+       689 − (hero − 85 − 251 + 42) = 983 − hero */
+    clip-path: inset(0 0 max(0px, calc(983px * var(--m) - max(var(--fixed-vh, 100vh), 940px * var(--m)))) 0);
+  }
+
+  /* Figma 194:22: #191310 blurred 75px with its top edge at y 541 (same ramp as the
+     home hero): from 458 above the photo bottom to solid 30 above it */
+  /* reaches 2px past the photo bottom, so no sub-pixel strip of the video shows under it */
+  .cat-hero__card::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: calc(M(251) - 2px);
+    height: calc(M(458) + 2px);
+    background: linear-gradient(to bottom, rgba(25, 19, 16, 0) 0, rgba(25, 19, 16, 0.16) M(75), rgba(25, 19, 16, 0.5) M(225), rgba(25, 19, 16, 0.84) M(300), #191310 M(428));
+  }
+
+  .cat-hero__card > * {
+    z-index: 1;
+  }
+
+  /* the veil (style.css) covers the photo only, not the page colour under it */
+  .cat-hero__card::before {
+    bottom: M(251);
+  }
+
+  .cat-hero__tag {
+    top: auto;
+    bottom: M(353);
+    left: M(10);
+    min-width: M(209);
+    height: M(26);
+    gap: M(11.4);
+    padding: 0 M(14) 0 M(18);
+    font-size: M(10);
+    letter-spacing: M(-0.3);
+  }
+
+  .cat-hero__tag .icon {
+    --icon-size: M(10.63);
+  }
+
+  .cat-hero__title {
+    top: auto;
+    bottom: M(237);
+    left: M(10);
+    width: M(326);
+    font-size: M(35);
+    line-height: M(33);
+    letter-spacing: M(-1.05);
+  }
+
+  .cat-hero__text {
+    top: auto;
+    bottom: M(123);
+    left: M(10);
+    width: M(320);
+    font-size: M(16);
+    font-weight: 400;
+    line-height: M(21);
+    letter-spacing: M(-0.48);
+    background: linear-gradient(104.92deg, #fff 3.23%, #999 150.71%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .cat-hero__btn {
+    top: auto;
+    bottom: 0;
+    left: M(10);
+    width: M(320);
+  }
+
+  /* ── Glows (Figma 194:613 list, 194:762 graduates), relative to .cat-wrap (y 1100) ── */
+  @sec 1100
+
+  .glow--cat-list {
+    top: T(896);
+    left: calc(50% - 1030.5px * var(--m));
+    width: M(2061);
+    height: M(1714);
+    background: radial-gradient(M(1081.5) M(1277.5) at M(957.5) M(495), var(--glow-80));
+    /* Figma 194:22 (dark band blurred 75px over y 541–937) hides the glow's top edge */
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 M(300));
+    mask-image: linear-gradient(to bottom, transparent, #000 M(300));
+  }
+
+  /* The graduates glow (Figma y 5276, 30 below the graduates top), from the wrapper's
+     bottom = the graduates bottom, so it holds whatever the list height: 30 − 844 + 1671 */
+  .glow--cat-reserve {
+    top: auto;
+    bottom: M(-857);
+    left: calc(50% - 1030.5px * var(--m));
+    width: M(2061);
+    height: M(1671);
+    background: radial-gradient(M(1153.8) M(862.5) at M(1008.5) M(809.75), var(--glow-100));
+    transform: none;
+  }
+
+  /* ── Puppy list (Figma 194:191…: 320 × 460 cards, 20 apart, from y 1125) ── */
+  .cat-list {
+    padding: M(25) calc(50% - 160px * var(--m)) M(100);
+  }
+
+  .cat-list__grid {
+    grid-template-columns: 1fr;
+    gap: M(20);
+  }
+
+  .cat-list__grid .puppy-card--grid {
+    border-radius: M(4.46);
+  }
+  @card 20 1125
+
+  /* The home card's mobile values (Figma 82:1488), with two classes to beat the grid card */
+  .puppy-card--grid .puppy-card__photo {
+    top: T(1107.72);
+    left: L(6.06);
+    width: M(346.27);
+    height: M(516.14);
+  }
+
+  .puppy-card--grid .puppy-card__glass {
+    top: T(1488.4);
+    bottom: auto;
+    left: L(6.66);
+    width: M(392.47);
+    height: M(135);
+  }
+
+  .puppy-card--grid .puppy-card__tags {
+    top: T(1139.84);
+    left: L(35);
+    right: auto;
+    width: M(260);
+    row-gap: M(4.5);
+  }
+
+  .puppy-card--grid .tag {
+    height: M(23.66);
+    padding: 0;
+    font-size: M(11.42);
+    letter-spacing: M(-0.34);
+    border-radius: M(2.14);
+  }
+
+  .puppy-card--grid .tag--name { width: M(59.7); }
+  .puppy-card--grid .tag--gender { width: M(69.85); margin-left: M(4.5); }
+  .puppy-card--grid .tag--color { width: M(100.26); margin-left: M(4.5); }
+  .puppy-card--grid .tag--size { width: M(132.93); }
+
+  /* No room in the mobile card: the button already says "Продан" / "В лист ожидания" */
+  .puppy-card--grid .tag--status {
+    display: none;
+  }
+
+  .puppy-card--grid .puppy-card__age {
+    font-size: M(11.42);
+    letter-spacing: M(-0.34);
+  }
+
+  .puppy-card--grid .puppy-card__age::before {
+    width: M(2.86);
+    height: M(2.86);
+    margin-right: M(7.6);
+  }
+
+  .puppy-card--grid .puppy-card__price {
+    top: T(1534.62);
+    bottom: auto;
+    left: L(35.17);
+    padding-top: M(14.5);
+    font-size: M(20);
+    letter-spacing: M(-0.6);
+  }
+
+  .puppy-card--grid .puppy-card__price-label {
+    left: M(2.78);
+    font-size: M(10);
+    letter-spacing: M(-0.3);
+  }
+
+  .puppy-card--grid .puppy-card__btn {
+    top: T(1535);
+    bottom: auto;
+    left: L(184);
+    right: auto;
+  }
+
+  .puppy-card--grid .btn--plain {
+    padding: 0;
+  }
+  @end
+
+  /* ── Reserve (Figma 194:706 card 20,3125 320 × 873; 194:702–194:745) + steps 194:746 ── */
+  @sec 3125
+
+  .reserve__inner {
+    height: M(2121);
+  }
+
+  .reserve__card {
+    top: T(3125);
+    left: L(20);
+    right: auto;
+    width: M(320);
+    height: M(873);
+    border-radius: M(10);
+  }
+  @card 20 3125
+
+  .reserve__title {
+    top: T(3715);
+    left: L(40);
+    width: M(240);
+    letter-spacing: M(-1.05);
+  }
+
+  .reserve__title-small {
+    font-size: M(15);
+    font-weight: 500;
+    line-height: M(21);
+    letter-spacing: M(-0.45);
+  }
+
+  .reserve__title-big {
+    width: M(210);
+    font-size: M(35);
+    line-height: M(33);
+  }
+
+  .reserve__actions {
+    top: T(3832);
+    left: L(40);
+    flex-direction: column;
+    gap: M(10);
+  }
+
+  .reserve__actions .btn {
+    width: M(280);
+  }
+
+  .reserve__actions .btn--outline {
+    justify-content: center;
+    padding: 0;
+  }
+  @end
+
+  .reserve__aside {
+    top: T(4068);
+    left: L(20);
+    width: M(320);
+  }
+
+  .reserve__heading {
+    letter-spacing: M(-1.95);
+  }
+
+  .reserve__heading-small {
+    font-size: M(21);
+    font-weight: 500;
+    line-height: M(21);
+    letter-spacing: M(-0.63);
+  }
+
+  .reserve__heading-big {
+    font-size: M(65);
+    font-weight: 400;
+    line-height: M(73);
+  }
+
+  .reserve__text {
+    width: M(320);
+    font-size: M(16);
+    font-weight: 400;
+    line-height: M(25);
+    letter-spacing: M(-0.48);
+    color: var(--c-text-soft);
+  }
+
+  .reserve__text p + p {
+    margin-top: M(25);
+  }
+
+  .reserve__text--terms { top: M(114); }
+
+  .reserve__subtitle {
+    top: M(583);
+    font-size: M(45);
+    line-height: M(73);
+    letter-spacing: M(-1.35);
+  }
+
+  .reserve__text--health { top: M(676); }
+
+  .steps-slider {
+    position: absolute;
+    top: T(4868);
+    left: L(20);
+    width: M(320);
+  }
+
+  .reserve .steps {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: auto;
+    flex-direction: row;
+    gap: 0;
+  }
+
+  .reserve .step {
+    flex-shrink: 0;
+  }
+
+  .reserve__nav {
+    display: flex;
+    top: T(5118);
+    left: L(114);
+  }
+
+  /* ── Graduates: the home rules (section-relative), the home mobile height ── */
+  .graduates--short .graduates__inner {
+    height: M(844);
+  }
+
+  /* ── How-to grid (Figma 195:795 title, cells 195:797–195:853, button 195:801) ── */
+  @sec 6090
+
+  .howto {
+    padding: M(10) calc(50% - 160px * var(--m)) M(234);
+  }
+
+  .howto__title {
+    width: M(264);
+    font-size: M(35);
+    line-height: M(33);
+    letter-spacing: M(-1.05);
+    background-image: linear-gradient(99.54deg, #f5decc 34.04%, #645248 182.06%);
+  }
+
+  .howto__btn {
+    top: auto;
+    bottom: M(120);
+    left: L(20);
+    right: auto;
+    width: M(320);
+  }
+
+  .howto__grid {
+    margin-top: M(50);
+  }
+
+  .howto__bg,
+  .howto__count,
+  .howto__line {
+    display: none;
+  }
+
+  .howto__cells {
+    grid-template-columns: 1fr;
+  }
+
+  .howto__cell,
+  .howto__cell--wide {
+    grid-area: auto;
+    aspect-ratio: 1;
+    background: var(--c-cell);
+  }
+
+  /* Figma 195:822…: hairlines between the cells */
+  .howto__cell + .howto__cell {
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.25);
+  }
+
+  .howto__cell-photo {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .howto__num {
+    top: M(23);
+    left: M(20);
+    font-size: M(14);
+    line-height: M(18);
+    letter-spacing: M(-0.42);
+  }
+
+  .howto__name {
+    top: M(20);
+    left: M(60);
+    font-size: M(14);
+    line-height: M(25);
+    letter-spacing: M(-0.42);
+  }
+
+  .howto__text {
+    bottom: M(26);
+    left: M(26);
+    font-size: M(16);
+    line-height: M(18);
+    letter-spacing: M(-0.48);
+  }
+
+  /* Figma widths + 10 (Chrome's Helvetica is wider; same line breaks) */
+  .howto__cell--1 .howto__text { width: M(222); }
+  .howto__cell--2 .howto__text { width: M(277); }
+  .howto__cell--3 .howto__text { width: M(241); }
+  .howto__cell--4 .howto__text { width: M(266); }
+  .howto__cell--5 .howto__text { width: M(246); }
+  .howto__cell--6 .howto__text { width: M(266); }
+
+  /* ══ Reviews page (reviews.html, Figma mobile 195:855, 360 × 8444) ══ */
+
+  /* ── Hero (Figma 0–1101): one screen, the group pinned to the bottom ── */
+  @sec 0
+
+  /* min-height: on short phones the photo stays visible above the dark ramp and the text */
+  .page-hero {
+    height: max(var(--fixed-vh, 100vh), M(900));
+  }
+
+  /* the bottom group is anchored to the inner box, so it must fill the hero */
+  .page-hero .page-hero__inner {
+    height: 100%;
+  }
+
+  /* Figma 195:1194: the desktop still at ×0.684 (1314 × 841 at x -420, top 0), clipped at y 774
+     by its mask; the dark ramp below covers the rest of the screen */
+  .page-hero__photo {
+    object-position: 44% 0;
+  }
+
+  .page-hero--reviews .page-hero__photo {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 599.7px * var(--m));
+    width: M(1313.9);
+    height: M(774);
+    object-position: 0 0;
+  }
+
+  /* Figma 195:863: #191310 blurred, top edge at y 571 (the home hero ramp), solid to the bottom */
+  .page-hero__bg::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: M(755);
+    background: linear-gradient(to bottom, rgba(25, 19, 16, 0) 0, rgba(25, 19, 16, 0.16) M(75), rgba(25, 19, 16, 0.5) M(225), rgba(25, 19, 16, 0.84) M(300), #191310 M(428));
+  }
+
+  .page-hero__tag {
+    left: L(20);
+    bottom: M(429);
+    min-width: M(209);
+    height: M(26);
+    gap: M(11.4);
+    padding: 0 M(14) 0 M(18);
+    font-size: M(10);
+    letter-spacing: M(-0.3);
+  }
+
+  .page-hero__tag .icon {
+    --icon-size: M(10.63);
+  }
+
+  .page-hero__title {
+    left: L(20);
+    bottom: M(327);
+    font-size: M(95);
+    line-height: M(85);
+    letter-spacing: M(-2.85);
+  }
+
+  .page-hero__text {
+    display: block;
+    position: absolute;
+    left: L(20);
+    bottom: M(214);
+    width: M(320);
+    font-size: M(16);
+    line-height: M(21);
+    letter-spacing: M(-0.48);
+    background: linear-gradient(104.92deg, #fff 3.23%, #999 150.71%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .page-hero__btn {
+    left: L(20);
+    right: auto;
+    bottom: M(90);
+    width: M(320);
+  }
+
+  /* ── Graduates (Figma 1101–3220): four cards stacked, no slider (data-slider-desktop) ── */
+  @sec 1101
+
+  /* Figma 195:862: the list glow, faded in at its top like the catalog */
+  .glow--rv {
+    top: T(896);
+    left: calc(50% - 1030.5px * var(--m));
+    width: M(2061);
+    height: M(1714);
+    background: radial-gradient(M(1081.5) M(1277.5) at M(957.5) M(495), var(--glow-80));
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 M(300));
+    mask-image: linear-gradient(to bottom, transparent, #000 M(300));
+  }
+
+  .graduates--reviews {
+    padding-top: 0;
+  }
+
+  .graduates--reviews .graduates__inner {
+    height: M(2119);
+  }
+
+  .graduates--reviews .graduates__nav {
+    display: none;
+  }
+
+  .graduates--reviews .swiper-wrapper {
+    flex-direction: column;
+    gap: M(20);
+  }
+
+  .graduates--reviews .graduates__col {
+    gap: M(20);
+  }
+
+  /* Figma: 4 cards — the first column (3) + the first card of the second */
+  .graduates--reviews .graduates__col:nth-child(n+3) {
+    display: none;
+  }
+
+  .graduates--reviews .graduates__col:first-child .review-card + .review-card {
+    display: block;
+  }
+
+  /* ── Growth (Figma 3220–4165): the home section ── */
+
+  /* ── Trust (Figma 4165–5490; the frame repeats the home delivery copy here, the page's own
+        trust content is used with its layout: title 4265, card 4404, globe 4796, lead 4804) ── */
+  @sec 4165
+
+  .rv-trust__inner {
+    height: M(1325);
+  }
+
+  /* Figma 195:1294: the globe at ×0.629 of desktop, (-441.3, 4670) */
+  .rv-trust__globe {
+    top: T(4670.3);
+    left: L(-441.3);
+    width: M(1207.6);
+    height: M(751.6);
+    object-fit: fill;
+  }
+
+  .rv-trust__title {
+    top: T(4265);
+    left: L(20);
+    width: M(297);
+    padding-bottom: M(8);
+    font-size: M(35);
+    line-height: M(33);
+    letter-spacing: M(-1.05);
+    background-image: linear-gradient(99.25deg, #f5decc 34.04%, #645248 182.06%);
+  }
+
+  .rv-trust__card {
+    top: T(4404);
+    left: L(20);
+    width: M(320);
+    height: M(360);
+    border-radius: M(12);
+  }
+  @card 20 4404
+
+  .rv-trust__card-title {
+    top: T(4444);
+    left: L(40);
+    width: M(273);
+    font-size: M(21);
+    line-height: M(21);
+    letter-spacing: M(-0.63);
+  }
+
+  .rv-trust__card-text {
+    top: T(4500);
+    left: L(40);
+    width: M(280);
+    font-size: M(14);
+    line-height: M(20);
+    letter-spacing: M(-0.42);
+  }
+
+  .rv-trust__btn {
+    top: T(4657);
+    left: L(40);
+    width: M(280);
+    padding-left: M(30);
+  }
+  @end
+
+  /* Figma 195:1309: the 3px rule, 51 high, left of the lead */
+  .rv-trust__rule {
+    top: T(4804);
+    left: L(20);
+    width: M(3);
+    height: M(51);
+  }
+
+  .rv-trust__lead {
+    top: T(4804);
+    left: L(40);
+    width: M(280);
+    font-size: M(16);
+    line-height: M(21);
+    letter-spacing: M(-0.48);
+  }
+
+  /* ── What they say (Figma 5490–6233) ── */
+  @sec 5490
+
+  .rv-say__inner {
+    height: M(743);
+  }
+
+  .rv-say__title {
+    top: T(5520);
+    left: L(20);
+    font-size: M(35);
+    line-height: M(33);
+    letter-spacing: M(-1.05);
+    background-image: linear-gradient(99.25deg, #f5decc 34.04%, #645248 182.06%);
+  }
+
+  .rv-say__nav {
+    top: T(6075);
+    left: L(114);
+    right: auto;
+  }
+
+  .rv-say__slider {
+    top: T(5583);
+    left: L(20);
+    right: auto;
+    width: M(320);
+  }
+
+  .say-card {
+    width: M(320);
+    height: M(452);
+    border-radius: M(8);
+  }
+  @card 20 5583
+
+  .say-card__avatar {
+    top: T(5647);
+    left: L(47.18);
+    width: M(62.74);
+    height: M(65.43);
+  }
+
+  .say-card__name {
+    top: T(5635);
+    left: L(130);
+    font-size: M(24);
+    line-height: M(63);
+  }
+
+  .say-card__badge {
+    width: M(18.36);
+    margin-left: M(12);
+  }
+
+  .say-card__role {
+    top: T(5676);
+    left: L(131);
+    font-size: M(15);
+    line-height: M(35);
+  }
+
+  .say-card__stars {
+    top: T(5605);
+    left: L(223.4);
+    gap: M(4.5);
+  }
+
+  .say-card__stars .icon {
+    --icon-size: M(15.25);
+  }
+
+  .say-card__rule {
+    top: T(5731);
+    left: L(47);
+    width: M(266);
+  }
+
+  .say-card__text {
+    top: T(5750);
+    left: L(47);
+    width: M(263);
+    font-size: M(14);
+    line-height: M(25);
+  }
+
+  .say-card__text p + p {
+    margin-top: M(25);
+  }
+  @end
+
+  /* ══ Product page (product.html, Figma mobile 195:1360, 360 × 5546) ══ */
+
+  /* ── Hero (Figma 0–846): the page hero; tag, name and a rule pinned to the bottom,
+        the price and the button move into the product block ── */
+  @sec 0
+
+  /* Figma 196:1986: the desktop still at ×0.6395 (1228 × 786 at x -433), clipped at y 774; it starts
+     at 0 instead of 10 (in Figma other photos fill those 10px) */
+  .page-hero--product .page-hero__photo {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 613px * var(--m));
+    width: M(1227.8);
+    height: M(774);
+    object-position: 0 0;
+  }
+
+  /* Figma 195:1369: dark band with its edge at y 571 → the ramp starts 225 above it */
+  .page-hero--product .page-hero__bg::after {
+    height: M(500);
+  }
+
+  /* the product frame's hero is 846: a lower minimum than the shared 900 */
+  .page-hero--product {
+    height: max(var(--fixed-vh, 100vh), M(800));
+  }
+
+  .page-hero--product .page-hero__tag {
+    bottom: M(174);
+    min-width: M(209);
+  }
+
+  .page-hero--product .page-hero__title {
+    bottom: M(72);
+    font-size: M(75);
+    line-height: M(85);
+    letter-spacing: M(-2.25);
+  }
+
+  .page-hero--product .page-hero__price,
+  .page-hero--product .page-hero__btn {
+    display: none;
+  }
+
+  /* Figma 195:1642: rule under the name, y 796 */
+  .page-hero--product .page-hero__rule {
+    display: block;
+    position: absolute;
+    left: L(20);
+    bottom: M(50);
+    width: M(320);
+    height: 1px;
+    background: var(--c-pd-border);
+  }
+
+  /* ── Product (Figma 846–2531) ── */
+  @sec 846
+
+  /* Figma 195:1368: the glow from y 796, faded in under the hero */
+  .glow--pd {
+    top: T(796);
+    left: calc(50% - 1030.5px * var(--m));
+    width: M(2061);
+    height: M(1814);
+    background: radial-gradient(M(1081.5) M(1277.5) at M(957.5) M(495), var(--glow-80));
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 M(300));
+    mask-image: linear-gradient(to bottom, transparent, #000 M(300));
+  }
+
+  /* in flow: the block follows the accordion (Figma: it ends 166 below it, at 2531) */
+  .pd__inner {
+    min-height: 0;
+  }
+
+  .pd__info {
+    width: 100%;
+    margin-left: 0;
+    padding: M(806) 0 M(166);
+  }
+
+  .pd__name {
+    top: T(896);
+    left: L(20);
+    font-size: M(30);
+    font-weight: 300;
+    line-height: M(75);
+    letter-spacing: M(-0.9);
+  }
+
+  .pd__price {
+    top: T(903);
+    right: R(340);
+    font-size: M(20);
+    line-height: M(75);
+    letter-spacing: M(-0.6);
+  }
+
+  .pd__rule {
+    top: T(971);
+    left: L(20);
+    width: M(320);
+    background: var(--c-pd-border);
+  }
+
+  .pd__actions {
+    top: T(992);
+    left: L(20);
+    flex-direction: column;
+    gap: M(10);
+  }
+
+  .pd__actions .btn {
+    width: M(320);
+  }
+
+  .pd__share-icon {
+    top: M(6);
+    right: M(7);
+    width: M(51);
+    height: M(51);
+  }
+
+  .pd__share-icon .icon {
+    --icon-size: M(14);
+  }
+
+  /* Figma 196:1676: 320 × 335 photo (swiped with a finger), arrows on it, four thumbnails below */
+  .pd__stage {
+    top: T(1180.46);
+    left: L(20);
+    width: M(320);
+    height: M(335.43);
+  }
+
+  .pd__photo {
+    object-position: 50% 30%;
+  }
+
+  .pd__arrow {
+    display: grid;
+    place-items: center;
+    position: absolute;
+    top: T(1332.69);
+    z-index: 1;
+    width: M(30.8);
+    height: M(30.8);
+    border-radius: 50%;
+  }
+
+  .pd__arrow .icon {
+    --icon-size: M(8);
+  }
+
+  .pd__arrow--prev {
+    left: L(30);
+    background: var(--c-nav-rule);
+    color: var(--c-white);
+  }
+
+  .pd__arrow--prev .icon {
+    transform: scaleX(-1);
+  }
+
+  .pd__arrow--next {
+    left: L(299);
+    background: var(--c-white);
+    color: var(--c-ink);
+  }
+
+  .pd__thumbs {
+    top: T(1524.26);
+    left: L(20);
+    flex-direction: row;
+    gap: M(5.39);
+  }
+
+  .pd__thumb {
+    width: M(75.96);
+    height: M(57.74);
+  }
+
+  /* Accordion (Figma 196:1661 …): 44px rows, panels with Figma's gaps */
+  .pd-acc {
+    left: L(20);
+    width: M(320);
+  }
+
+  .pd-acc__q {
+    height: M(44.3);
+    font-size: M(14);
+  }
+
+  .pd-acc__icon {
+    --icon-size: M(9);
+    top: calc(50% - 4.5px * var(--m));
+  }
+
+  .pd-acc__text {
+    font-size: M(14);
+    line-height: 1.35;
+  }
+
+  .pd-sub {
+    padding-top: M(14.7);
+  }
+
+  .pd-parents__text {
+    width: M(319);
+    padding-top: M(24.7);
+  }
+
+  .pd-parents {
+    gap: M(21);
+    padding-top: M(30.3);
+  }
+
+  .pd-parents__item {
+    width: M(147);
+    height: M(198);
+  }
+
+  .pd-parents__photo {
+    top: M(-51);
+    left: M(-44);
+    width: M(236);
+    height: M(351);
+  }
+
+  .pd-acc__about {
+    width: M(319);
+    padding: M(30) 0 M(31);
+  }
+
+  .pd-acc__included {
+    width: M(319);
+    padding-top: M(25);
+  }
+
+  /* ── Similar (Figma 2531–3335): one card per view, the home mobile card ── */
+  @sec 2531
+
+  .similar__inner {
+    height: M(804);
+  }
+
+  /* 322 (Figma 319): Chrome's «мальтипу в продаже» is 319.2 wide */
+  .similar__title {
+    top: T(2561);
+    left: L(20);
+    width: M(322);
+    margin: 0;
+    padding: 0 0 M(8);
+    font-size: M(35);
+    line-height: M(33);
+    letter-spacing: M(-1.05);
+    background-image: linear-gradient(99.25deg, #f5decc 34.04%, #645248 182.06%);
+  }
+
+  .similar__nav {
+    top: T(3157);
+    left: L(114);
+    right: auto;
+  }
+
+  .similar__slider {
+    top: T(2667);
+    left: L(20);
+    right: auto;
+    width: M(320);
+  }
+
+  .similar .puppy-card__tags {
+    row-gap: M(4.5);
+  }
+
+  .similar .tag--status {
+    display: none;
+  }
+
+  .similar .btn--plain {
+    padding: 0;
+  }
+
+  /* ══ About page (about.html, Figma mobile 197:1988, 360 × 13711) ══
+     The frame repeats copy from other pages in places (hero tag and text, the docs
+     title, the visit kicker, the video card); the page keeps its own copy. */
+
+  /* ── Hero card (Figma 197:1989: 10,10 340 × 764; text 197:1999–197:2217): the catalog hero ── */
+  /* Figma 197:2205: the desktop photo (1398 × 786 in the frame), puppy at the centre */
+  .cat-hero--about .cat-hero__photo {
+    object-position: 51% 0;
+  }
+
+  /* The ramp is 458 of the 764 photo in Figma (60 %). On screens shorter than the
+     frame's proportions the photo is shorter, so the ramp follows the photo's height
+     instead of covering all of it */
+  .cat-hero--about .cat-hero__card::after {
+    height: calc(min(M(458), (100% - 251px * var(--m)) * 0.6) + 2px);
+    background: linear-gradient(to bottom, rgba(25, 19, 16, 0) 0, rgba(25, 19, 16, 0.16) 16.4%, rgba(25, 19, 16, 0.5) 49.1%, rgba(25, 19, 16, 0.84) 65.5%, #191310 93.4%);
+  }
+
+  /* Distances from the card bottom (Figma 1031): tag 359, title 237, text 124. The page's
+     text is one line shorter than the frame's (21), so the tag and title sit 21 lower */
+  .cat-hero--about .cat-hero__tag {
+    bottom: M(338);
+    min-width: M(209);
+  }
+
+  /* Figma 321 wide; Chrome's Helvetica sets «Питомник кукольных» at 329 */
+  .cat-hero--about .cat-hero__title {
+    bottom: M(216);
+    width: M(330);
+    line-height: M(35);
+  }
+
+  .cat-hero--about .cat-hero__text {
+    left: M(10);
+    bottom: M(124);
+    width: M(320);
+  }
+
+  .cat-hero--about .cat-hero__btn {
+    left: M(10);
+    bottom: 0;
+  }
+
+  /* ── О нас (Figma 1106–1887) ── */
+  @sec 1106
+
+  .ab-intro__inner {
+    height: M(781);
+  }
+
+  /* Figma 197:1997: 2061 × 1771 at (-850, 839), radial 1081.5 × 1320 at (957.5, 511.5), 80 %;
+     faded in at its top like the catalog list glow (the hero ramp covers it in Figma) */
+  .ab-intro__glow {
+    top: T(839);
+    left: L(-850);
+    width: M(2061);
+    height: M(1771);
+    background: radial-gradient(M(1081.5) M(1320) at M(957.5) M(511.46), var(--glow-80));
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 M(300));
+    mask-image: linear-gradient(to bottom, transparent, #000 M(300));
+  }
+
+  .ab-intro__kicker {
+    top: T(1131);
+    left: L(24);
+    font-size: M(14);
+    line-height: M(33);
+    letter-spacing: M(-0.42);
+    white-space: nowrap;
+    background: linear-gradient(92.27deg, #fff 0.21%, #999 166.48%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Figma 197:2220: the glyphs of «О нас» span 25–335 × 1175–1260 */
+  .ab-intro__title {
+    top: T(1175);
+    left: L(25);
+  }
+
+  .ab-intro__title img {
+    width: M(310);
+  }
+
+  .ab-intro__slider {
+    top: T(1314);
+    left: L(20);
+    right: auto;
+    width: M(320);
+  }
+
+  .ab-intro__slide {
+    width: 100%;
+  }
+
+  .ab-intro__photo {
+    height: M(326);
+    border-radius: M(10);
+  }
+
+  .ab-intro__caption {
+    margin-top: M(30);
+    font-size: M(18);
+    line-height: M(20);
+    letter-spacing: M(-0.54);
+  }
+
+  .ab-intro__nav,
+  .ab-vet__nav,
+  .ab-care__nav {
+    display: flex;
+    gap: M(12.5);
+  }
+
+  .ab-intro__nav {
+    top: T(1759);
+    left: L(114);
+  }
+
+  /* ── Documents (Figma card 20,1917 320 × 873; arrows below it) ── */
+  @sec 1887
+
+  .ab-docs__inner {
+    height: M(1063);
+  }
+
+  .ab-docs__card {
+    top: T(1917);
+    left: L(20);
+    right: auto;
+    width: M(320);
+    height: M(873);
+    overflow: visible;
+    border-radius: M(15);
+  }
+  @card 20 1917
+
+  /* the reveal entrance (clip-path) must not cut the arrows below the card */
+  .ab-docs__card[data-aos="reveal"].aos-animate,
+  .ab-visit__card[data-aos="reveal"].aos-animate {
+    clip-path: inset(0 0 M(-120) 0);
+  }
+
+  /* Figma 197:2248: phones get the mobile crop (about-docs-m, 320 × 873 window of the
+     layer); tablets the sharper desktop photo, covering with the puppies at 30 %.
+     The card no longer clips (the arrows sit below it), so the photo rounds itself */
+  .ab-docs__photo {
+    border-radius: M(15);
+    object-position: 30% 50%;
+  }
+
+  /* Figma 197:2250: black → clear from the top, 55 % */
+  .ab-docs__card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: M(15);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.43), rgba(0, 0, 0, 0.04));
+    pointer-events: none;
+  }
+
+  .ab-docs__card > :not(picture) {
+    z-index: 1;
+  }
+
+  /* the title and text flow (the page's title is longer than the frame's), 30 apart */
+  .ab-docs__title,
+  .ab-docs__text {
+    position: relative;
+    top: auto;
+    left: auto;
+    margin-left: M(20);
+  }
+
+  .ab-docs__title {
+    margin-top: M(40);
+    width: M(280);
+    font-size: M(35);
+    line-height: M(33);
+    letter-spacing: M(-1.05);
+  }
+
+  .ab-docs__text {
+    margin-top: M(30);
+    width: M(271);
+    font-size: M(16);
+    line-height: M(21);
+    letter-spacing: M(-0.48);
+  }
+
+  .ab-docs__logo {
+    display: none;
+  }
+
+  .ab-docs__nav {
+    top: T(2815);
+    left: L(110);
+    gap: M(14);
+  }
+
+  .ab-docs__arrow {
+    width: M(64);
+    height: M(64);
+  }
+
+  .ab-docs__arrow .icon {
+    --icon-size: M(16);
+  }
+
+  /* the strip right of the first card, clipped at the card edge */
+  .ab-docs__slider {
+    top: T(2576);
+    left: L(30);
+    right: 0;
+    overflow: hidden;
+  }
+
+  .ab-doc {
+    width: M(300);
+    height: M(204);
+    border-radius: M(15);
+  }
+
+  .ab-doc__title {
+    top: M(22);
+    left: M(22);
+    font-size: M(21);
+    line-height: M(26);
+    letter-spacing: M(-0.63);
+  }
+
+  .ab-doc__rule {
+    top: M(56);
+    left: M(22);
+    right: M(22);
+  }
+
+  .ab-doc__text {
+    top: M(73);
+    left: M(22);
+    width: M(259);
+    font-size: M(14);
+    line-height: M(18);
+    letter-spacing: M(-0.42);
+  }
+
+  /* Figma 197:2267: an underlined text link instead of the desktop pill */
+  .ab-doc .ab-doc__btn {
+    top: M(163);
+    left: M(22);
+    min-width: 0;
+    height: auto;
+    padding: 0;
+    background: none;
+    font-size: M(16);
+    line-height: 1.2;
+    letter-spacing: M(-0.48);
+    text-decoration: underline;
+    color: var(--c-white);
+  }
+
+  .ab-doc .ab-doc__btn::before,
+  .ab-doc .ab-doc__btn::after {
+    display: none;
+  }
+  @end
+
+  /* ── Care conditions (Figma 2950–4060): bag, one chip at a time with a counter and arrows ── */
+  @sec 2950
+
+  .ab-care__inner {
+    height: M(1110);
+  }
+
+  /* Figma 197:2309: the home care glow at (-314.1, 3066) */
+  .ab-care__glow {
+    top: T(3066);
+    left: L(-314.1);
+    width: M(1185.7);
+    height: M(1018.2);
+    background: radial-gradient(M(548.4) M(668.8) at M(569.54) M(712.88), var(--glow-80));
+  }
+
+  .ab-care__title {
+    top: T(2996);
+    left: L(32);
+    width: M(296);
+    font-size: M(35);
+    line-height: M(35);
+    letter-spacing: M(-1.05);
+  }
+
+  .ab-care__lead {
+    top: T(3165);
+    left: L(46.5);
+    width: M(267);
+    font-size: M(14);
+    line-height: M(21);
+    letter-spacing: M(-0.42);
+    color: #7b7b7b;
+  }
+
+  /* Figma 198:2353 / 198:2352: 450 × 111 and 360 × 89, centred at (218.6, 3850.3) / (221.4, 3849.4) */
+  .ab-care__shadow--outer {
+    top: T(3794.6);
+    left: L(-6.44);
+    width: M(450);
+    height: M(111.4);
+    filter: blur(M(17.2));
+  }
+
+  .ab-care__shadow--inner {
+    top: T(3804.9);
+    left: L(41.54);
+    width: M(359.6);
+    height: M(89);
+    filter: blur(M(7.6));
+  }
+
+  .ab-care__puppy {
+    top: T(3374);
+    left: L(-53);
+    width: M(501);
+  }
+
+  /* the bag fades into the page under the chip */
+  .ab-care__fade {
+    top: T(3650);
+    height: M(420);
+    background: linear-gradient(to bottom, rgba(25, 19, 16, 0) 0, rgba(25, 19, 16, 0.5) M(170), rgba(25, 19, 16, 0.84) M(250), #191310 M(330));
+  }
+
+  .ab-care__card {
+    display: none;
+  }
+
+  .ab-care__dot {
+    top: T(3323);
+    left: L(37);
+  }
+
+  .ab-care__line {
+    top: T(3373.5);
+    left: L(64.1);
+    width: M(57.8);
+    transform: rotate(37.27deg);
+  }
+
+  .ab-care__counter {
+    top: T(3810);
+    left: L(23);
+  }
+
+  .ab-care__items {
+    top: T(3835);
+    padding: 0 calc(50% - 157px * var(--m));
+    scroll-padding: 0 calc(50% - 157px * var(--m));
+  }
+
+  .ab-care .ab-care__item {
+    width: M(320);
+    padding-right: M(20);
+  }
+
+  .ab-care__nav {
+    top: T(3959);
+    left: L(114);
+  }
+
+  /* ── Our story (Figma 4060–6549): one column ── */
+  @sec 4060
+
+  .ab-story__inner {
+    height: M(2489);
+  }
+
+  /* Figma 198:2357: the home «Как купить» glow, 997 × 758 rotated 53.4°, centred at (195, 4866) */
+  .ab-story__glow {
+    display: block;
+    position: absolute;
+    top: T(4107.8);
+    left: L(-802.3);
+    width: M(1994.8);
+    height: M(1516.4);
+    background: radial-gradient(closest-side, var(--glow-80));
+    /* the box is rotated: only the ellipse may show, not its solid corners (they reach the bag) */
+    -webkit-mask-image: radial-gradient(closest-side, #000 99%, transparent 100%);
+    mask-image: radial-gradient(closest-side, #000 99%, transparent 100%);
+    transform: rotate(53.4deg);
+    pointer-events: none;
+  }
+
+  .ab-story__title,
+  .ab-story__help {
+    left: L(20);
+    width: M(330);
+  }
+
+  .ab-story__title { top: T(4137); }
+  .ab-story__help { top: T(5905); }
+
+  .ab-story .split-title__small {
+    font-size: M(21);
+    font-weight: 500;
+    line-height: M(21);
+    letter-spacing: M(-0.63);
+  }
+
+  .ab-story .split-title__big {
+    margin-top: M(7);
+    font-size: M(50);
+    line-height: M(47);
+    letter-spacing: M(-1.5);
+  }
+
+  /* Figma 198:2391 / 198:2395: a 45px line for «Помогаем выбрать», «друга» 8 into it */
+  .ab-story__help .split-title__small {
+    font-weight: 400;
+    line-height: M(45);
+  }
+
+  .ab-story__help .split-title__big {
+    margin-top: M(-8);
+    line-height: M(45);
+  }
+
+  .ab-story__rule--l { top: T(4336); left: L(20); width: M(320); }
+  .ab-story__rule--r { top: T(6017); left: L(20); width: M(320); }
+
+  .ab-story__text {
+    left: L(20);
+    width: M(320);
+    font-size: M(16);
+    line-height: M(25);
+    letter-spacing: M(-0.48);
+    color: #9e8f87;
+  }
+
+  .ab-story__text p + p {
+    margin-top: M(25);
+  }
+
+  .ab-story__text--intro { top: T(4366); }
+  .ab-story__text--persons { top: T(4900); }
+  .ab-story__text--help { top: T(6047); }
+
+  .ab-story__subtitle {
+    top: T(4750);
+    left: L(20);
+    width: M(320);
+    font-size: M(45);
+    line-height: M(45);
+    letter-spacing: M(-1.35);
+    white-space: normal;
+  }
+
+  /* Figma 198:2370: rule under «Маленькие личности» */
+  .ab-story__subtitle::after {
+    content: "";
+    position: absolute;
+    top: M(120);
+    left: 0;
+    width: M(320);
+    height: 1px;
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .ab-story__puppy {
+    top: T(5092);
+    left: L(-50);
+    width: M(542);
+    height: M(813);
+  }
+
+  .ab-story__actions {
+    top: T(6291);
+    left: L(20);
+    width: M(320);
+    gap: M(10);
+  }
+
+  /* ── Daily life (Figma 6549–7494): the home growth section, a three-line title ── */
+  @sec 6549
+
+  .growth--about .growth__inner {
+    height: M(945);
+  }
+
+  .growth--about .growth__title {
+    width: M(320);
+    font-size: M(35);
+    line-height: M(33);
+    letter-spacing: M(-1.05);
+  }
+
+  .growth--about .growth__rule { top: T(6762); }
+
+  .growth--about .growth__text {
+    top: T(6792);
+    right: auto;
+    width: M(322);
+    line-height: M(19);
+  }
+
+  /* the arrows and the button are placed from the gallery, as on the home page */
+  .growth--about .growth__gallery { top: T(7024); }
+
+  /* ── Vet protocols (Figma 7494–8488) ── */
+  @sec 7494
+
+  /* 40 more than the frame: the longest caption (genetic tests, 6 lines) needs room above the arrows */
+  .ab-vet__inner {
+    height: M(1034);
+  }
+
+  .ab-vet__glow {
+    display: none;
+  }
+
+  .ab-vet__title {
+    top: T(7614);
+    left: L(17);
+    width: M(326);
+    padding-bottom: M(8);
+    font-size: M(35);
+    line-height: M(35);
+    letter-spacing: M(-1.05);
+    text-align: center;
+    background-image: linear-gradient(97.75deg, #f5decc 3.39%, #453931 263.08%);
+  }
+
+  .ab-vet__text {
+    top: T(7818);
+    left: L(32);
+    width: M(296);
+    font-size: M(14);
+    font-weight: 500;
+    line-height: M(21);
+    letter-spacing: M(-0.42);
+    text-align: center;
+    color: #7b7b7b;
+  }
+
+  .ab-vet__slider {
+    top: T(7985);
+    left: L(20);
+    right: auto;
+    width: M(320);
+  }
+
+  .ab-vet__slide {
+    width: 100%;
+  }
+
+  .ab-vet__photo {
+    height: M(326);
+    border-radius: M(10);
+  }
+
+  .ab-vet__caption {
+    margin-top: M(20);
+    font-size: M(16);
+    line-height: M(20);
+    letter-spacing: M(-0.48);
+  }
+
+  .ab-vet__nav {
+    top: T(8490);
+    left: L(114);
+  }
+
+  /* ── Video (Figma card 18,8608): the home rules; 17 more before the FAQ ── */
+  .video--about .container {
+    height: M(1024);
+  }
+
+  /* ── FAQ (Figma 9512–10341): the home rules; the visit card follows 14 sooner ── */
+  .faq--about {
+    padding-bottom: M(106);
+  }
+
+  /* ── Visit (Figma card 20,10341 320 × 953, the button below it, to 11508) ── */
+  @sec 10341
+
+  .ab-visit {
+    overflow-x: clip;
+  }
+
+  .ab-visit__inner {
+    height: M(1167);
+  }
+
+  .ab-visit__card {
+    top: T(10341);
+    left: L(20);
+    right: auto;
+    width: M(320);
+    height: M(953);
+    overflow: visible;
+    border-radius: M(12);
+  }
+  @card 20 10341
+
+  /* Figma 199:2566: 644 × 1144 at (-162, -171) in the card, clipped to it here
+     (the card itself no longer clips: the button sits below it) */
+  .ab-visit__photo {
+    inset: auto;
+    top: M(-171);
+    left: M(-162);
+    width: M(644);
+    height: M(1144);
+    clip-path: inset(M(171) M(162) M(20) M(162) round M(12));
+  }
+
+  .ab-visit__title {
+    top: T(10402);
+    left: L(40);
+    width: M(295);
+    font-size: M(35);
+    line-height: M(33);
+    letter-spacing: M(-1.05);
+  }
+
+  .ab-visit .glass-pill {
+    width: auto;
+    min-width: M(246);
+    height: M(39);
+    padding: 0 M(16) 0 M(48);
+    font-size: M(13);
+    line-height: M(13);
+    letter-spacing: M(-0.39);
+    white-space: nowrap;
+  }
+
+  .ab-visit .glass-pill .icon {
+    --icon-size: M(18);
+    top: M(10);
+    left: M(18);
+  }
+
+  .ab-visit__pill--1 { top: T(10535); left: L(34); }
+  .ab-visit__pill--2 { top: T(10585); left: L(55); }
+
+  .ab-visit__pill--3,
+  .ab-visit__pill--4,
+  .ab-visit__catalog {
+    display: none;
+  }
+
+  .ab-visit__subtitle {
+    top: T(10989);
+    left: L(40);
+    font-size: M(21);
+    line-height: M(21);
+    letter-spacing: M(-0.63);
+  }
+
+  .ab-visit__text {
+    top: T(11046);
+    left: L(41);
+    width: M(261);
+    font-size: M(15);
+    line-height: M(21);
+    letter-spacing: M(-0.45);
+  }
+
+  /* Figma 199:2591: a dashed arrow across the card, the hint and the round arrow under it */
+  .ab-visit__track {
+    top: T(11216);
+    left: L(40);
+    right: auto;
+    width: M(280);
+    height: 0;
+    border-left: 0;
+    border-top: 1px dashed rgba(52, 42, 35, 0.35);
+  }
+
+  .ab-visit__track::after {
+    content: "";
+    position: absolute;
+    top: M(-3.5);
+    right: 0;
+    width: M(6);
+    height: M(6);
+    border-top: 1px solid rgba(52, 42, 35, 0.5);
+    border-right: 1px solid rgba(52, 42, 35, 0.5);
+    transform: translateY(-0.5px) rotate(45deg);
+  }
+
+  .ab-visit__hint {
+    top: T(11231);
+    left: L(40);
+    right: auto;
+    width: M(181);
+    font-size: M(13);
+    line-height: M(20);
+    letter-spacing: M(-0.39);
+    white-space: normal;
+  }
+
+  .ab-visit__icon {
+    --icon-size: M(25);
+    top: T(11238);
+    left: L(292);
+    right: auto;
+  }
+
+  .ab-visit__btn {
+    top: T(11324);
+    left: 0;
+    width: M(320);
+  }
+  @end
+
+  /* ══ Contacts page (contacts.html, Figma mobile 201:2, 360 × 3815) ══ */
+  @sec 0
+
+  /* The hero runs to the map (Figma 1836): photo to y 1075, tag / title at the top,
+     phone / e-mail / address right-aligned at 770, the form from 1105, socials at 1646 */
+  .ct-hero {
+    height: M(1824);
+  }
+
+  /* Figma 201:282: the photo at 1897 × 1068, its window at x 832 (54 %) */
+  .ct-hero__bg {
+    bottom: auto;
+    height: M(1075);
+  }
+
+  .ct-hero__photo {
+    object-position: 54% 0;
+  }
+
+  /* Figma 201:303 / 201:305: black → clear over the top 524, clear → black from 465 to 1173 */
+  .ct-hero__bg::after {
+    height: 100%;
+    background:
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0, rgba(0, 0, 0, 0) M(524)),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0) M(465), rgba(0, 0, 0, 0.86) 100%);
+  }
+
+  .ct-hero .ct-hero__tag {
+    top: T(146);
+    bottom: auto;
+    left: L(20);
+    min-width: M(209);
+    height: M(26);
+    gap: M(11.4);
+    padding: 0 M(14) 0 M(18);
+    font-size: M(10);
+    letter-spacing: M(-0.3);
+  }
+
+  .ct-hero__tag .icon {
+    --icon-size: M(10.63);
+  }
+
+  /* Figma 201:12: 78.4px Light in a 70px line box at 196.4 → a 1.0 line box at 192.3 */
+  .ct-hero .ct-hero__title {
+    top: T(192.3);
+    bottom: auto;
+    left: L(20);
+    font-size: M(78.39);
+    letter-spacing: M(-2.35);
+  }
+
+  .ct-hero .ct-info {
+    top: T(770);
+    right: R(338);
+    gap: M(27);
+  }
+
+  .ct-info__label {
+    gap: M(11);
+    font-size: M(16);
+    line-height: M(28);
+  }
+
+  .ct-info__label .icon {
+    --icon-size: M(15);
+  }
+
+  .ct-info__value {
+    margin: M(3) 0 0;
+    font-size: M(21);
+    line-height: M(38);
+  }
+
+  .ct-info__value--address {
+    line-height: M(23);
+  }
+
+  .ct-hero .ct-form {
+    top: T(1105);
+    bottom: auto;
+    left: L(20);
+    width: M(320);
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, M(52)) M(142) auto;
+    gap: M(7);
+  }
+
+  .ct-form__field--name,
+  .ct-form__field--phone,
+  .ct-form__field--email,
+  .ct-form__field--type,
+  .ct-form__field--comment,
+  .ct-form__submit {
+    grid-area: auto;
+  }
+
+  .ct-form .field {
+    height: M(52);
+    padding: 0 M(20) 0 M(21);
+    font-size: M(15);
+    letter-spacing: M(-0.6);
+  }
+
+  .ct-form textarea.ct-form__comment {
+    height: 100%;
+    padding: M(17) M(20) M(17) M(21);
+  }
+
+  .dropdown__arrow {
+    margin-right: 0;
+  }
+
+  .dropdown__option {
+    padding: M(10) M(21);
+    font-size: M(15);
+  }
+
+  /* Figma 201:295: 20 below the comment (7 between the fields) */
+  .ct-form__submit {
+    height: M(52);
+    margin-top: M(13);
+    padding-left: M(21);
+    font-size: M(15);
+  }
+
+  .ct-form__submit .icon {
+    --icon-size: M(16);
+    top: M(18);
+    right: M(29);
+  }
+
+  /* Figma 201:330–201:349: telegram · max · рутуб / whatsapp · вконтакте, centred rows, 21px */
+  .ct-hero .ct-hero__socials {
+    top: T(1646);
+    bottom: auto;
+    left: 0;
+    right: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0 M(28);
+  }
+
+  .ct-hero__socials .socials__row,
+  .ct-hero__socials .socials__row:first-child {
+    display: contents;
+  }
+
+  .ct-hero__socials .socials__link {
+    font-size: M(21);
+    line-height: M(42);
+  }
+
+  .ct-hero__socials .link-dot {
+    width: M(21);
+    height: M(21);
+    margin-left: M(8);
+  }
+
+  .ct-hero__socials .link-dot::after {
+    width: M(12);
+    height: M(12);
+  }
+
+  .ct-hero__socials .socials__row:first-child .socials__link:nth-child(1) { order: 2; }
+  .ct-hero__socials .socials__row:first-child .socials__link:nth-child(2) { order: 3; }
+  .ct-hero__socials .socials__row:last-child .socials__link:nth-child(1) { order: 1; }
+  .ct-hero__socials .socials__row:last-child .socials__link:nth-child(2) { order: 5; }
+  .ct-hero__socials .socials__row:last-child .socials__link:nth-child(3) { order: 6; }
+
+  /* the row break after рутуб */
+  .ct-hero__socials::after {
+    content: "";
+    order: 4;
+    flex-basis: 100%;
+    height: M(5);
+  }
+
+  /* Figma 201:351: the hairline above the socials (y 1605) */
+  .ct-hero__socials::before {
+    content: "";
+    position: absolute;
+    top: M(-41);
+    left: L(20);
+    width: M(320);
+    height: 1px;
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  /* Figma 201:353: the map 21,1836 320 × 598, radius 15; the footer columns 100 below it */
+  .ct-map {
+    padding: M(12) 0 0;
+  }
+
+  .ct-map__frame {
+    width: M(320);
+    height: M(598);
+    margin-left: L(21);
+  }
+
+  /* no contacts card: the columns (945 below the footer top) at 2534 = 100 under the map */
+  body:has(.ct-map) .footer .container {
+    margin-top: M(-845);
+  }
+
+  /* ── Menu (Figma 254:3081, 360 × 1004): white card 15,87 330 wide, as tall as its content.
+     The frame has seven links; the eighth (Контакты) moves the hours block down one row ── */
+  .menu {
+    padding: M(87) M(15) M(15);
+  }
+
+  .menu__panel {
+    width: auto;
+    min-height: 0;
+    padding: 0 M(20) M(15.5);
+  }
+
+  /* cross 15.5 at 294,20 in the card, in a 44px hit area */
+  .menu__close {
+    top: M(6);
+    right: M(6);
+  }
+
+  .menu__label {
+    margin-top: M(40);
+    padding-bottom: M(9.3);
+    border-bottom-color: var(--c-ink-35);
+    font-size: M(14);
+  }
+
+  .menu__nav {
+    margin: M(19) 0 M(78.75);
+  }
+
+  .menu__link {
+    padding-right: M(20);
+    font-size: M(25);
+    line-height: M(45.75);
+    letter-spacing: M(-0.75);
+  }
+
+  /* Figma 254:3684: 5px dot, 6px inside the rule's right end */
+  .menu__link::after {
+    top: calc(50% - M(2.5));
+    right: M(6);
+    width: M(5);
+    height: M(5);
+  }
+
+  .menu__hours {
+    padding-top: M(12);
+    border-top-color: var(--c-ink-35);
+  }
+
+  .menu__hours-label {
+    gap: M(11);
+    font-size: M(14.89);
+    line-height: M(26.06);
+  }
+
+  .menu__hours-label .icon {
+    --icon-size: M(12.1);
+  }
+
+  .menu__hours-time {
+    font-size: M(23.26);
+    line-height: M(35.36);
+  }
+
+  /* ── Consultation popup (Figma 254:4794) and its thank-you state (254:6570): card 334 × 580
+     centred, title 118 below its top, 278 × 45 fields 7 apart; fields and buttons keep
+     their own height, their width follows the card ── */
+  .popup {
+    padding: M(10);
+  }
+
+  .popup__panel {
+    width: M(334);
+    min-height: M(580);
+    padding: M(118) M(28) M(119);
+  }
+
+  /* cross 15.5 at 295,23 in the card */
+  .popup__close {
+    top: M(9);
+    right: M(9);
+  }
+
+  .popup__title {
+    width: M(300);
+    max-width: none;
+    margin-bottom: M(20);
+    font-size: M(34.81);
+    line-height: M(32.33);
+    letter-spacing: M(-1.04);
+  }
+
+  .popup__field {
+    width: 100%;
+    margin-bottom: 7px;
+  }
+
+  .popup__form .popup__input {
+    height: 45px;
+    padding-left: 20px;
+  }
+
+  /* box 10 below the last field; the text two lines, 10px after the box */
+  .popup__consent {
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+    margin: 3px 0 M(22);
+  }
+
+  .popup__consent-text {
+    margin-top: 4px;
+    line-height: 1.08;
+  }
+
+  /* Figma 254:5428: 278 × 45, the label on the left (20 in), a 35px circle */
+  .popup .popup__btn {
+    --btn-w: 100%;
+    --btn-h: 45px;
+    --btn-pl: 20px;
+    --btn-pr: 50px;
+    --btn-icon: 35px;
+    --btn-icon-inset: 5px;
+    --btn-paw: 15px;
+    justify-content: flex-start;
+    min-width: var(--btn-w);
+    padding: 0 var(--btn-pr) 0 var(--btn-pl);
+    font-size: 14px;
+  }
+
+  /* Figma 254:7181: 240 × 45, label 24 in */
+  .popup .popup__back {
+    --btn-w: 240px;
+    --btn-pl: 24px;
+  }
+
+  .popup__thanks {
+    padding: M(24);
+  }
+
+  .popup__thanks-title {
+    width: M(318);
+    margin-bottom: M(51);
+    font-size: M(32);
+    letter-spacing: M(-0.96);
+  }
+
+  /* ══ Delivery page (delivery.html, Figma mobile 201:356, 360 × 9845) ══
+     hero 0, 1004 · intro 1004, 559 · story 1563, 2489 (the about block, same offsets) ·
+     cities 4052, 1235 (title + the home delivery block from 4201 instead of the table) ·
+     meet 5287, 905 · kit 6192, 585 · FAQ 6777 (home rules; the page keeps its four
+     questions, the frame repeats the home five) · footer */
+
+  /* ── Hero (Figma 201:357: card 10,10 340 × 764; tag 610, title 653, text 804, button 927–991):
+     the about card, with the text and button under the photo; the card ends 13 above the
+     screen bottom, the photo 217 above the card bottom ── */
+  @sec 0
+
+  .cat-hero--delivery .cat-hero__card {
+    bottom: M(13);
+  }
+
+  /* Figma 201:716: the video's first frame cut to the card (delivery-hero-m: x 686–1167 of 1920);
+     the video covers the same area at the same crop */
+  .cat-hero--delivery .cat-hero__photo {
+    height: calc(100% - 217px * var(--m));
+    border-radius: M(10);
+    object-position: 50% 0;
+  }
+
+  .cat-hero--delivery .cat-hero__card > .cat-hero__video {
+    inset: 0 0 auto;
+    width: 100%;
+    height: calc(100% - 217px * var(--m));
+    border-radius: M(10);
+    object-fit: cover;
+    object-position: 47.7% 0;
+    clip-path: none;
+  }
+
+  /* Figma 201:718: black, clear at y 442 → 70 % at the photo bottom (774) */
+  .cat-hero--delivery .cat-hero__card::after {
+    bottom: M(217);
+    height: M(332);
+    border-radius: 0 0 M(10) M(10);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
+  }
+
+  .cat-hero--delivery .cat-hero__card::before {
+    bottom: M(217);
+    border-radius: M(10);
+  }
+
+  .cat-hero--delivery .cat-hero__tag {
+    bottom: M(355);
+    left: M(16);
+    min-width: M(191);
+  }
+
+  .cat-hero--delivery .cat-hero__title {
+    bottom: M(239);
+    left: M(16);
+    width: M(314);
+    font-size: M(33);
+    line-height: M(33);
+    letter-spacing: M(-0.99);
+  }
+
+  .cat-hero--delivery .cat-hero__text {
+    bottom: M(103);
+    left: M(10);
+    width: M(320);
+  }
+
+  .cat-hero--delivery .cat-hero__btn {
+    left: M(10);
+    bottom: 0;
+    width: M(320);
+  }
+
+  /* ── Intro (Figma 1004–1563) ── */
+  @sec 1004
+
+  /* above the story block's glow, whose rotated corner reaches up to the button */
+  .dl-intro {
+    z-index: 1;
+  }
+
+  .dl-intro__inner {
+    height: M(559);
+  }
+
+  /* Figma 201:720: radial #44352d → #191310, 327 × 647 around (158, 1138), its box
+     (-132, 887) 624 × 869 cut at the section top */
+  /* ends with the section: the intro sits above the story block (z-index 1), so a longer
+     glow would cover the story title; both edges fade (Figma 201:721 blurs its top) */
+  .dl-intro__glow {
+    top: T(1004);
+    left: L(-132);
+    width: M(624);
+    height: M(559);
+    background: radial-gradient(M(327) M(647) at M(290) M(134), #44352d, #191310);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 M(150), #000 calc(100% - M(120)), transparent);
+    mask-image: linear-gradient(to bottom, transparent, #000 M(150), #000 calc(100% - M(120)), transparent);
+  }
+
+  .dl-intro__kicker {
+    top: T(1081);
+    left: L(20);
+    width: M(240);
+    font-size: M(14);
+    line-height: M(33);
+    letter-spacing: M(-0.42);
+  }
+
+  /* glyphs 21–338 × 1117–1164 in the frame (the SVG is cut to the glyph box) */
+  .dl-intro__title {
+    top: T(1117);
+    left: L(21);
+    right: auto;
+    width: M(318);
+  }
+
+  .dl-intro__text {
+    top: T(1207);
+    left: L(20);
+    right: auto;
+    width: M(302);
+    font-size: M(18);
+    line-height: M(20);
+    letter-spacing: M(-0.54);
+    /* Figma 201:473: white → #343434 across 147 % of its 291 box (the box is 302 here so
+       Chrome's wider Helvetica keeps the frame's lines) */
+    background-image: linear-gradient(90deg, #fff 0, #343434 M(428));
+  }
+
+  .dl-intro__text p + p {
+    margin-top: M(20);
+  }
+
+  .dl-intro .dl-intro__btn {
+    top: T(1456);
+    left: L(20);
+    width: M(320);
+  }
+
+  /* ── Cities (Figma 4052–5287): title 254:120, then the home delivery block 254:81–254:109 ── */
+  @sec 4052
+
+  .dl-cities__inner {
+    height: M(1235);
+  }
+
+  .dl-cities__globe,
+  .dl-cities__shade,
+  .dl-cities__btn,
+  .dl-cities__table {
+    display: none;
+  }
+
+  .dl-cities__title {
+    top: T(4082);
+    left: L(20);
+    width: M(240);
+    margin: 0;
+    padding: 0;
+    font-size: M(30);
+    line-height: M(34);
+    letter-spacing: M(-0.9);
+    white-space: normal;
+  }
+
+  .dl-cities__delivery {
+    display: block;
+    position: absolute;
+    top: T(4201);
+    left: 0;
+    right: 0;
+  }
+
+  /* ── Meet (Figma 5287–6192): title, the hand and phone (the desktop picture × 0.5559),
+     the cards as a slider ── */
+  @sec 5287
+
+  .dl-meet__inner {
+    height: M(905);
+  }
+
+  /* Figma 201:751: the desktop glow × 0.611, centred */
+  .dl-meet__glow {
+    top: T(5287);
+    left: calc(50% - 536.8px * var(--m));
+    width: M(1073.6);
+    height: M(922);
+    background: radial-gradient(M(496.5) M(605.9) at M(515.7) M(645.5), var(--glow-80));
+    -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - M(183)), transparent);
+    mask-image: linear-gradient(to bottom, #000 calc(100% - M(183)), transparent);
+  }
+
+  .dl-meet__title {
+    top: T(5334);
+    left: L(32);
+    width: M(296);
+    font-size: M(35);
+    line-height: M(35);
+    letter-spacing: M(-1.05);
+  }
+
+  .dl-meet__hand {
+    top: T(5408);
+    left: L(-106);
+    width: M(572);
+    height: M(572);
+  }
+
+  /* Figma 201:740: 185.7 × 374.1, radius 29 */
+  .dl-meet__screen {
+    top: T(5459.1);
+    left: L(85.8);
+    width: M(185.7);
+    height: M(374.1);
+    border-radius: M(29);
+  }
+
+  /* Figma 201:742 / 201:765: 320 × 207 glass cards 10 apart (the frame shows them mid-swipe) */
+  .dl-meet__slider {
+    display: block;
+    position: absolute;
+    top: T(5890);
+    left: L(20);
+    width: M(320);
+  }
+
+  .dl-meet__cards {
+    display: flex;
+  }
+
+  .dl-meet .dl-card {
+    position: relative;
+    inset: auto;
+    flex: none;
+    width: M(320);
+    height: M(207);
+    border-radius: M(19);
+  }
+
+  .dl-card .icon {
+    --icon-size: M(16);
+    top: M(20);
+    left: M(20);
+  }
+
+  .dl-card__title {
+    top: M(103);
+    left: M(20);
+    font-size: M(18);
+    letter-spacing: M(-0.54);
+  }
+
+  .dl-meet .dl-card .dl-card__text {
+    top: M(133);
+    left: M(20);
+    width: M(265);
+    font-size: M(14);
+    letter-spacing: M(-0.42);
+  }
+
+  /* ── Kit (Figma 201:779: card 20,6192 320 × 515; list 201:783, items 84 apart) ── */
+  @sec 6192
+
+  .dl-kit .container {
+    height: M(585);
+  }
+
+  .dl-kit__card {
+    top: T(6192);
+    left: L(20);
+    right: auto;
+    width: M(320);
+    height: M(515);
+    border-radius: M(20);
+  }
+  @card 20 6192
+
+  .dl-kit__title {
+    top: T(6228);
+    left: L(46);
+    width: M(258);
+    font-size: M(35);
+    line-height: M(35);
+    letter-spacing: M(-1.05);
+  }
+
+  .dl-kit__list {
+    top: T(6337);
+    left: L(46);
+    right: auto;
+    width: M(258);
+    grid-template-columns: 1fr;
+    grid-auto-rows: M(56);
+    row-gap: M(28);
+  }
+
+  .dl-kit__item {
+    display: grid;
+    grid-template-columns: M(67) 1fr;
+  }
+
+  .dl-kit__num {
+    margin-top: M(17);
+    font-size: M(45);
+    line-height: M(28);
+  }
+
+  .dl-kit__text {
+    margin-top: 0;
+    font-size: M(14);
+    line-height: M(18);
+    letter-spacing: M(-0.42);
+  }
+  @end
+
+  /* ── FAQ (Figma 6777–: the home rules) and its glow (201:794: radial 1148 × 592 around
+     (140, 7639), box -831,6807 2061 × 1152) ── */
+  @sec 6777
+
+  /* «Можно ли забрать щенка самостоятельно?» in two lines (the FAQ page's 215 box) */
+  .faq--delivery .faq__item:last-child .faq__q {
+    padding-right: calc(50% - 55px * var(--m));
+  }
+
+  .faq--delivery .faq__glow {
+    display: block;
+    top: T(6807);
+    left: calc(50% - 1011px * var(--m));
+    width: M(2061);
+    height: M(1152);
+    background: radial-gradient(M(1148) M(592) at M(971.4) M(831.7), #44352d, #191310);
+  }
+
+  /* ══ Products page (shop.html, Figma mobile 201:795, 360 × 7565) ══
+     hero 0, 844 · products 844 (the frame shows five cards, the page has six: everything
+     below sits 480 lower) · why 3325, 1024 · puppies for sale 4349 · footer */
+
+  /* ── Hero (Figma 201:808: card 10,10 340 × 764; title 201:819, text 201:898): the
+     video's first frame, title and text centred at the top; a fixed height (nothing is
+     pinned to the bottom) ── */
+  @sec 0
+
+  .cat-hero.cat-hero--shop {
+    height: M(844);
+  }
+
+  .cat-hero--shop .cat-hero__card {
+    bottom: auto;
+    height: M(764);
+  }
+
+  /* the video's first frame cut to the card (shop-hero-m: x 720–1201 of 1920, centred) */
+  .cat-hero--shop .cat-hero__photo {
+    height: 100%;
+    border-radius: M(10);
+  }
+
+  .cat-hero--shop .cat-hero__card > .cat-hero__video {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: M(10);
+    object-fit: cover;
+    object-position: 50% 0;
+    clip-path: none;
+  }
+
+  /* Figma 201:1020-like ramp: black, clear 332 above the card bottom → 70 % at it */
+  .cat-hero--shop .cat-hero__card::after {
+    bottom: 0;
+    height: M(332);
+    border-radius: 0 0 M(10) M(10);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
+  }
+
+  .cat-hero--shop .cat-hero__card::before {
+    bottom: 0;
+    border-radius: M(10);
+  }
+
+  .cat-hero--shop .cat-hero__title {
+    top: M(122);
+    bottom: auto;
+    left: 50%;
+    width: M(223);
+    font-size: M(33);
+    line-height: M(33);
+    letter-spacing: M(-0.99);
+    white-space: normal;
+    text-align: center;
+  }
+
+  /* Figma 244: Chrome's wider Helvetica needs 248 for the frame's lines; plain white */
+  .cat-hero--shop .cat-hero__text {
+    top: M(208);
+    bottom: auto;
+    left: 50%;
+    width: M(248);
+    background: none;
+    color: var(--c-white);
+    font-size: M(14);
+    font-weight: 400;
+    line-height: M(18);
+    letter-spacing: M(-0.42);
+  }
+
+  /* ── Products (Figma 844–: cards 20,864 320 × 460, 20 apart; glow 201:1012) ── */
+  @sec 844
+
+  .shop-list__inner {
+    height: auto;
+    padding: M(20) 0 M(80);
+  }
+
+  .shop-list__glow {
+    top: T(754);
+    left: calc(50% - 1030.5px * var(--m));
+    width: M(2061);
+    height: M(938);
+    background: radial-gradient(M(1081.5) M(667) at M(957.5) M(258.5), var(--glow-80));
+    /* Figma 2067:13 (201:797): a #191310 band blurred 150px over the glow's top edge (y 490–856),
+       behind the hero card: the glow fades in below the card instead of starting with a line.
+       The ramp is the band's measured opacity (0.86 at +26, 0.37 at +146, 0 at +300). */
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, rgba(0, 0, 0, 0.14) M(26), rgba(0, 0, 0, 0.33) M(76), rgba(0, 0, 0, 0.44) M(106), rgba(0, 0, 0, 0.63) M(146), rgba(0, 0, 0, 0.76) M(196), #000 M(300));
+    mask-image: linear-gradient(to bottom, transparent 0, rgba(0, 0, 0, 0.14) M(26), rgba(0, 0, 0, 0.33) M(76), rgba(0, 0, 0, 0.44) M(106), rgba(0, 0, 0, 0.63) M(146), rgba(0, 0, 0, 0.76) M(196), #000 M(300));
+  }
+
+  .show-more {
+    margin-top: M(40);
+  }
+
+  .shop-list__grid {
+    position: relative;
+    inset: auto;
+    width: M(320);
+    margin: 0 auto;
+    grid-template-columns: minmax(0, 1fr);
+    gap: M(20);
+  }
+
+  /* Figma 201:1013: its own layout (the photo and the band keep the desktop proportions) */
+  .shop-card {
+    height: M(460.1);
+    border-radius: M(5);
+    background: radial-gradient(M(267.6) M(282.1) at M(173.9) M(219.1), var(--c-shop-1) 0, var(--c-shop-2) 50%, var(--c-shop-3) 75%, var(--c-shop-4) 100%);
+  }
+
+  .shop-card__glass {
+    top: M(327.5);
+    left: M(-13);
+    width: M(392.4);
+    height: M(204.1);
+  }
+
+  .shop-card__photo {
+    top: M(129.6);
+    left: M(24);
+    width: M(274.4);
+  }
+
+  .shop-card__title {
+    top: M(19.6);
+    left: M(17);
+    font-size: M(21);
+    line-height: M(21);
+    letter-spacing: M(-0.63);
+  }
+
+  .shop-card__size {
+    top: M(16.6);
+    right: M(17);
+    min-width: M(112);
+    height: M(27);
+    padding: 0 M(8);
+    font-size: M(13);
+    letter-spacing: M(-0.39);
+  }
+
+  /* Figma 159: Chrome's wider Helvetica needs 166 for the frame's three lines */
+  .shop-card__text {
+    top: M(348.6);
+    right: M(13);
+    width: M(166);
+    font-size: M(13);
+    line-height: M(13);
+    letter-spacing: M(-0.39);
+  }
+
+  .shop-card__price {
+    top: M(408.6);
+    left: M(16);
+    font-size: M(25);
+    line-height: M(25);
+    letter-spacing: M(-0.75);
+  }
+
+  .shop-card__price-label {
+    margin-bottom: M(3.9);
+    font-size: M(12);
+    line-height: M(12);
+    letter-spacing: M(-0.36);
+  }
+
+  /* Figma 121 × 34, a 28px circle */
+  .shop-card .shop-card__btn {
+    --btn-w: M(121);
+    --btn-h: M(34);
+    --btn-icon: M(28);
+    --btn-icon-inset: M(3.5);
+    --btn-paw: M(12);
+    --btn-pl: M(16);
+    --btn-pr: M(38);
+    top: M(412.6);
+    right: M(11);
+    justify-content: center;
+    min-width: var(--btn-w);
+    padding: 0 var(--btn-pr) 0 var(--btn-pl);
+    font-size: M(13);
+    letter-spacing: M(-0.39);
+  }
+
+  /* ── Why (Figma 3325–4349: card 20,3355 320 × 798 radius 15, the catalog button under it;
+     the frame has no question / consultation part) ── */
+  @sec 3325
+
+  .shop-why__inner {
+    height: M(1024);
+  }
+
+  /* the catalog button sits under the card: the card stops clipping, the photo rounds itself */
+  .shop-why__card {
+    top: T(3355);
+    left: L(20);
+    right: auto;
+    width: M(320);
+    height: M(798);
+    overflow: visible;
+    border-radius: M(15);
+  }
+  @card 20 3355
+
+  /* Figma 201:1134: the photo 772 tall, the card colour under its last 26 */
+  .shop-why__card {
+    background: var(--c-eyes);
+  }
+
+  .shop-why__photo {
+    height: M(772);
+    border-radius: M(15) M(15) 0 0;
+    object-position: 50% 0;
+  }
+
+  .shop-why__btn {
+    top: T(4195);
+    left: L(20);
+    width: M(320);
+  }
+
+  .shop-why__title {
+    top: T(3396);
+    left: L(40);
+    width: M(295);
+    font-size: M(33);
+    line-height: M(33);
+    letter-spacing: M(-0.99);
+  }
+
+  .shop-why .shop-why__pill {
+    height: M(39);
+    padding: 0 M(20) 0 M(48);
+    font-size: M(13);
+    line-height: M(13);
+    letter-spacing: M(-0.39);
+  }
+
+  .shop-why .shop-why__pill .icon {
+    --icon-size: M(18);
+    top: M(10.5);
+    left: M(18);
+  }
+
+  .shop-why__pill--1 { top: T(3778); left: L(29); min-width: M(246); }
+  .shop-why__pill--2 { top: T(3843); left: L(56); min-width: M(258); }
+  .shop-why__pill--3 { top: T(3911); left: L(29); min-width: M(246); }
+  .shop-why__pill--4 { top: T(3977); left: L(91); min-width: M(241); }
+
+  /* Figma 201:1182: the dashed line runs across, the arrow (pointing up) at the right */
+  .shop-why__line {
+    top: T(4078);
+    left: L(40);
+    right: auto;
+    width: M(280);
+    height: 1px;
+    background: repeating-linear-gradient(to right, var(--c-black-30) 0 4px, transparent 4px 8px);
+  }
+
+  .shop-why__kicker {
+    top: T(4093);
+    left: L(40);
+    right: auto;
+    width: M(276);
+    align-items: flex-start;
+    justify-content: space-between;
+    font-size: M(13);
+    line-height: M(20);
+    letter-spacing: M(-0.39);
+    white-space: normal;
+  }
+
+  .shop-why__kicker > span:first-child {
+    width: M(190);
+  }
+
+  .shop-why__kicker .icon {
+    --icon-size: M(25);
+    margin-top: M(7);
+  }
+  @end
+
+  .shop-why__question,
+  .shop-why__text,
+  .shop-why__consult {
+    display: none;
+  }
+
+  /* ── Puppies for sale (Figma 4349–: title, lead with its rule, the button, one card per
+     view, arrows under it — the product page rules) ── */
+  @sec 4349
+
+  .similar--shop .similar__inner {
+    height: M(980);
+  }
+
+  .similar--shop .similar__title {
+    top: T(4379);
+    left: L(20);
+    width: M(277);
+  }
+
+  .similar__lead {
+    top: T(4478);
+    left: L(38);
+    width: M(262);
+    font-size: M(16);
+    line-height: M(25);
+    letter-spacing: M(-0.48);
+  }
+
+  .similar__lead::before {
+    top: 0;
+    left: M(-18);
+    width: M(3);
+    height: M(42);
+  }
+
+  .similar .similar__all {
+    --btn-pl: M(24);
+    --btn-pr: M(24);
+    top: T(4567);
+    left: L(20);
+    right: auto;
+    width: M(320);
+    justify-content: center;
+    padding: 0 var(--btn-pr) 0 var(--btn-pl);
+  }
+
+  .similar--shop .similar__slider {
+    top: T(4681);
+  }
+
+  .similar--shop .similar__nav {
+    display: flex;
+    top: T(5171);
+    left: L(114);
+  }
+
+  /* ══ Blog (blog.html, Figma mobile 201:1249, 360 × 6990) ══
+     head 0, 574 · articles 574, 3116 · questions 3690, 1089 (blush 989) · footer */
+
+  /* ── Head (Figma 0–574: glow 201:1259, tag 201:1271, the word 201:1361 (glyphs 20,220 313 wide), lead 201:1349) ── */
+  @sec 0
+
+  .blog-head__inner {
+    height: M(574);
+  }
+
+  /* the desktop glow's proportions in its 853 × 2683 box */
+  .blog-head__glow {
+    top: T(0);
+    left: calc(50% - 443.5px * var(--m));
+    width: M(853);
+    height: M(2683);
+    background: radial-gradient(M(447.6) M(2000) at M(396.3) M(774.9), var(--glow-80));
+  }
+
+  .blog-head__tag {
+    top: T(156);
+    left: L(20);
+    min-width: M(209);
+    height: M(26);
+    gap: M(11.4);
+    padding: 0 M(14) 0 M(18);
+    font-size: M(10);
+    letter-spacing: M(-0.3);
+  }
+
+  .blog-head__tag .icon {
+    --icon-size: M(10.63);
+  }
+
+  .blog-head__title {
+    top: T(220);
+    left: L(20);
+    width: M(313);
+  }
+
+  /* Figma 201:1349: Regular, white → grey (the catalog hero text) */
+  .blog-head__lead {
+    top: T(400);
+    left: L(20);
+    right: auto;
+    width: M(320);
+    font-size: M(16);
+    font-weight: 400;
+    line-height: M(21);
+    letter-spacing: M(-0.48);
+    background: linear-gradient(104.92deg, #fff 3.23%, #999 150.71%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* ── Articles (Figma 574–3690): the pills stacked (their own size), cards 320 wide in one
+     column: 320 × 291 photos for the first two, 320 × 236 for the rest, 40 apart ── */
+  @sec 574
+
+  .blog-list__inner {
+    width: M(320);
+    margin: 0 auto;
+    padding: M(30) 0 M(120);
+  }
+
+  .blog-list__filters {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .blog-list__featured,
+  .blog-list__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: M(40);
+  }
+
+  .blog-list__featured {
+    margin-top: M(40);
+  }
+
+  .blog-list__grid {
+    margin-top: M(90);
+  }
+
+  .post__media {
+    aspect-ratio: 320 / 235.7;
+    border-radius: M(7);
+  }
+
+  .blog-list__featured .post__media {
+    aspect-ratio: 320 / 291;
+  }
+
+  .post__date {
+    top: M(12);
+    left: M(12);
+    min-width: M(71);
+    height: M(23);
+    padding: 0 M(12);
+    font-size: M(9.85);
+    letter-spacing: M(-0.3);
+  }
+
+  /* drawn 29 across, 12 from the corner (the 41.6 layer is clipped in Figma) */
+  .post__arrow,
+  .blog-list__featured .post__arrow {
+    top: M(11);
+    right: M(12);
+    width: M(29);
+    height: M(29);
+  }
+
+  .post__arrow .icon {
+    --icon-size: M(10);
+  }
+
+  /* the frame's lines come from the column width here, not from the desktop breaks */
+  .post__title {
+    margin-top: M(20.3);
+    font-size: M(18);
+    line-height: M(23);
+    letter-spacing: M(-0.54);
+  }
+
+  .post__title br {
+    display: none;
+  }
+
+  /* Figma 201:1621: a one-line title in a 15 line box, 20 under the photo */
+  .blog-list__featured .post__title {
+    margin-top: M(20);
+    line-height: M(15);
+  }
+
+  .blog-list__empty {
+    font-size: M(18);
+  }
+
+  /* ── Questions (Figma 3690–4779: blush 989; ®, title, rule, lead, the photo, one button under it) ── */
+  @sec 3690
+
+  .blog-cta {
+    padding-bottom: M(100);
+  }
+
+  .blog-cta__inner {
+    height: M(989);
+  }
+
+  .blog-cta__mark {
+    top: T(3714.7);
+    left: L(21.5);
+    right: auto;
+    width: M(39.7);
+  }
+
+  .blog-cta__title {
+    top: T(3774);
+    left: L(20);
+    width: M(322);
+    font-size: M(35);
+    line-height: M(33);
+    letter-spacing: M(-1.05);
+  }
+
+  .blog-cta__rule {
+    top: T(3926);
+    left: L(20);
+    right: auto;
+    width: M(320);
+    height: M(4);
+  }
+
+  .blog-cta__lead {
+    top: T(3956);
+    left: L(20);
+    right: auto;
+    width: M(322);
+    font-size: M(14);
+    line-height: M(19);
+  }
+
+  /* the button sits under the photo: the card stops clipping, the photo rounds itself */
+  .blog-cta__card {
+    top: T(4208);
+    left: L(20);
+    right: auto;
+    width: M(320);
+    height: M(326);
+    overflow: visible;
+  }
+
+  .blog-cta__photo {
+    border-radius: M(10);
+  }
+
+  .blog-cta__actions {
+    top: M(346);
+    right: auto;
+    bottom: auto;
+    left: 0;
+    width: 100%;
+  }
+
+  .blog-cta__ask {
+    display: none;
+  }
+
+  /* Figma 201:1505: 320 × 64, dark */
+  .blog-cta .blog-cta__btn {
+    --btn-bg: var(--c-ink);
+    --btn-fg: var(--c-cream);
+    --btn-icon-bg: var(--c-cream);
+    --btn-icon-fg: var(--c-ink);
+    --btn-hover-bg: var(--c-hover-dark);
+    --btn-hover-fg: var(--c-white);
+    width: 100%;
+  }
+
+  /* ══ Article (article.html, Figma mobile 201:1798, 360 × 5997) ══
+     head 0, 953 · body (in flow: intro 1033, text 1258 with its photo, date 3009) · more
+     articles (title 3166, card 3276, arrows 3628) · footer 3786 */
+
+  /* ── Head (Figma 0–953: glow 201:1799, date 201:1809, title 201:2070, lead 201:1878, photo 201:1920) ── */
+  @sec 0
+
+  .article-head__inner {
+    height: M(953);
+  }
+
+  /* the desktop glow's proportions in its 853 × 1258 box */
+  .article-head__glow {
+    top: T(0);
+    left: calc(50% - 443.5px * var(--m));
+    width: M(853);
+    height: M(1258);
+    background: radial-gradient(M(447.6) M(937.6) at M(396.3) M(363.3), var(--glow-80));
+  }
+
+  .article-head__date {
+    top: T(156);
+    left: L(20);
+    min-width: M(106);
+    height: M(26);
+    gap: M(11.4);
+    padding: 0 M(14) 0 M(18);
+    font-size: M(10);
+    letter-spacing: M(-0.3);
+  }
+
+  .article-head__date .icon {
+    --icon-size: M(10.63);
+  }
+
+  .article-head__title {
+    top: T(212);
+    left: L(20);
+    width: M(309);
+    font-size: M(35);
+    line-height: M(35);
+    letter-spacing: M(-1.05);
+  }
+
+  .article-head__lead {
+    top: T(312);
+    left: L(20);
+    width: M(320);
+    font-size: M(16);
+    font-weight: 400;
+    line-height: M(21);
+    letter-spacing: M(-0.48);
+  }
+
+  .article-head__photo {
+    top: T(516);
+    left: L(20);
+    right: auto;
+    width: M(320);
+    height: M(437);
+    border-radius: M(7);
+  }
+
+  /* Figma 201:1920: the photo 716 wide from x −129 */
+  .article-head__photo img {
+    object-position: 32.6% 50%;
+  }
+
+  /* ── Body (Figma 953–3066): one 320 column in flow ── */
+  .article-body__inner {
+    width: M(320);
+    margin: 0 auto;
+    padding: M(80) 0 0;
+  }
+
+  /* Figma 201:2071: Regular here (desktop Light) */
+  .article-body__intro {
+    width: auto;
+    max-width: none;
+    font-size: M(35);
+    font-weight: 400;
+    line-height: M(35);
+    letter-spacing: M(-1.05);
+  }
+
+  .article-body__text {
+    width: auto;
+    max-width: none;
+    margin-top: M(50);
+    font-size: M(16);
+    font-weight: 400;
+    line-height: M(29);
+    /* Figma -0.48: 0.12px tighter keeps every paragraph's line count (11, 11, 8, 6, 5) in Chrome */
+    letter-spacing: M(-0.6);
+  }
+
+  .article-body__text p + p {
+    margin-top: M(29);
+  }
+
+  /* Figma 201:2086: 320 × 368 */
+  .article-body__figure {
+    width: 100%;
+    height: M(368);
+    margin: M(32) 0 M(32);
+    border-radius: M(7);
+  }
+
+  .article-body__date {
+    margin-top: M(43);
+    font-size: M(14);
+    line-height: M(57);
+    letter-spacing: M(-0.42);
+  }
+
+  /* ── More articles (Figma 3066–3786): title, one blog card per view, arrows under it ── */
+  .similar--article .similar__inner {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding: M(100) 0 M(100);
+  }
+
+  .similar--article .similar__title,
+  .similar--article .similar__nav,
+  .similar--article .similar__slider {
+    position: relative;
+    inset: auto;
+  }
+
+  .similar--article .similar__title {
+    width: M(317);
+    margin: 0 0 0 calc(50% - 160px * var(--m));
+    padding: 0;
+    font-size: M(33);
+    line-height: M(35);
+    letter-spacing: M(-0.99);
+  }
+
+  .similar--article .similar__slider {
+    order: 1;
+    width: M(320);
+    margin: M(40) 0 0 calc(50% - 160px * var(--m));
+  }
+
+  .similar--article .post {
+    width: M(320);
+  }
+
+  .similar--article .similar__nav {
+    order: 2;
+    align-self: center;
+    margin-top: M(50);
+  }
+
+  /* ══ FAQ page (faq.html, Figma mobile 201:2760, 360 × 3637) ══
+     head 0, 421 · eight questions 421, 1005 (the home rules) · footer 1426 */
+  @sec 0
+
+  /* Figma 201:2761: -263,0 853 × 1258, radial 448 × 938 around (396.3, 363.3), 80 % */
+  .faq-page__glow {
+    left: calc(50% - 443px * var(--m));
+    width: M(853);
+    height: M(1258);
+    background: radial-gradient(M(447.6) M(937.6) at M(396.3) M(363.3), var(--glow-80));
+  }
+
+  .faq--page .faq__head {
+    height: M(421);
+  }
+
+  .faq-page__tag {
+    top: T(156);
+    left: L(20);
+    min-width: M(144);
+    height: M(26);
+    gap: M(11.4);
+    padding: 0 M(14) 0 M(18);
+    font-size: M(10);
+    letter-spacing: M(-0.3);
+  }
+
+  .faq-page__tag .icon {
+    --icon-size: M(10.63);
+  }
+
+  /* Figma 201:2891: the word left-aligned in two lines (text-faq-m.svg, glyphs 20,220 321 × 126) */
+  .faq--page .faq__title {
+    display: block;
+    top: T(220);
+    left: L(20);
+    right: auto;
+  }
+
+  .faq--page .faq__title img {
+    width: M(321);
+  }
+
+  /* Figma: 51 above questions 5–8, the last one 215 wide */
+  .faq--page .faq__item:nth-child(n + 5) .faq__q {
+    padding-top: M(51);
+  }
+
+  .faq--page .faq__item:last-child .faq__q {
+    padding-right: calc(50% - 55px * var(--m));
+  }
+
+  .faq--page {
+    padding-bottom: M(130);
+  }
+
+  .faq--page .faq__item:nth-child(n + 3) .faq__panel {
+    min-height: 0;
+  }

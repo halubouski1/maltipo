@@ -1,0 +1,514 @@
+{
+  "hero": {
+    "widths": [
+      1440,
+      1920
+    ],
+    "avif": true
+  },
+  "why-puppy": {
+    "widths": [
+      768,
+      1024
+    ],
+    "avif": true
+  },
+  "eyes-puppy": {
+    "widths": [
+      1100,
+      1536
+    ],
+    "avif": true
+  },
+  "review-1": {
+    "widths": [
+      340,
+      450,
+      768
+    ],
+    "avif": true
+  },
+  "review-2": {
+    "widths": [
+      340,
+      480,
+      820
+    ],
+    "avif": true
+  },
+  "review-3": {
+    "widths": [
+      340,
+      450,
+      627
+    ],
+    "avif": true
+  },
+  "review-4": {
+    "widths": [
+      360,
+      480,
+      768
+    ],
+    "avif": true
+  },
+  "catalog-puppy": {
+    "widths": [
+      470,
+      621,
+      940,
+      1242
+    ],
+    "avif": true
+  },
+  "grow-1": {
+    "widths": [
+      640,
+      960,
+      1342,
+      1678
+    ],
+    "avif": true
+  },
+  "grow-2": {
+    "widths": [
+      640,
+      960,
+      1342,
+      1789,
+      2644
+    ],
+    "avif": true
+  },
+  "price-puppies": {
+    "widths": [
+      1559
+    ],
+    "avif": true
+  },
+  "delivery-globe": {
+    "widths": [
+      1024
+    ],
+    "avif": true
+  },
+  "avito-puppy": {
+    "widths": [
+      525,
+      806,
+      1075,
+      1436
+    ],
+    "avif": true
+  },
+  "buy-puppy": {
+    "widths": [
+      754,
+      1024
+    ],
+    "avif": true
+  },
+  "video-poster": {
+    "widths": [
+      1410,
+      1880
+    ],
+    "avif": true
+  },
+  "care-puppy": {
+    "widths": [
+      825,
+      1100,
+      1536
+    ],
+    "avif": true
+  },
+  "family": {
+    "widths": [
+      2103,
+      3027
+    ],
+    "avif": true
+  },
+  "form-card": {
+    "widths": [
+      1348,
+      1797,
+      3594
+    ],
+    "avif": true
+  },
+  "logo": {
+    "widths": [
+      142,
+      284,
+      426
+    ],
+    "avif": true
+  },
+  "logo-gold": {
+    "widths": [
+      142,
+      284,
+      426
+    ],
+    "avif": true
+  },
+  "hero-m": {
+    "widths": [
+      480,
+      720
+    ],
+    "avif": true
+  },
+  "video-poster-m": {
+    "widths": [
+      480,
+      640,
+      960
+    ],
+    "avif": true
+  },
+  "form-card-m": {
+    "widths": [
+      480,
+      640,
+      960
+    ],
+    "avif": true
+  },
+  "eyes-puppy-m": {
+    "widths": [
+      480,
+      640,
+      941
+    ],
+    "avif": true
+  },
+  "price-puppies-m": {
+    "widths": [
+      600,
+      941
+    ],
+    "avif": true
+  },
+  "catalog-hero": {
+    "widths": [
+      1440,
+      1920
+    ],
+    "avif": true
+  },
+  "reserve-puppy": {
+    "widths": [
+      1133,
+      1510,
+      2265
+    ],
+    "avif": true
+  },
+  "howto-bg": {
+    "widths": [
+      1386,
+      1848,
+      2772
+    ],
+    "avif": true
+  },
+  "catalog-hero-m": {
+    "widths": [
+      480,
+      720,
+      1020
+    ],
+    "avif": true
+  },
+  "reserve-puppy-m": {
+    "widths": [
+      480,
+      720,
+      960
+    ],
+    "avif": true
+  },
+  "howto-m-3": {
+    "widths": [
+      480,
+      720,
+      960
+    ],
+    "avif": true
+  },
+  "howto-m-5": {
+    "widths": [
+      480,
+      720,
+      960
+    ],
+    "avif": true
+  },
+  "reviews-hero": {
+    "widths": [
+      1440,
+      1920,
+      2880
+    ],
+    "avif": true
+  },
+  "review-5": {
+    "widths": [
+      340,
+      447,
+      894
+    ],
+    "avif": true
+  },
+  "grow-3": {
+    "widths": [
+      1342,
+      1789,
+      2684
+    ],
+    "avif": true
+  },
+  "reviews-globe": {
+    "widths": [
+      1440,
+      1920,
+      2880
+    ],
+    "avif": true
+  },
+  "review-avatar": {
+    "widths": [
+      126,
+      251
+    ],
+    "avif": true
+  },
+  "product-hero": {
+    "widths": [
+      1440,
+      1920,
+      2880
+    ],
+    "avif": true
+  },
+  "product-main": {
+    "widths": [
+      655,
+      873,
+      1310,
+      1746
+    ],
+    "avif": true
+  },
+  "about-hero": {
+    "widths": [
+      1440,
+      1920,
+      2832
+    ],
+    "avif": true
+  },
+  "about-intro-1": {
+    "widths": [
+      758,
+      1137,
+      1516
+    ],
+    "avif": true
+  },
+  "about-intro-2": {
+    "widths": [
+      758,
+      1137,
+      1516
+    ],
+    "avif": true
+  },
+  "about-intro-3": {
+    "widths": [
+      758,
+      1137,
+      1516
+    ],
+    "avif": true
+  },
+  "about-docs": {
+    "widths": [
+      1440,
+      1888,
+      2832
+    ],
+    "avif": true
+  },
+  "about-bag": {
+    "widths": [
+      691,
+      1036,
+      1201
+    ],
+    "avif": true
+  },
+  "about-visit": {
+    "widths": [
+      1440,
+      1874,
+      2811
+    ],
+    "avif": true
+  },
+  "about-vet-1": {
+    "widths": [
+      424,
+      636,
+      848
+    ],
+    "avif": true
+  },
+  "about-vet-2": {
+    "widths": [
+      424,
+      636,
+      848
+    ],
+    "avif": true
+  },
+  "about-vet-3": {
+    "widths": [
+      424,
+      636,
+      848
+    ],
+    "avif": true
+  },
+  "about-vet-4": {
+    "widths": [
+      424,
+      636,
+      848
+    ],
+    "avif": true
+  },
+  "about-vet-5": {
+    "widths": [
+      424,
+      636,
+      848
+    ],
+    "avif": true
+  },
+  "about-life-1": {
+    "widths": [
+      1342,
+      1789,
+      2684
+    ],
+    "avif": true
+  },
+  "about-visit-m": {
+    "widths": [
+      480,
+      644,
+      941
+    ],
+    "avif": true
+  },
+  "about-docs-m": {
+    "widths": [
+      345
+    ],
+    "avif": true
+  },
+  "contacts-hero": {
+    "widths": [
+      1280,
+      1672
+    ],
+    "avif": true
+  },
+  "delivery-hero": {
+    "widths": [
+      1440,
+      1920
+    ],
+    "avif": true
+  },
+  "delivery-hero-m": {
+    "widths": [
+      481
+    ],
+    "avif": true
+  },
+  "delivery-hand": {
+    "widths": [
+      772,
+      1024
+    ],
+    "avif": true
+  },
+  "delivery-screen": {
+    "widths": [
+      466
+    ],
+    "avif": true
+  },
+  "shop-hero": {
+    "widths": [
+      1440,
+      1920
+    ],
+    "avif": true
+  },
+  "shop-bed": {
+    "widths": [
+      492,
+      984
+    ],
+    "avif": true
+  },
+  "shop-why": {
+    "widths": [
+      1404,
+      1604
+    ],
+    "avif": true
+  },
+  "shop-hero-m": {
+    "widths": [
+      481
+    ],
+    "avif": true
+  },
+  "shop-why-m": {
+    "widths": [
+      407
+    ],
+    "avif": true
+  },
+  "blog-woman": {
+    "widths": [
+      674,
+      1176,
+      1672
+    ],
+    "avif": true
+  },
+  "blog-roses": {
+    "widths": [
+      674,
+      1176,
+      1672
+    ],
+    "avif": true
+  },
+  "blog-podium": {
+    "widths": [
+      663,
+      1023,
+      1559
+    ],
+    "avif": true
+  }
+}
