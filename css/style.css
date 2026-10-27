@@ -2001,6 +2001,19 @@ html.is-dialog-open {
   transition: transform 0.9s var(--ease);
 }
 
+/* The blurred band and the text on it are separate GPU layers, the text above: while a slider
+   moves the cards, mobile Safari recomposited the backdrop blur over the price and the button
+   for a moment (they looked blurred / vanished) */
+.puppy-card__glass {
+  will-change: transform;
+}
+
+.puppy-card__tags,
+.puppy-card__price {
+  z-index: 2;
+  transform: translateZ(0);
+}
+
 .puppy-card:hover .puppy-card__photo {
   transform: scale(1.04);
 }
@@ -2075,6 +2088,7 @@ html.is-dialog-open {
 .puppy-card__btn {
   position: absolute;
   z-index: 2;
+  will-change: transform; /* its own layer above the blurred band (see .puppy-card__glass) */
   top: 747px;
   right: 20px; /* Figma x 302 for the 252px button; narrower ones (Продан) stay right-aligned */
 }
@@ -2228,6 +2242,15 @@ html.is-dialog-open {
 .growth__arrow--prev:hover .icon,
 .growth__arrow--prev:focus-visible .icon {
   transform: scaleX(-1) translateX(5px);
+}
+
+/* Home (client request): no scale on the arrows or the button circle — the gallery's reveal
+   ends with a clip flush with its sides, and the scaled arrow / circle got cut at the edge */
+.growth--home .growth__arrow:hover,
+.growth--home .growth__arrow:focus-visible,
+.growth--home .growth__btn:hover .btn__icon,
+.growth--home .growth__btn:focus-visible .btn__icon {
+  transform: none;
 }
 
 /* Both arrows stay visible as in Figma; the inactive one dims */
@@ -7046,6 +7069,17 @@ body:has(.ct-map) .footer .container {
 
 .is-revealed {
   animation: show-more-in 0.6s var(--ease) both;
+}
+
+/* blog filters (main.js initBlog): the cards fade out before the new set fades up */
+.blog-list__featured,
+.blog-list__grid {
+  transition: opacity 0.2s var(--ease);
+}
+
+.is-switching .blog-list__featured,
+.is-switching .blog-list__grid {
+  opacity: 0;
 }
 
 @keyframes show-more-in {

@@ -5284,7 +5284,7 @@
   }
 
   .growth__arrow--prev { left: calc(188px * var(--m)); }
-  .growth__arrow--next { left: calc(260.54px * var(--m)); right: auto; }
+  .growth__arrow--next { left: calc(260px * var(--m)); right: auto; } /* Figma 280.54: its right edge stays inside the gallery clip */
 
   /* Figma 82:1570: dark, full width, under the photo */
   .growth .growth__btn {
@@ -8784,31 +8784,33 @@
 
   /* the video's first frame cut to the card (shop-hero-m: x 720–1201 of 1920, centred) */
   .cat-hero--shop .cat-hero__photo {
-    height: 100%;
+    height: calc(100% - 1px); /* like the video below: no undarkened row at the card's fractional bottom edge */
     border-radius: calc(10px * var(--m));
   }
 
+  /* 1px short of the card (the photo too): at the card's fractional bottom edge the last
+     device-pixel row of the photo and the video showed undarkened, as a light line */
   .cat-hero--shop .cat-hero__card > .cat-hero__video {
     inset: 0;
     width: 100%;
-    height: 100%;
+    height: calc(100% - 1px);
     border-radius: calc(10px * var(--m));
     object-fit: cover;
     object-position: 50% 0;
     clip-path: none;
   }
 
-  /* Figma 201:1020-like ramp: black, clear 332 above the card bottom → 70 % at it */
+  /* Figma 201:1020-like ramp: black, clear 332 above the card bottom → 70 % at it. The ramp and
+     the veil run 2px past the card bottom (the card clips them): the video layer snaps its edge
+     to the next device pixel, and a row of undarkened video showed as a light line */
   .cat-hero--shop .cat-hero__card::after {
-    bottom: 0;
-    height: calc(332px * var(--m));
-    border-radius: 0 0 calc(10px * var(--m)) calc(10px * var(--m));
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
+    bottom: -2px;
+    height: calc(calc(332px * var(--m)) + 2px);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7) calc(100% - 2px));
   }
 
   .cat-hero--shop .cat-hero__card::before {
-    bottom: 0;
-    border-radius: calc(10px * var(--m));
+    bottom: -2px;
   }
 
   .cat-hero--shop .cat-hero__title {

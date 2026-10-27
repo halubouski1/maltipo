@@ -1168,10 +1168,30 @@
       posts.forEach(function (post) { if (post.hidden) grid.appendChild(post); });
       if (empty) empty.hidden = shown.length > 0;
       if (window.AOS) window.AOS.refresh();
+      return shown;
+    }
+
+    // a change fades the current cards out (.is-switching), re-sorts, then the new set fades up
+    // one by one (.is-revealed, the «Показать ещё» animation)
+    var switchTimer = 0;
+    function change() {
+      if (reduceMotion) { apply(); return; }
+      clearTimeout(switchTimer);
+      blog.classList.add('is-switching');
+      switchTimer = setTimeout(function () {
+        var shown = apply();
+        blog.classList.remove('is-switching');
+        shown.forEach(function (post, i) {
+          post.classList.remove('is-revealed');
+          void post.offsetWidth; // restart the animation
+          post.style.animationDelay = (Math.min(i, 8) * 60) + 'ms';
+          post.classList.add('is-revealed');
+        });
+      }, 200);
     }
 
     [category, sort].forEach(function (control) {
-      if (control) control.addEventListener('change', apply);
+      if (control) control.addEventListener('change', change);
     });
   }
 
