@@ -92,6 +92,7 @@
   --c-ink-60: rgba(52, 42, 35, 0.6);
   --c-cream-82: rgba(247, 239, 234, 0.82);
   --c-black-30: rgba(0, 0, 0, 0.3);
+  --c-black-45: rgba(0, 0, 0, 0.45);
   --c-white-50: rgba(255, 255, 255, 0.5);
   --c-white-60: rgba(255, 255, 255, 0.6);
   --c-shop-1: #a77b5f;
@@ -741,10 +742,11 @@ a:focus-visible > .link-dot::after {
   height: auto;
 }
 
+/* Figma 273:1597 (new layout): «Частые вопросы» instead of «FAQ», the row starts at x 366 */
 .header__nav {
   position: absolute;
   top: 22px;
-  left: calc(50% - 571px);
+  left: calc(50% - 594px);
   display: flex;
 }
 
@@ -1353,7 +1355,10 @@ html.is-dialog-open {
 /* Hero videos (main.js initHeroVideo): over the still, which is their first frame
    (watermark removed); they fade in once playing. The home one zooms with the still. */
 .hero__video,
-.cat-hero__video {
+.cat-hero__video,
+.ab-visit__video,
+.shop-why__video,
+.video__video {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -1369,7 +1374,10 @@ html.is-dialog-open {
 }
 
 .hero__video.is-playing,
-.cat-hero__video.is-playing {
+.cat-hero__video.is-playing,
+.ab-visit__video.is-playing,
+.shop-why__video.is-playing,
+.video__video.is-playing {
   opacity: 1;
 }
 
@@ -1390,6 +1398,19 @@ html.is-dialog-open {
 
 .cat-hero__card > :not(picture, video) {
   z-index: 2;
+}
+
+/* Figma 289:26 (final layout): black 76 % at the bottom → clear 414 above it, over the video */
+.hero__bg::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  height: 414px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.76), rgba(0, 0, 0, 0));
+  pointer-events: none;
 }
 
 .hero__inner {
@@ -2309,11 +2330,13 @@ html.is-dialog-open {
   width: 379px;
 }
 
+/* Figma 80:309 (new layout): white, 594 wide, so its three lines stay above the podium photo */
 .price__text {
   position: absolute;
   top: 264px;
   left: 76px;
-  width: 369px;
+  width: 594px;
+  color: var(--c-white);
 }
 
 /* Price factors (Figma 80:903–80:922): 790px wide, 399 + 391 columns */
@@ -2783,12 +2806,13 @@ html.is-dialog-open {
 .compare-table tbody tr:nth-child(5) { height: 79px; }
 .compare-table tbody tr:nth-child(6) { height: 85px; }
 
+/* Figma 272:21: the puppy over the copy with its shadow */
 .avito__puppy {
   position: absolute;
   top: 568px;
-  left: calc(50% - 194px);
-  width: 1075px;
-  height: 821px;
+  left: calc(50% - 198px);
+  width: 1093px;
+  height: 873px;
 }
 
 .avito__aside {
@@ -2890,12 +2914,14 @@ html.is-dialog-open {
   letter-spacing: -1.65px;
 }
 
+/* Figma 272:17: the puppy over a second copy that carries the shadow under its paws
+   (one composite, tools/compose-layers.py); the step cards sit above it */
 .buy__puppy {
   position: absolute;
   top: 94px;
-  left: calc(50% - 570px);
-  width: 1005px;
-  height: 1508px;
+  left: calc(50% - 521px);
+  width: 984.9px;
+  height: 1467px;
 }
 
 .buy__sure {
@@ -2995,12 +3021,28 @@ html.is-dialog-open {
   background: #2b2620;
 }
 
-.video__poster {
+/* Figma 80:702: the clip (black bars cut, 16:9) 2206 wide from the card's top left corner at 90 %
+   over the card colour; its right edge (with the source's corner logo) runs past the card.
+   The still is its first frame in the same box. */
+.video__poster,
+.video__video {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0 auto auto 0;
+  width: 117.34%;
+  height: auto;
+  min-height: 100%;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
+  object-position: 0 0;
+  opacity: 0.9;
+}
+
+.video__video {
+  opacity: 0;
+}
+
+.video__card .video__video.is-playing {
+  opacity: 0.9;
 }
 
 .video__logo {
@@ -3141,6 +3183,12 @@ html.is-dialog-open {
   height: 733px;
 }
 
+/* the new layout drops the «Уход за мальтипу» card (Figma 80:303–80:305 removed); the dot and its
+   line stay. The markup is kept for the about page's card styles. */
+.care .care__card {
+  display: none;
+}
+
 .care__card {
   position: absolute;
   top: 282px;
@@ -3199,11 +3247,12 @@ html.is-dialog-open {
 
 .care__item--food { top: 385px; left: calc(50% - 250px); }
 .care__item--bed { top: 566px; left: calc(50% - 702px); }
-.care__item--pads { top: 844px; left: max(16px, calc(50% - 866px)); }
-.care__item--toys { top: 1112px; left: calc(50% - 565px); }
+/* the new layout widens four chips (Figma 80:325 / 80:316 / 80:361 / 80:370) */
+.care__item--pads { top: 844px; left: max(16px, calc(50% - 866px)); width: 403px; }
+.care__item--toys { top: 1112px; left: calc(50% - 565px); width: 401px; }
 .care__item--comb { top: 609px; left: calc(50% + 341px); width: 389px; padding-right: 32px; }
-.care__item--vet { top: 916px; left: calc(50% + 477px); padding-right: 19px; }
-.care__item--teeth { top: 1110px; left: calc(50% + 129px); }
+.care__item--vet { top: 916px; left: calc(50% + 477px); width: 386px; padding-right: 19px; }
+.care__item--teeth { top: 1110px; left: calc(50% + 129px); width: 407px; }
 
 .care__form {
   position: absolute;
@@ -3507,12 +3556,13 @@ html.is-dialog-open {
   transform: rotate(40.25deg);
 }
 
+/* Figma 272:31: the puppy over a cropped copy with its shadow */
 .contact-card__puppy {
   position: absolute;
-  top: 44px;
+  top: 37px;
   left: calc(50% - 294px);
   width: 525px;
-  height: 401px;
+  height: 408px;
 }
 
 .contact-card__label {
@@ -4204,18 +4254,50 @@ html.is-dialog-open {
   right: 36px;
 }
 
-/* 4 × 2 square cells (462px at 1920) over one photo; dark cells cover it */
+/* 4 × 2 square cells (462px at 1920). New layout (Figma 192:43): a dark radial glow behind the grid
+   and two photo cells under a 45 % black layer — the empty top cell (column 3, «6/6») and cell 4 */
 .howto__grid {
   position: relative;
   margin-top: 104px;
+  background: radial-gradient(54.3% 67.9% at 54.2% 39.4%, var(--glow-80));
 }
 
-.howto__bg {
+/* its own stacking context: the 45 % layer stays under «6/6» and the grid lines */
+.howto__photo-cell {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 50%;
+  width: 25%;
+  height: 50%;
+  overflow: hidden;
+}
+
+.howto__photo {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 50% 0;
+}
+
+.howto__photo-cell::after,
+.howto__cell--4::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--c-black-45);
+}
+
+.howto__cell--4 > picture > .howto__photo,
+.howto__cell--4 > .howto__photo {
+  z-index: 0;
+}
+
+.howto__cell--4 > :not(picture) {
+  z-index: 2;
 }
 
 .howto__cells {
@@ -4232,7 +4314,7 @@ html.is-dialog-open {
 }
 
 .howto__cell--dark {
-  background: var(--c-cell);
+  background: transparent;
 }
 
 .howto__cell--wide {
@@ -5358,12 +5440,13 @@ html.is-dialog-open {
   white-space: nowrap;
 }
 
+/* Figma 272:43 / 272:48: the buy puppy composite (shadow under the paws) */
 .ab-story__puppy {
   position: absolute;
   top: 100px;
   left: calc(50% - 415px);
-  width: 884px;
-  height: 1325px;
+  width: 920px;
+  height: 1369px;
 }
 
 .ab-story__help {
@@ -6116,14 +6199,15 @@ body:has(.ct-map) .footer .container {
   display: none;
 }
 
+/* Figma 272:44 (new layout): the sharper globe, 1570 × 884 at 871,3640, 55 % */
 .dl-cities__globe {
   position: absolute;
-  top: -195.4px;
-  right: -228px;
+  top: -189px;
+  right: -521px;
   z-index: -2;
-  width: 1402.5px;
-  height: 789.3px;
-  opacity: 0.8;
+  width: 1570px;
+  height: 884px;
+  opacity: 0.55;
   /* Figma's blurred ellipse, intersected with fades along the box's left and top edges:
      the ellipse is still half opaque there, which drew a hard line at x 746 */
   -webkit-mask-image: url("../assets/images/decor/globe-mask.svg"), linear-gradient(to right, transparent, #000 260px), linear-gradient(to bottom, transparent, #000 200px);
@@ -6132,8 +6216,8 @@ body:has(.ct-map) .footer .container {
   mask-repeat: no-repeat;
   -webkit-mask-size: 1830.2px 997px, 100% 100%, 100% 100%;
   mask-size: 1830.2px 997px, 100% 100%, 100% 100%;
-  -webkit-mask-position: -499.4px -53.6px, 0 0, 0 0;
-  mask-position: -499.4px -53.6px, 0 0, 0 0;
+  -webkit-mask-position: -546px -60px, 0 0, 0 0;
+  mask-position: -546px -60px, 0 0, 0 0;
   -webkit-mask-composite: source-in, source-in;
   mask-composite: intersect;
 }
@@ -6144,13 +6228,14 @@ body:has(.ct-map) .footer .container {
   object-fit: cover;
 }
 
+/* Figma 257:12: 1103 × 1068 in the new layout */
 .dl-cities__shade {
   position: absolute;
   top: -375px;
   left: -140px;
   z-index: -1;
-  width: 866px;
-  height: 1006px;
+  width: 1103px;
+  height: 1068px;
   background: var(--c-shade);
   filter: blur(17.55px);
   /* its right edge fades out instead of ending in a line over the globe's edge */
@@ -6181,11 +6266,13 @@ body:has(.ct-map) .footer .container {
   justify-content: flex-start;
 }
 
+/* Figma 255:7246 (new layout, ×1.25 of the first version): 987 wide at 109,117, columns 499 / 488 */
 .dl-cities__table {
   position: absolute;
-  top: 100px;
+  z-index: 1; /* above the meet section's glow, which starts 160px higher */
+  top: 117px;
   left: 109px;
-  width: 790px;
+  width: 987px;
   border-collapse: collapse;
   table-layout: fixed;
 }
@@ -6199,50 +6286,50 @@ body:has(.ct-map) .footer .container {
 }
 
 .dl-cities__table thead th {
-  height: 58px;
-  padding: 0 0 0 34px;
-  font-size: 12px;
+  height: 72px;
+  padding: 0 0 0 43px;
+  font-size: 15px;
   font-weight: 700;
-  line-height: 48px;
-  letter-spacing: -0.36px;
+  line-height: 60px;
+  letter-spacing: -0.45px;
   text-transform: uppercase;
   color: var(--c-white-45);
 }
 
 .dl-cities__table thead th:first-child {
-  width: 399px;
+  width: 499px;
 }
 
 .dl-cities__table thead th + th {
-  padding-left: 35px;
+  padding-left: 44px;
 }
 
 .dl-cities__table tbody th {
-  padding: 0 0 0 38px;
-  font-size: 14px;
+  padding: 0 0 0 48px;
+  font-size: 17.5px;
   font-weight: 500;
-  letter-spacing: -0.42px;
+  letter-spacing: -0.52px;
 }
 
-/* the city lists keep Figma's two lines: its 286 (Поволжье 342) + ~6 % for Chrome's wider Helvetica */
+/* the city lists keep Figma's two lines: its 357 (Поволжье 427) + ~6 % for Chrome's wider Helvetica */
 .dl-cities__table td {
-  padding: 0 50px 0 37px;
-  font-size: 12px;
+  padding: 0 64px 0 46px;
+  font-size: 15px;
   font-weight: 500;
-  line-height: 16px;
-  letter-spacing: -0.36px;
+  line-height: 20px;
+  letter-spacing: -0.45px;
 }
 
 .dl-cities__table tbody tr:nth-child(4) td {
   padding-right: 0;
 }
 
-.dl-cities__table tbody tr:nth-child(1) { height: 57px; }
-.dl-cities__table tbody tr:nth-child(2) { height: 59px; }
-.dl-cities__table tbody tr:nth-child(3) { height: 60px; }
-.dl-cities__table tbody tr:nth-child(4) { height: 61px; }
-.dl-cities__table tbody tr:nth-child(5),
-.dl-cities__table tbody tr:nth-child(6) { height: 62px; }
+.dl-cities__table tbody tr:nth-child(1) { height: 71px; }
+.dl-cities__table tbody tr:nth-child(2) { height: 74px; }
+.dl-cities__table tbody tr:nth-child(3) { height: 75px; }
+.dl-cities__table tbody tr:nth-child(4) { height: 76px; }
+.dl-cities__table tbody tr:nth-child(5) { height: 78px; }
+.dl-cities__table tbody tr:nth-child(6) { height: 77px; }
 
 /* How to meet (Figma y 3829–5177): hand with the phone, its screen photo, three glass cards */
 .dl-meet {

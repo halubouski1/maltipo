@@ -111,7 +111,7 @@
   "video-poster": {
     "widths": [
       1410,
-      1880
+      1728
     ],
     "avif": true
   },
@@ -157,15 +157,13 @@
   "hero-m": {
     "widths": [
       480,
-      720
+      755
     ],
     "avif": true
   },
   "video-poster-m": {
     "widths": [
-      480,
-      640,
-      960
+      426
     ],
     "avif": true
   },
@@ -218,8 +216,7 @@
   "catalog-hero-m": {
     "widths": [
       480,
-      720,
-      1020
+      814
     ],
     "avif": true
   },
@@ -354,8 +351,7 @@
   "about-visit": {
     "widths": [
       1440,
-      1874,
-      2811
+      1920
     ],
     "avif": true
   },
@@ -437,7 +433,7 @@
   },
   "delivery-hero-m": {
     "widths": [
-      481
+      587
     ],
     "avif": true
   },
@@ -470,14 +466,14 @@
   },
   "shop-why": {
     "widths": [
-      1404,
-      1604
+      1440,
+      1920
     ],
     "avif": true
   },
   "shop-hero-m": {
     "widths": [
-      481
+      604
     ],
     "avif": true
   },
@@ -508,6 +504,61 @@
       663,
       1023,
       1559
+    ],
+    "avif": true
+  },
+  "buy-puppy-shadow": {
+    "widths": [
+      740,
+      1066
+    ],
+    "avif": true
+  },
+  "avito-puppy-shadow": {
+    "widths": [
+      820,
+      1093,
+      1460
+    ],
+    "avif": true
+  },
+  "card-puppy": {
+    "widths": [
+      525,
+      788,
+      1050,
+      1436
+    ],
+    "avif": true
+  },
+  "card-puppy-m": {
+    "widths": [
+      600,
+      900,
+      1200
+    ],
+    "avif": true
+  },
+  "globe": {
+    "widths": [
+      1100,
+      1672
+    ],
+    "avif": true
+  },
+  "howto-back": {
+    "widths": [
+      462,
+      924,
+      1254
+    ],
+    "avif": true
+  },
+  "howto-bag": {
+    "widths": [
+      924,
+      1386,
+      1672
     ],
     "avif": true
   }

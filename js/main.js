@@ -318,14 +318,19 @@
         video.addEventListener('playing', function () {
           video.classList.add('is-playing');
         }, { once: true });
-        video.preload = 'auto';
         if ('IntersectionObserver' in window) {
-          // fires once right away, which also starts the video when it is on screen
+          // fires once right away, which also starts the video when it is on screen; videos further
+          // down (about / products cards) only load when they come within half a screen
           new IntersectionObserver(function (entries) {
-            if (entries[0].isIntersecting) play();
-            else video.pause();
-          }).observe(video);
+            if (entries[0].isIntersecting) {
+              video.preload = 'auto';
+              play();
+            } else {
+              video.pause();
+            }
+          }, { rootMargin: '50% 0px' }).observe(video);
         } else {
+          video.preload = 'auto';
           play();
         }
       });

@@ -1,0 +1,98 @@
+[
+  {
+    "out": "buy-puppy-shadow",
+    "scale": 1.082,
+    "_figma": "home 272:17 (80:443 under 185:24); the about / delivery story groups 272:43 / 272:48 are the same pair",
+    "layers": [
+      {
+        "src": "figma-assets/new-2026-10-29/buy-shadow-src.png",
+        "x": 459.72,
+        "y": 13195.72,
+        "w": 964.19,
+        "h": 1446.285
+      },
+      {
+        "src": "figma-assets/new-2026-10-29/buy-puppy-src.png",
+        "x": 439,
+        "y": 13175,
+        "w": 946.457,
+        "h": 1419.685
+      }
+    ]
+  },
+  {
+    "out": "avito-puppy-shadow",
+    "scale": 1.336,
+    "_figma": "home 272:21 (80:923 under 185:25)",
+    "layers": [
+      {
+        "src": "figma-assets/new-2026-10-29/avito-back-src.png",
+        "x": 762,
+        "y": 12285,
+        "w": 1093,
+        "h": 834,
+        "crop": [
+          -25.39,
+          -9.59,
+          125.43,
+          109.59
+        ]
+      },
+      {
+        "src": "figma-assets/new-2026-10-29/avito-puppy-src.png",
+        "x": 766,
+        "y": 12246,
+        "w": 1075,
+        "h": 821
+      }
+    ]
+  },
+  {
+    "out": "card-puppy",
+    "scale": 2.735,
+    "_figma": "footer contact card 272:31 (80:803 under 186:26)",
+    "layers": [
+      {
+        "src": "figma-assets/new-2026-10-29/avito-back-src.png",
+        "x": 718,
+        "y": 20647,
+        "w": 453,
+        "h": 408,
+        "crop": [
+          -41.56,
+          -1.96,
+          147.35,
+          109.07
+        ]
+      },
+      {
+        "src": "figma-assets/new-2026-10-29/avito-puppy-src.png",
+        "x": 664,
+        "y": 20654,
+        "w": 525,
+        "h": 401
+      }
+    ]
+  },
+  {
+    "out": "card-puppy-m",
+    "scale": 3,
+    "_figma": "mobile footer contact card 273:1140 (83:2349 under 194:12)",
+    "layers": [
+      {
+        "src": "figma-assets/new-2026-10-29/avito-back-src.png",
+        "x": -140,
+        "y": 18136,
+        "w": 593.6,
+        "h": 396
+      },
+      {
+        "src": "figma-assets/new-2026-10-29/avito-puppy-src.png",
+        "x": -19.9,
+        "y": 18158.2,
+        "w": 460.1,
+        "h": 351.5
+      }
+    ]
+  }
+]

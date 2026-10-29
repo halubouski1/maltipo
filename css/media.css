@@ -88,7 +88,7 @@
 
   .header__nav {
     top: 16.5px;
-    left: calc(50% - 428.25px);
+    left: calc(50% - 445.5px);
   }
 
   .header__link {
@@ -614,6 +614,10 @@
 
   .hero {
     height: max(var(--fixed-vh, 100vh), 615px);
+  }
+
+  .hero__bg::after {
+    height: 310.5px;
   }
 
   .hero__dot {
@@ -1227,7 +1231,7 @@
   .price__text {
     top: 198px;
     left: 57px;
-    width: 276.75px;
+    width: 445.5px;
   }
 
   .price-table {
@@ -1545,9 +1549,9 @@
 
   .avito__puppy {
     top: 426px;
-    left: calc(50% - 145.5px);
-    width: 806.25px;
-    height: 615.75px;
+    left: calc(50% - 148.5px);
+    width: 819.75px;
+    height: 654.75px;
   }
 
   .avito__aside {
@@ -1639,9 +1643,9 @@
 
   .buy__puppy {
     top: 70.5px;
-    left: calc(50% - 427.5px);
-    width: 753.75px;
-    height: 1131px;
+    left: calc(50% - 390.75px);
+    width: 738.675px;
+    height: 1100.25px;
   }
 
   .buy__sure {
@@ -1878,11 +1882,13 @@
   .care__item--pads {
     top: 633px;
     left: max(12px, calc(50% - 649.5px));
+    width: 302.25px;
   }
 
   .care__item--toys {
     top: 834px;
     left: calc(50% - 423.75px);
+    width: 300.75px;
   }
 
   .care__item--comb {
@@ -1895,12 +1901,14 @@
   .care__item--vet {
     top: 687px;
     left: calc(50% + 357.75px);
+    width: 289.5px;
     padding-right: 14.25px;
   }
 
   .care__item--teeth {
     top: 832.5px;
     left: calc(50% + 96.75px);
+    width: 305.25px;
   }
 
   .care__form {
@@ -2081,10 +2089,10 @@
   }
 
   .contact-card__puppy {
-    top: 33px;
+    top: 27.75px;
     left: calc(50% - 220.5px);
     width: 393.75px;
-    height: 300.75px;
+    height: 306px;
   }
 
   .contact-card__label {
@@ -3234,8 +3242,8 @@
   .ab-story__puppy {
     top: 75px;
     left: calc(50% - 311.25px);
-    width: 663px;
-    height: 993.75px;
+    width: 690px;
+    height: 1026.75px;
   }
 
   .ab-story__help {
@@ -3630,23 +3638,23 @@
   }
 
   .dl-cities__globe {
-    top: -146.55px;
-    right: -171px;
-    width: 1051.875px;
-    height: 591.975px;
+    top: -141.75px;
+    right: -390.75px;
+    width: 1177.5px;
+    height: 663px;
     -webkit-mask-image: url("../assets/images/decor/globe-mask.svg"), linear-gradient(to right, transparent, #000 195px), linear-gradient(to bottom, transparent, #000 150px);
     mask-image: url("../assets/images/decor/globe-mask.svg"), linear-gradient(to right, transparent, #000 195px), linear-gradient(to bottom, transparent, #000 150px);
     -webkit-mask-size: 1372.65px 747.75px, 100% 100%, 100% 100%;
     mask-size: 1372.65px 747.75px, 100% 100%, 100% 100%;
-    -webkit-mask-position: -374.55px -40.2px, 0 0, 0 0;
-    mask-position: -374.55px -40.2px, 0 0, 0 0;
+    -webkit-mask-position: -409.5px -45px, 0 0, 0 0;
+    mask-position: -409.5px -45px, 0 0, 0 0;
   }
 
   .dl-cities__shade {
     top: -281.25px;
     left: -105px;
-    width: 649.5px;
-    height: 754.5px;
+    width: 827.25px;
+    height: 801px;
     filter: blur(13.163px);
   }
 
@@ -3668,9 +3676,9 @@
   }
 
   .dl-cities__table {
-    top: 75px;
+    top: 87.75px;
     left: 81.75px;
-    width: 592.5px;
+    width: 740.25px;
   }
 
   .dl-cities__table th,
@@ -3679,53 +3687,56 @@
   }
 
   .dl-cities__table thead th {
-    height: 43.5px;
-    padding: 0 0 0 25.5px;
-    font-size: 9px;
-    line-height: 36px;
-    letter-spacing: -0.27px;
+    height: 54px;
+    padding: 0 0 0 32.25px;
+    font-size: 11.25px;
+    line-height: 45px;
+    letter-spacing: -0.338px;
   }
 
   .dl-cities__table thead th:first-child {
-    width: 299.25px;
+    width: 374.25px;
   }
 
   .dl-cities__table thead th + th {
-    padding-left: 26.25px;
+    padding-left: 33px;
   }
 
   .dl-cities__table tbody th {
-    padding: 0 0 0 28.5px;
-    font-size: 10.5px;
-    letter-spacing: -0.315px;
+    padding: 0 0 0 36px;
+    font-size: 13.125px;
+    letter-spacing: -0.39px;
   }
 
   .dl-cities__table td {
-    padding: 0 37.5px 0 27.75px;
-    font-size: 9px;
-    line-height: 12px;
-    letter-spacing: -0.27px;
+    padding: 0 48px 0 34.5px;
+    font-size: 11.25px;
+    line-height: 15px;
+    letter-spacing: -0.338px;
   }
 
   .dl-cities__table tbody tr:nth-child(1) {
-    height: 42.75px;
+    height: 53.25px;
   }
 
   .dl-cities__table tbody tr:nth-child(2) {
-    height: 44.25px;
+    height: 55.5px;
   }
 
   .dl-cities__table tbody tr:nth-child(3) {
-    height: 45px;
+    height: 56.25px;
   }
 
   .dl-cities__table tbody tr:nth-child(4) {
-    height: 45.75px;
+    height: 57px;
   }
 
-  .dl-cities__table tbody tr:nth-child(5),
+  .dl-cities__table tbody tr:nth-child(5) {
+    height: 58.5px;
+  }
+
   .dl-cities__table tbody tr:nth-child(6) {
-    height: 46.5px;
+    height: 57.75px;
   }
 
   .dl-meet__glow {
@@ -4647,15 +4658,13 @@
     color: #000;
   }
 
-  /* ── Hero (Figma y 0–1004) ── */
+  /* ── Hero (Figma y 0–820) ── */
 
-  /* One screen high (--fixed-vh, set in <head>); the note stays at the top, the tag,
-     title and buttons are pinned to the bottom with the Figma distances (frame 1004 high).
-     min-height keeps the two groups apart on short screens. */
+  /* One screen high (--fixed-vh, set in <head>); the video and the note stay at the top, the
+     tag, title and buttons are pinned to the bottom with the Figma distances (frame 820 high).
+     min-height = the frame, so the group never runs up into the video on short screens. */
   .hero {
-    /* min-height: on short phones the video (its puppy in the top ~520) stays clear of the
-       dark ramp and the bottom group (358 from the bottom); was 604 = note + 30 + group */
-    height: max(var(--fixed-vh, 100vh), calc(880px * var(--m)));
+    height: max(var(--fixed-vh, 100vh), calc(820px * var(--m)));
   }
 
   /* the bottom group is anchored to the inner box, so it must fill the hero */
@@ -4663,31 +4672,47 @@
     height: 100%;
   }
 
-  .hero__photo,
+  /* Figma 273:1115: the video 916 × 515 at (-191, 0); the still (hero-m) is its visible
+     part (source x 400–1155), so the fade-in doesn't jump */
   .hero__video {
-    object-position: 50% 0;
+    inset: auto;
+    top: 0;
+    left: calc(50% - 371px * var(--m));
+    width: calc(916px * var(--m));
+    height: calc(515px * var(--m));
+    object-fit: fill;
   }
 
-  /* Figma 80:1262: #191310 blurred 75px with its top edge at y 571, then the solid
-     background under the photo (from y 774): anchored to the bottom of the screen */
+  .hero__photo {
+    inset: auto;
+    top: 0;
+    left: calc(50% - 180px * var(--m));
+    width: calc(360px * var(--m));
+    height: calc(515px * var(--m));
+    object-fit: fill;
+  }
+
+  /* Figma 80:1262: #191310 blurred 75px with its top edge at y 373, then the solid
+     background under the video (from y 576) down to the bottom of the screen */
   .hero__bg::after {
     content: "";
     position: absolute;
     left: 0;
     right: 0;
+    top: calc(148px * var(--m));
     bottom: 0;
-    height: calc(658px * var(--m));
+    height: auto;
     background: linear-gradient(to bottom, rgba(25, 19, 16, 0) 0, rgba(25, 19, 16, 0.16) calc(75px * var(--m)), rgba(25, 19, 16, 0.5) calc(225px * var(--m)), rgba(25, 19, 16, 0.84) calc(300px * var(--m)), #191310 calc(428px * var(--m)));
   }
 
   .hero__dot {
-    top: calc(175px * var(--m));
+    top: calc(101px * var(--m));
     left: calc(50% - 159px * var(--m));
     right: auto;
   }
 
   .hero__line {
-    top: calc(262px * var(--m));
+    top: calc(188px * var(--m));
     left: calc(50% - 151.03px * var(--m));
     right: auto;
     width: calc(89.07px * var(--m));
@@ -4695,7 +4720,7 @@
   }
 
   .hero__note-text {
-    top: calc(171px * var(--m));
+    top: calc(97px * var(--m));
     left: calc(50% - 112px * var(--m));
     right: auto;
     width: calc(202px * var(--m));
@@ -5371,15 +5396,17 @@
     font-size: calc(16px * var(--m));
     line-height: calc(25px * var(--m));
     letter-spacing: calc(-0.48px * var(--m));
-    color: #d7c8bf;
+    color: var(--c-white);
   }
 
+  /* fixed layout: the first column keeps Figma's 108 (auto layout widened it to 124) */
   .price-table {
     z-index: 1;
     top: calc(723px * var(--m));
     left: calc(50% - 170px * var(--m));
     right: auto;
     width: calc(340px * var(--m));
+    table-layout: fixed;
   }
 
   .price-table thead th {
@@ -5390,6 +5417,7 @@
   }
 
   .price-table thead th:first-child {
+    box-sizing: border-box;
     width: calc(108px * var(--m));
   }
 
@@ -5425,18 +5453,20 @@
     z-index: 2;
   }
 
+  /* new frame: the section is 102 shorter (globe and chips moved up), y values + 184 */
   .delivery__inner {
-    height: calc(1106px * var(--m));
+    height: calc(1004px * var(--m));
   }
 
-  /* Figma 83:1642: globe 1385 × 780 at (-513, 7753) at 80 %, blurred ellipse mask 679 × 283 at (180, 8129) */
+  /* Figma 272:28: the new globe 1139 × 641 at (-390, 7606 + 184) at 80 %, through the blurred
+     ellipse 83:1641 (1234 × 515, σ 100; its 1634 × 915 render at -247, -185 in the globe box) */
   .delivery__globe {
-    top: calc(237.94px * var(--m));
-    left: calc(50% - 693.09px * var(--m));
-    width: calc(1385.37px * var(--m));
-    height: calc(779.68px * var(--m));
-    -webkit-mask: radial-gradient(calc(816.6px * var(--m)) calc(421.2px * var(--m)) at calc(693px * var(--m)) calc(375.7px * var(--m)), #000 52%, rgba(0, 0, 0, 0.5) 76%, transparent 100%);
-    mask: radial-gradient(calc(816.6px * var(--m)) calc(421.2px * var(--m)) at calc(693px * var(--m)) calc(375.7px * var(--m)), #000 52%, rgba(0, 0, 0, 0.5) 76%, transparent 100%);
+    top: calc(275px * var(--m));
+    left: calc(50% - 570px * var(--m));
+    width: calc(1139px * var(--m));
+    height: calc(641px * var(--m));
+    -webkit-mask: url("../assets/images/decor/globe-mask-m.svg") calc(-247px * var(--m)) calc(-185px * var(--m)) / calc(1633.74px * var(--m)) calc(915px * var(--m)) no-repeat;
+    mask: url("../assets/images/decor/globe-mask-m.svg") calc(-247px * var(--m)) calc(-185px * var(--m)) / calc(1633.74px * var(--m)) calc(915px * var(--m)) no-repeat;
   }
 
   .delivery__card {
@@ -5500,7 +5530,7 @@
   }
 
   .delivery__features {
-    top: calc(892px * var(--m));
+    top: calc(790px * var(--m));
     justify-content: flex-start;
   }
 
@@ -5557,6 +5587,7 @@
     top: calc(316px * var(--m));
     left: calc(50% - 170px * var(--m));
     width: calc(340px * var(--m));
+    table-layout: fixed;
   }
 
   .compare-table thead th {
@@ -5567,6 +5598,7 @@
   }
 
   .compare-table thead th:first-child {
+    box-sizing: border-box;
     width: calc(134px * var(--m));
   }
 
@@ -5629,13 +5661,15 @@
     letter-spacing: calc(-0.45px * var(--m));
   }
 
+  /* Figma 288; Chrome's wider Helvetica needs 300 for the frame's three lines */
   .avito .avito__rule + .avito__aside-text {
-    width: calc(288px * var(--m));
+    width: calc(300px * var(--m));
     margin-top: calc(20px * var(--m));
   }
 
+  /* Figma 83:1726: 20 below the first paragraph */
   .avito .avito__aside-text + .avito__aside-text {
-    margin-top: 0;
+    margin-top: calc(20px * var(--m));
   }
 
   /* Figma 194:9: 556 × 329 window at (-46, 9894), photo aligned to its top */
@@ -5805,8 +5839,14 @@
     background: none;
   }
 
-  .video__poster {
+  /* Figma 83:1798: the clip covers the portrait card a little left of its centre (x 44 %) */
+  .video__poster,
+  .video__video {
+    inset: 0;
+    width: 100%;
+    height: 100%;
     border-radius: calc(10px * var(--m));
+    object-position: 44% 50%;
   }
 
   /* the reveal entrance ends at inset(0): leave room for the button below the card */
@@ -5869,8 +5909,9 @@
 
   /* ── Care (Figma y 14722–16005), with the second form ── */
 
+  /* new frame: the bed photo is smaller, so everything under it is 139 higher (y values + 286) */
   .care__inner {
-    height: calc(1283px * var(--m));
+    height: calc(1144px * var(--m));
   }
 
   .care__form {
@@ -5898,8 +5939,9 @@
     background-image: linear-gradient(101.69deg, #f5decc 3.39%, #453931 263.08%);
   }
 
-  .care__shadow--outer { top: calc(955.7px * var(--m)); left: calc(50% - 336.9px * var(--m)); width: calc(824px * var(--m)); }
-  .care__shadow--inner { top: calc(992.4px * var(--m)); left: calc(50% - 231.97px * var(--m)); width: calc(623.6px * var(--m)); }
+  /* Figma 83:1822 / 83:1821: ellipses 435 × 62 (blur 47.4) and 348 × 50 (blur 20.8) under the bed */
+  .care__shadow--outer { top: calc(847.6px * var(--m)); left: calc(50% - 237.4px * var(--m)); width: calc(529.8px * var(--m)); }
+  .care__shadow--inner { top: calc(880.2px * var(--m)); left: calc(50% - 164.8px * var(--m)); width: calc(389.6px * var(--m)); }
 
   .care__fade {
     top: calc(877.8px * var(--m));
@@ -5909,11 +5951,12 @@
     background: linear-gradient(to bottom, rgba(25, 19, 16, 0) 0, rgba(25, 19, 16, 0.16) calc(200px * var(--m)), rgba(25, 19, 16, 0.5) calc(300px * var(--m)), rgba(25, 19, 16, 0.84) calc(400px * var(--m)), #191310 calc(600px * var(--m)));
   }
 
+  /* Figma 83:1825: 443 × 295 at (-22, 15104 + 286) */
   .care__puppy {
-    top: calc(622.34px * var(--m));
-    left: calc(50% - 309.23px * var(--m));
-    width: calc(742.5px * var(--m));
-    height: calc(495px * var(--m));
+    top: calc(668px * var(--m));
+    left: calc(50% - 202px * var(--m));
+    width: calc(443px * var(--m));
+    height: calc(295px * var(--m));
   }
 
   .care__card {
@@ -5936,7 +5979,7 @@
   .care__counter {
     display: block;
     position: absolute;
-    top: calc(1134px * var(--m));
+    top: calc(995px * var(--m));
     left: calc(50% - 157px * var(--m));
     font-size: calc(15px * var(--m));
     font-weight: 500;
@@ -5950,7 +5993,7 @@
   }
 
   .care__items {
-    top: calc(1159px * var(--m));
+    top: calc(1020px * var(--m));
     padding: 0 calc(50% - 157px * var(--m));
     scroll-padding: 0 calc(50% - 157px * var(--m));
   }
@@ -6151,11 +6194,12 @@
     transform: rotate(78.1deg);
   }
 
+  /* Figma 273:1140 (new frame, 225 below the card top): the puppy over the copy with its shadow */
   .contact-card__puppy {
-    top: calc(193px * var(--m));
-    left: calc(-51px * var(--m));
-    width: calc(517px * var(--m));
-    height: calc(395px * var(--m));
+    top: calc(225px * var(--m));
+    left: calc(-160px * var(--m));
+    width: calc(593.6px * var(--m));
+    height: calc(396px * var(--m));
   }
 
   .contact-card__label {
@@ -6167,8 +6211,9 @@
     --icon-size: calc(19px * var(--m));
   }
 
+  /* new frame: the link sits under the address (Figma 83:2352, 18083 + 425) */
   .contact-card__call {
-    top: calc(730px * var(--m));
+    top: calc(172px * var(--m));
     left: calc(20px * var(--m));
   }
 
@@ -6200,14 +6245,14 @@
   }
 
   .contact-card__year-rule {
-    width: calc(198px * var(--m));
+    width: calc(129px * var(--m));
     margin-left: calc(16px * var(--m));
   }
 
-  /* Figma 83:2362: the to-top button sits above the year line, on the right */
+  /* Figma 83:2362: the to-top button sits level with the year line, on the right */
   .contact-card__year .to-top {
     position: absolute;
-    top: calc(-34px * var(--m));
+    top: calc(23px * var(--m));
     left: calc(239px * var(--m));
     width: calc(41px * var(--m));
     height: calc(41px * var(--m));
@@ -6231,15 +6276,27 @@
   }
 
   .contact-card__address {
+    position: relative;
     width: calc(265px * var(--m));
     margin-top: calc(15px * var(--m));
-    font-size: calc(21px * var(--m));
+    font-size: calc(18px * var(--m));
     line-height: calc(24px * var(--m));
     white-space: normal;
   }
 
+  /* Figma 273:1139: a hairline between the label and the address */
+  .contact-card__address::before {
+    content: "";
+    position: absolute;
+    top: calc(-7px * var(--m));
+    left: 0;
+    width: calc(247px * var(--m));
+    height: 1px;
+    background: var(--c-year-rule);
+  }
+
   .socials {
-    top: calc(613px * var(--m));
+    top: calc(670px * var(--m));
     left: calc(20px * var(--m));
     right: auto;
     align-items: flex-start;
@@ -6362,15 +6419,13 @@
      The frame shows 4 cards; the page has 6, so everything after the list sits
      2 × 480 lower than in the frame (sections are in flow, positions section-relative). */
 
-  /* ── Hero card (Figma 194:17: 10,10 340 × 764; text 194:23–194:59) ── */
+  /* ── Hero card (Figma 194:17: photo 10,10 340 × 409; text 194:23–194:59) ── */
 
   /* One screen high (--fixed-vh) like the home hero: the card ends 75 above the
-     screen bottom (Figma 1025 / 1100), the photo fills it down to 251 above the card
-     bottom (Figma 774), the text group is pinned to the card bottom (card 1015 high).
-     min-height keeps a strip of photo above the tag on short screens. */
-  /* min-height: on short phones the photo/video stays visible above the dark ramp and the text */
+     screen bottom (Figma 744 / 819), the photo is the card's top 409 (new frame), the
+     text group is pinned to the card bottom. min-height = the frame's hero. */
   .cat-hero {
-    height: max(var(--fixed-vh, 100vh), calc(940px * var(--m)));
+    height: max(var(--fixed-vh, 100vh), calc(819px * var(--m)));
   }
 
   .cat-hero__card {
@@ -6384,35 +6439,33 @@
     background: none;
   }
 
+  /* the still is the video's visible part (catalog-hero-m: source x 347–1161, y 101–1080) */
   .cat-hero__photo {
-    height: calc(100% - 251px * var(--m));
+    height: calc(409px * var(--m));
     object-position: 50% 0;
   }
 
-  /* Figma 204:15: the video 1224 × 689 at (-302, -42) in the card, under the dark fade */
+  /* Figma 204:15: the video 802 × 451 at (-145, -42) in the card: it ends at the photo bottom */
   .cat-hero__card > .cat-hero__video {
     z-index: 0;
     inset: auto;
     top: calc(-42px * var(--m));
-    left: calc(-302px * var(--m));
-    width: calc(1224px * var(--m));
-    height: calc(689px * var(--m));
+    left: calc(-145px * var(--m));
+    width: calc(802px * var(--m));
+    height: calc(451px * var(--m));
     object-fit: fill;
-    /* cut at the photo bottom (card = hero − 85, photo = card − 251; video top −42):
-       689 − (hero − 85 − 251 + 42) = 983 − hero */
-    clip-path: inset(0 0 max(0px, calc(983px * var(--m) - max(var(--fixed-vh, 100vh), 940px * var(--m)))) 0);
   }
 
-  /* Figma 194:22: #191310 blurred 75px with its top edge at y 541 (same ramp as the
-     home hero): from 458 above the photo bottom to solid 30 above it */
+  /* Figma 194:22: #191310 blurred 75px with its top edge at y 306 (same ramp as the
+     home hero): from y 81 down to the photo bottom (409 in the card), then the page */
   /* reaches 2px past the photo bottom, so no sub-pixel strip of the video shows under it */
   .cat-hero__card::after {
     content: "";
     position: absolute;
     left: 0;
     right: 0;
-    bottom: calc(calc(251px * var(--m)) - 2px);
-    height: calc(calc(458px * var(--m)) + 2px);
+    top: calc(71px * var(--m));
+    height: calc(calc(338px * var(--m)) + 2px);
     background: linear-gradient(to bottom, rgba(25, 19, 16, 0) 0, rgba(25, 19, 16, 0.16) calc(75px * var(--m)), rgba(25, 19, 16, 0.5) calc(225px * var(--m)), rgba(25, 19, 16, 0.84) calc(300px * var(--m)), #191310 calc(428px * var(--m)));
   }
 
@@ -6422,7 +6475,8 @@
 
   /* the veil (style.css) covers the photo only, not the page colour under it */
   .cat-hero__card::before {
-    bottom: calc(251px * var(--m));
+    bottom: auto;
+    height: calc(409px * var(--m));
   }
 
   .cat-hero__tag {
@@ -6746,7 +6800,7 @@
     margin-top: calc(50px * var(--m));
   }
 
-  .howto__bg,
+  .howto__photo-cell,
   .howto__count,
   .howto__line {
     display: none;
@@ -6829,13 +6883,25 @@
     object-position: 44% 0;
   }
 
+  /* new frame (hero 867): the still in a 16:9 box 821.5 × 462.3 at (-184.2, -3.9), cover, centred */
+  .page-hero.page-hero--reviews {
+    height: max(var(--fixed-vh, 100vh), calc(867px * var(--m)));
+  }
+
   .page-hero--reviews .page-hero__photo {
     position: absolute;
-    top: 0;
-    left: calc(50% - 599.7px * var(--m));
-    width: calc(1313.9px * var(--m));
-    height: calc(774px * var(--m));
-    object-position: 0 0;
+    top: calc(-3.9px * var(--m));
+    left: calc(50% - 364.2px * var(--m));
+    width: calc(821.5px * var(--m));
+    height: calc(462.3px * var(--m));
+    object-fit: cover;
+    object-position: 50% 50%;
+  }
+
+  /* Figma 195:863: the ramp's top edge at y 371, anchored to the top like the photo */
+  .page-hero--reviews .page-hero__bg::after {
+    top: calc(146px * var(--m));
+    height: auto;
   }
 
   /* Figma 195:863: #191310 blurred, top edge at y 571 (the home hero ramp), solid to the bottom */
@@ -6903,8 +6969,10 @@
     width: calc(2061px * var(--m));
     height: calc(1714px * var(--m));
     background: radial-gradient(calc(1081.5px * var(--m)) calc(1277.5px * var(--m)) at calc(957.5px * var(--m)) calc(495px * var(--m)), var(--glow-80));
-    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 calc(300px * var(--m)));
-    mask-image: linear-gradient(to bottom, transparent, #000 calc(300px * var(--m)));
+    /* its top 205 sit under the hero (which hides them); Figma's blurred ramp 195:863 still
+       covers ~85 % of it at the hero bottom and lets it through by y 1150: fade in from there */
+    -webkit-mask-image: linear-gradient(to bottom, transparent calc(205px * var(--m)), rgba(0, 0, 0, 0.15) calc(206px * var(--m)), #000 calc(490px * var(--m)));
+    mask-image: linear-gradient(to bottom, transparent calc(205px * var(--m)), rgba(0, 0, 0, 0.15) calc(206px * var(--m)), #000 calc(490px * var(--m)));
   }
 
   .graduates--reviews {
@@ -7388,18 +7456,30 @@
      The frame repeats copy from other pages in places (hero tag and text, the docs
      title, the visit kicker, the video card); the page keeps its own copy. */
 
-  /* ── Hero card (Figma 197:1989: 10,10 340 × 764; text 197:1999–197:2217): the catalog hero ── */
-  /* Figma 197:2205: the desktop photo (1398 × 786 in the frame), puppy at the centre */
-  .cat-hero--about .cat-hero__photo {
-    object-position: 51% 0;
+  /* ── Hero card (Figma 197:1989; text 197:1999–197:2217): the catalog hero ── */
+  /* new frame: the hero is 857 (card bottom = button bottom 783, 74 above the hero bottom) */
+  .cat-hero.cat-hero--about {
+    height: max(var(--fixed-vh, 100vh), calc(857px * var(--m)));
   }
 
-  /* The ramp is 458 of the 764 photo in Figma (60 %). On screens shorter than the
-     frame's proportions the photo is shorter, so the ramp follows the photo's height
-     instead of covering all of it */
+  /* Figma 197:2205: the desktop photo 912 × 514 at (-217, 0) in the card (cover, centred) */
+  .cat-hero--about .cat-hero__photo {
+    position: relative;
+    left: calc(-217px * var(--m));
+    width: calc(912px * var(--m));
+    max-width: none;
+    height: calc(514px * var(--m));
+    object-position: 50% 50%;
+  }
+
+  /* Figma 197:1998: the ramp's top edge at y 388: from 153 in the card to the photo bottom */
   .cat-hero--about .cat-hero__card::after {
-    height: calc(min(calc(458px * var(--m)), (100% - 251px * var(--m)) * 0.6) + 2px);
-    background: linear-gradient(to bottom, rgba(25, 19, 16, 0) 0, rgba(25, 19, 16, 0.16) 16.4%, rgba(25, 19, 16, 0.5) 49.1%, rgba(25, 19, 16, 0.84) 65.5%, #191310 93.4%);
+    top: calc(153px * var(--m));
+    height: calc(calc(361px * var(--m)) + 2px);
+  }
+
+  .cat-hero--about .cat-hero__card::before {
+    height: calc(514px * var(--m));
   }
 
   /* Distances from the card bottom (Figma 1031): tag 359, title 237, text 124. The page's
@@ -7650,8 +7730,9 @@
 
   /* ── Care conditions (Figma 2950–4060): bag, one chip at a time with a counter and arrows ── */
 
+  /* new frame: 34 taller (the story block starts 34 lower) */
   .ab-care__inner {
-    height: calc(1110px * var(--m));
+    height: calc(1144px * var(--m));
   }
 
   /* Figma 197:2309: the home care glow at (-314.1, 3066) */
@@ -7755,11 +7836,12 @@
     height: calc(2489px * var(--m));
   }
 
-  /* Figma 198:2357: the home «Как купить» glow, 997 × 758 rotated 53.4°, centred at (195, 4866) */
+  /* Figma 198:2357: the home «Как купить» glow, 997 × 758 rotated 53.4°, centred at (195, 4866);
+     new frame: its box starts 34 lower in the section (y values here are the old frame's) */
   .ab-story__glow {
     display: block;
     position: absolute;
-    top: calc(47.8px * var(--m));
+    top: calc(81.8px * var(--m));
     left: calc(50% - 982.3px * var(--m));
     width: calc(1994.8px * var(--m));
     height: calc(1516.4px * var(--m));
@@ -8090,32 +8172,35 @@
 
   /* ══ Contacts page (contacts.html, Figma mobile 201:2, 360 × 3815) ══ */
 
-  /* The hero runs to the map (Figma 1836): photo to y 1075, tag / title at the top,
-     phone / e-mail / address right-aligned at 770, the form from 1105, socials at 1646 */
+  /* The hero runs to the map (Figma 1634; new frame): the photo 0–515, tag / title under it
+     at 428, phone / e-mail / address right-aligned at 568, the form from 903, socials at 1423 */
   .ct-hero {
-    height: calc(1824px * var(--m));
+    height: calc(1622px * var(--m));
   }
 
-  /* Figma 201:282: the photo at 1897 × 1068, its window at x 832 (54 %) */
   .ct-hero__bg {
     bottom: auto;
-    height: calc(1075px * var(--m));
+    height: calc(700px * var(--m));
   }
 
+  /* Figma 201:282: the photo 915 × 515 at x -318 (cover: 318 / 555 = 57.3 %) */
   .ct-hero__photo {
-    object-position: 54% 0;
+    height: calc(515px * var(--m));
+    object-position: 57.3% 0;
   }
 
-  /* Figma 201:303 / 201:305: black → clear over the top 524, clear → black from 465 to 1173 */
+  /* Figma 273:1606 (#191310 blurred 150, top edge at y 485) over 201:303 (black 66 % → clear at
+     312) and 201:305 (clear at 274 → black 53 % at the photo bottom) */
   .ct-hero__bg::after {
     height: 100%;
     background:
-      linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0, rgba(0, 0, 0, 0) calc(524px * var(--m))),
-      linear-gradient(to bottom, rgba(0, 0, 0, 0) calc(465px * var(--m)), rgba(0, 0, 0, 0.86) 100%);
+      linear-gradient(to bottom, rgba(25, 19, 16, 0) calc(260px * var(--m)), rgba(25, 19, 16, 0.16) calc(335px * var(--m)), rgba(25, 19, 16, 0.5) calc(485px * var(--m)), rgba(25, 19, 16, 0.84) calc(560px * var(--m)), #191310 calc(688px * var(--m))),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.66) 0, rgba(0, 0, 0, 0) calc(312px * var(--m))),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0) calc(274px * var(--m)), rgba(0, 0, 0, 0.53) calc(515px * var(--m)), rgba(0, 0, 0, 0) calc(515px * var(--m)));
   }
 
   .ct-hero .ct-hero__tag {
-    top: calc(146px * var(--m));
+    top: calc(428px * var(--m));
     bottom: auto;
     left: calc(50% - 160px * var(--m));
     min-width: calc(209px * var(--m));
@@ -8132,7 +8217,7 @@
 
   /* Figma 201:12: 78.4px Light in a 70px line box at 196.4 → a 1.0 line box at 192.3 */
   .ct-hero .ct-hero__title {
-    top: calc(192.3px * var(--m));
+    top: calc(459.9px * var(--m));
     bottom: auto;
     left: calc(50% - 160px * var(--m));
     font-size: calc(78.39px * var(--m));
@@ -8140,7 +8225,7 @@
   }
 
   .ct-hero .ct-info {
-    top: calc(770px * var(--m));
+    top: calc(568px * var(--m));
     right: calc(50% - 158px * var(--m));
     gap: calc(27px * var(--m));
   }
@@ -8166,7 +8251,7 @@
   }
 
   .ct-hero .ct-form {
-    top: calc(1105px * var(--m));
+    top: calc(903px * var(--m));
     bottom: auto;
     left: calc(50% - 160px * var(--m));
     width: calc(320px * var(--m));
@@ -8221,7 +8306,7 @@
 
   /* Figma 201:330–201:349: telegram · max · рутуб / whatsapp · вконтакте, centred rows, 21px */
   .ct-hero .ct-hero__socials {
-    top: calc(1646px * var(--m));
+    top: calc(1444px * var(--m));
     bottom: auto;
     left: 0;
     right: 0;
@@ -8266,7 +8351,7 @@
     height: calc(5px * var(--m));
   }
 
-  /* Figma 201:351: the hairline above the socials (y 1605) */
+  /* Figma 201:351: the hairline above the socials (y 1403) */
   .ct-hero__socials::before {
     content: "";
     position: absolute;
@@ -8277,7 +8362,7 @@
     background: rgba(255, 255, 255, 0.15);
   }
 
-  /* Figma 201:353: the map 21,1836 320 × 598, radius 15; the footer columns 100 below it */
+  /* Figma 201:353: the map 21,1634 320 × 598, radius 15; the footer columns 100 below it */
   .ct-map {
     padding: calc(12px * var(--m)) 0 0;
   }
@@ -8288,7 +8373,7 @@
     margin-left: calc(50% - 159px * var(--m));
   }
 
-  /* no contacts card: the columns (945 below the footer top) at 2534 = 100 under the map */
+  /* no contacts card: the columns (945 below the footer top) at 2332 = 100 under the map */
   body:has(.ct-map) .footer .container {
     margin-top: calc(-845px * var(--m));
   }
@@ -8450,14 +8535,21 @@
      the about card, with the text and button under the photo; the card ends 13 above the
      screen bottom, the photo 217 above the card bottom ── */
 
-  .cat-hero--delivery .cat-hero__card {
-    bottom: calc(13px * var(--m));
+  /* new frame: the hero is 857, the card ends 14 above it (button bottom 843) */
+  .cat-hero.cat-hero--delivery {
+    height: max(var(--fixed-vh, 100vh), calc(857px * var(--m)));
   }
 
-  /* Figma 201:716: the video's first frame cut to the card (delivery-hero-m: x 686–1167 of 1920);
-     the video covers the same area at the same crop */
+  .cat-hero--delivery .cat-hero__card {
+    bottom: calc(14px * var(--m));
+  }
+
+  /* Figma 201:716: the photo is the card's top 626, 207 above its bottom; the video's first
+     frame cut to it (delivery-hero-m: x 666–1253 of 1920); the video covers it at the same crop */
   .cat-hero--delivery .cat-hero__photo {
-    height: calc(100% - 217px * var(--m));
+    position: static;
+    width: 100%;
+    height: calc(100% - 207px * var(--m));
     border-radius: calc(10px * var(--m));
     object-position: 50% 0;
   }
@@ -8465,34 +8557,37 @@
   .cat-hero--delivery .cat-hero__card > .cat-hero__video {
     inset: 0 0 auto;
     width: 100%;
-    height: calc(100% - 217px * var(--m));
+    height: calc(100% - 207px * var(--m));
     border-radius: calc(10px * var(--m));
     object-fit: cover;
-    object-position: 47.7% 0;
+    object-position: 50% 0;
     clip-path: none;
   }
 
-  /* Figma 201:718: black, clear at y 442 → 70 % at the photo bottom (774) */
+  /* Figma 201:718: black, clear at y 348 → 51 % at the photo bottom (636) */
   .cat-hero--delivery .cat-hero__card::after {
-    bottom: calc(217px * var(--m));
-    height: calc(332px * var(--m));
+    top: auto;
+    bottom: calc(207px * var(--m));
+    height: calc(288px * var(--m));
     border-radius: 0 0 calc(10px * var(--m)) calc(10px * var(--m));
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51));
   }
 
   .cat-hero--delivery .cat-hero__card::before {
-    bottom: calc(217px * var(--m));
+    height: auto;
+    bottom: calc(207px * var(--m));
     border-radius: calc(10px * var(--m));
   }
 
+  /* distances from the card bottom (843): tag 339, title 223, text 104 */
   .cat-hero--delivery .cat-hero__tag {
-    bottom: calc(355px * var(--m));
+    bottom: calc(339px * var(--m));
     left: calc(16px * var(--m));
     min-width: calc(191px * var(--m));
   }
 
   .cat-hero--delivery .cat-hero__title {
-    bottom: calc(239px * var(--m));
+    bottom: calc(223px * var(--m));
     left: calc(16px * var(--m));
     width: calc(314px * var(--m));
     font-size: calc(33px * var(--m));
@@ -8501,7 +8596,7 @@
   }
 
   .cat-hero--delivery .cat-hero__text {
-    bottom: calc(103px * var(--m));
+    bottom: calc(104px * var(--m));
     left: calc(10px * var(--m));
     width: calc(320px * var(--m));
   }
@@ -8773,16 +8868,17 @@
      video's first frame, title and text centred at the top; a fixed height (nothing is
      pinned to the bottom) ── */
 
+  /* new frame: card 340 × 606, products from 685 */
   .cat-hero.cat-hero--shop {
-    height: calc(844px * var(--m));
+    height: calc(685px * var(--m));
   }
 
   .cat-hero--shop .cat-hero__card {
     bottom: auto;
-    height: calc(764px * var(--m));
+    height: calc(606px * var(--m));
   }
 
-  /* the video's first frame cut to the card (shop-hero-m: x 720–1201 of 1920, centred) */
+  /* the video's first frame cut to the card (shop-hero-m: x 657–1261 of 1920, centred) */
   .cat-hero--shop .cat-hero__photo {
     height: calc(100% - 1px); /* like the video below: no undarkened row at the card's fractional bottom edge */
     border-radius: calc(10px * var(--m));
@@ -8804,12 +8900,14 @@
      the veil run 2px past the card bottom (the card clips them): the video layer snaps its edge
      to the next device pixel, and a row of undarkened video showed as a light line */
   .cat-hero--shop .cat-hero__card::after {
+    top: auto;
     bottom: -2px;
     height: calc(calc(332px * var(--m)) + 2px);
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7) calc(100% - 2px));
   }
 
   .cat-hero--shop .cat-hero__card::before {
+    height: auto;
     bottom: -2px;
   }
 
@@ -9546,22 +9644,18 @@
   :root { --m: 1; }
 }
 
+/* The about visit and products «why» cards play their video from 768 (final layout 289:28 /
+   289:29); phones keep the mobile frames' photos and get no video source */
+@media (max-width: 767px) {
+  .ab-visit__video,
+  .shop-why__video {
+    display: none;
+  }
+}
+
 /* Narrow phones <360: the 360 composition scaled down */
 @media (max-width: 359px) {
   :root { --m: 0.8889; }
-}
-
-/* Home hero video on phones: the mobile still (hero-m) is the video frame at 1:1 × --m,
-   cropped at x 444, y 236; the video is placed the same way so the fade-in doesn't jump */
-@media (max-width: 480px) {
-  .hero__video {
-    inset: auto;
-    top: calc(-236px * var(--m));
-    left: calc(50% - 624px * var(--m));
-    width: calc(1920px * var(--m));
-    height: calc(1080px * var(--m));
-    object-fit: fill;
-  }
 }
 
 /* Catalog, tablets 700–1279: the mobile cards and how-to cells two per row
@@ -11138,9 +11232,9 @@
     margin-top: 40px;
   }
 
-  .howto__bg {
-    inset: 0;
-    object-fit: cover;
+  /* the column-3 photo has no slot in the two-column flow; cell 4 keeps its photo */
+  .howto__photo-cell {
+    display: none;
   }
 
   .howto__cells {

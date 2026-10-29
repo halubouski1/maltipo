@@ -206,16 +206,14 @@
     color: #000;
   }
 
-  /* ── Hero (Figma y 0–1004) ── */
+  /* ── Hero (Figma y 0–820) ── */
   @sec 0
 
-  /* One screen high (--fixed-vh, set in <head>); the note stays at the top, the tag,
-     title and buttons are pinned to the bottom with the Figma distances (frame 1004 high).
-     min-height keeps the two groups apart on short screens. */
+  /* One screen high (--fixed-vh, set in <head>); the video and the note stay at the top, the
+     tag, title and buttons are pinned to the bottom with the Figma distances (frame 820 high).
+     min-height = the frame, so the group never runs up into the video on short screens. */
   .hero {
-    /* min-height: on short phones the video (its puppy in the top ~520) stays clear of the
-       dark ramp and the bottom group (358 from the bottom); was 604 = note + 30 + group */
-    height: max(var(--fixed-vh, 100vh), M(880));
+    height: max(var(--fixed-vh, 100vh), M(820));
   }
 
   /* the bottom group is anchored to the inner box, so it must fill the hero */
@@ -223,31 +221,47 @@
     height: 100%;
   }
 
-  .hero__photo,
+  /* Figma 273:1115: the video 916 × 515 at (-191, 0); the still (hero-m) is its visible
+     part (source x 400–1155), so the fade-in doesn't jump */
   .hero__video {
-    object-position: 50% 0;
+    inset: auto;
+    top: 0;
+    left: L(-191);
+    width: M(916);
+    height: M(515);
+    object-fit: fill;
   }
 
-  /* Figma 80:1262: #191310 blurred 75px with its top edge at y 571, then the solid
-     background under the photo (from y 774): anchored to the bottom of the screen */
+  .hero__photo {
+    inset: auto;
+    top: 0;
+    left: L(0);
+    width: M(360);
+    height: M(515);
+    object-fit: fill;
+  }
+
+  /* Figma 80:1262: #191310 blurred 75px with its top edge at y 373, then the solid
+     background under the video (from y 576) down to the bottom of the screen */
   .hero__bg::after {
     content: "";
     position: absolute;
     left: 0;
     right: 0;
+    top: T(148);
     bottom: 0;
-    height: M(658);
+    height: auto;
     background: linear-gradient(to bottom, rgba(25, 19, 16, 0) 0, rgba(25, 19, 16, 0.16) M(75), rgba(25, 19, 16, 0.5) M(225), rgba(25, 19, 16, 0.84) M(300), #191310 M(428));
   }
 
   .hero__dot {
-    top: T(175);
+    top: T(101);
     left: L(21);
     right: auto;
   }
 
   .hero__line {
-    top: T(262);
+    top: T(188);
     left: L(28.97);
     right: auto;
     width: M(89.07);
@@ -255,7 +269,7 @@
   }
 
   .hero__note-text {
-    top: T(171);
+    top: T(97);
     left: L(68);
     right: auto;
     width: M(202);
@@ -945,15 +959,17 @@
     font-size: M(16);
     line-height: M(25);
     letter-spacing: M(-0.48);
-    color: #d7c8bf;
+    color: var(--c-white);
   }
 
+  /* fixed layout: the first column keeps Figma's 108 (auto layout widened it to 124) */
   .price-table {
     z-index: 1;
     top: T(6979);
     left: L(10);
     right: auto;
     width: M(340);
+    table-layout: fixed;
   }
 
   .price-table thead th {
@@ -964,6 +980,7 @@
   }
 
   .price-table thead th:first-child {
+    box-sizing: border-box;
     width: M(108);
   }
 
@@ -1000,18 +1017,20 @@
     z-index: 2;
   }
 
+  /* new frame: the section is 102 shorter (globe and chips moved up), y values + 184 */
   .delivery__inner {
-    height: M(1106);
+    height: M(1004);
   }
 
-  /* Figma 83:1642: globe 1385 × 780 at (-513, 7753) at 80 %, blurred ellipse mask 679 × 283 at (180, 8129) */
+  /* Figma 272:28: the new globe 1139 × 641 at (-390, 7606 + 184) at 80 %, through the blurred
+     ellipse 83:1641 (1234 × 515, σ 100; its 1634 × 915 render at -247, -185 in the globe box) */
   .delivery__globe {
-    top: T(7752.94);
-    left: L(-513.09);
-    width: M(1385.37);
-    height: M(779.68);
-    -webkit-mask: radial-gradient(M(816.6) M(421.2) at M(693) M(375.7), #000 52%, rgba(0, 0, 0, 0.5) 76%, transparent 100%);
-    mask: radial-gradient(M(816.6) M(421.2) at M(693) M(375.7), #000 52%, rgba(0, 0, 0, 0.5) 76%, transparent 100%);
+    top: T(7790);
+    left: L(-390);
+    width: M(1139);
+    height: M(641);
+    -webkit-mask: url("../assets/images/decor/globe-mask-m.svg") M(-247) M(-185) / M(1633.74) M(915) no-repeat;
+    mask: url("../assets/images/decor/globe-mask-m.svg") M(-247) M(-185) / M(1633.74) M(915) no-repeat;
   }
 
   .delivery__card {
@@ -1077,7 +1096,7 @@
   }
 
   .delivery__features {
-    top: T(8407);
+    top: T(8305);
     justify-content: flex-start;
   }
 
@@ -1135,6 +1154,7 @@
     top: T(8937);
     left: L(10);
     width: M(340);
+    table-layout: fixed;
   }
 
   .compare-table thead th {
@@ -1145,6 +1165,7 @@
   }
 
   .compare-table thead th:first-child {
+    box-sizing: border-box;
     width: M(134);
   }
 
@@ -1207,13 +1228,15 @@
     letter-spacing: M(-0.45);
   }
 
+  /* Figma 288; Chrome's wider Helvetica needs 300 for the frame's three lines */
   .avito .avito__rule + .avito__aside-text {
-    width: M(288);
+    width: M(300);
     margin-top: M(20);
   }
 
+  /* Figma 83:1726: 20 below the first paragraph */
   .avito .avito__aside-text + .avito__aside-text {
-    margin-top: 0;
+    margin-top: M(20);
   }
 
   /* Figma 194:9: 556 × 329 window at (-46, 9894), photo aligned to its top */
@@ -1388,8 +1411,14 @@
   }
   @card 18 13835
 
-  .video__poster {
+  /* Figma 83:1798: the clip covers the portrait card a little left of its centre (x 44 %) */
+  .video__poster,
+  .video__video {
+    inset: 0;
+    width: 100%;
+    height: 100%;
     border-radius: M(10);
+    object-position: 44% 50%;
   }
 
   /* the reveal entrance ends at inset(0): leave room for the button below the card */
@@ -1454,8 +1483,9 @@
   /* ── Care (Figma y 14722–16005), with the second form ── */
   @sec 14722
 
+  /* new frame: the bed photo is smaller, so everything under it is 139 higher (y values + 286) */
   .care__inner {
-    height: M(1283);
+    height: M(1144);
   }
 
   .care__form {
@@ -1483,8 +1513,9 @@
     background-image: linear-gradient(101.69deg, #f5decc 3.39%, #453931 263.08%);
   }
 
-  .care__shadow--outer { top: T(15677.7); left: L(-156.9); width: M(824); }
-  .care__shadow--inner { top: T(15714.4); left: L(-51.97); width: M(623.6); }
+  /* Figma 83:1822 / 83:1821: ellipses 435 × 62 (blur 47.4) and 348 × 50 (blur 20.8) under the bed */
+  .care__shadow--outer { top: T(15569.6); left: L(-57.4); width: M(529.8); }
+  .care__shadow--inner { top: T(15602.2); left: L(15.2); width: M(389.6); }
 
   .care__fade {
     top: T(15599.8);
@@ -1494,11 +1525,12 @@
     background: linear-gradient(to bottom, rgba(25, 19, 16, 0) 0, rgba(25, 19, 16, 0.16) M(200), rgba(25, 19, 16, 0.5) M(300), rgba(25, 19, 16, 0.84) M(400), #191310 M(600));
   }
 
+  /* Figma 83:1825: 443 × 295 at (-22, 15104 + 286) */
   .care__puppy {
-    top: T(15344.34);
-    left: L(-129.23);
-    width: M(742.5);
-    height: M(495);
+    top: T(15390);
+    left: L(-22);
+    width: M(443);
+    height: M(295);
   }
 
   .care__card {
@@ -1521,7 +1553,7 @@
   .care__counter {
     display: block;
     position: absolute;
-    top: T(15856);
+    top: T(15717);
     left: L(23);
     font-size: M(15);
     font-weight: 500;
@@ -1535,7 +1567,7 @@
   }
 
   .care__items {
-    top: T(15881);
+    top: T(15742);
     padding: 0 calc(50% - 157px * var(--m));
     scroll-padding: 0 calc(50% - 157px * var(--m));
   }
@@ -1742,11 +1774,12 @@
     transform: rotate(78.1deg);
   }
 
+  /* Figma 273:1140 (new frame, 225 below the card top): the puppy over the copy with its shadow */
   .contact-card__puppy {
-    top: T(18529);
-    left: L(-31);
-    width: M(517);
-    height: M(395);
+    top: T(18561);
+    left: L(-140);
+    width: M(593.6);
+    height: M(396);
   }
 
   .contact-card__label {
@@ -1758,8 +1791,9 @@
     --icon-size: M(19);
   }
 
+  /* new frame: the link sits under the address (Figma 83:2352, 18083 + 425) */
   .contact-card__call {
-    top: T(19066);
+    top: T(18508);
     left: L(40);
   }
 
@@ -1791,14 +1825,14 @@
   }
 
   .contact-card__year-rule {
-    width: M(198);
+    width: M(129);
     margin-left: M(16);
   }
 
-  /* Figma 83:2362: the to-top button sits above the year line, on the right */
+  /* Figma 83:2362: the to-top button sits level with the year line, on the right */
   .contact-card__year .to-top {
     position: absolute;
-    top: M(-34);
+    top: M(23);
     left: M(239);
     width: M(41);
     height: M(41);
@@ -1822,15 +1856,27 @@
   }
 
   .contact-card__address {
+    position: relative;
     width: M(265);
     margin-top: M(15);
-    font-size: M(21);
+    font-size: M(18);
     line-height: M(24);
     white-space: normal;
   }
 
+  /* Figma 273:1139: a hairline between the label and the address */
+  .contact-card__address::before {
+    content: "";
+    position: absolute;
+    top: M(-7);
+    left: 0;
+    width: M(247);
+    height: 1px;
+    background: var(--c-year-rule);
+  }
+
   .socials {
-    top: T(18949);
+    top: T(19006);
     left: L(40);
     right: auto;
     align-items: flex-start;
@@ -1954,16 +2000,14 @@
      The frame shows 4 cards; the page has 6, so everything after the list sits
      2 × 480 lower than in the frame (sections are in flow, positions section-relative). */
 
-  /* ── Hero card (Figma 194:17: 10,10 340 × 764; text 194:23–194:59) ── */
+  /* ── Hero card (Figma 194:17: photo 10,10 340 × 409; text 194:23–194:59) ── */
   @sec 0
 
   /* One screen high (--fixed-vh) like the home hero: the card ends 75 above the
-     screen bottom (Figma 1025 / 1100), the photo fills it down to 251 above the card
-     bottom (Figma 774), the text group is pinned to the card bottom (card 1015 high).
-     min-height keeps a strip of photo above the tag on short screens. */
-  /* min-height: on short phones the photo/video stays visible above the dark ramp and the text */
+     screen bottom (Figma 744 / 819), the photo is the card's top 409 (new frame), the
+     text group is pinned to the card bottom. min-height = the frame's hero. */
   .cat-hero {
-    height: max(var(--fixed-vh, 100vh), M(940));
+    height: max(var(--fixed-vh, 100vh), M(819));
   }
 
   .cat-hero__card {
@@ -1977,35 +2021,33 @@
     background: none;
   }
 
+  /* the still is the video's visible part (catalog-hero-m: source x 347–1161, y 101–1080) */
   .cat-hero__photo {
-    height: calc(100% - 251px * var(--m));
+    height: M(409);
     object-position: 50% 0;
   }
 
-  /* Figma 204:15: the video 1224 × 689 at (-302, -42) in the card, under the dark fade */
+  /* Figma 204:15: the video 802 × 451 at (-145, -42) in the card: it ends at the photo bottom */
   .cat-hero__card > .cat-hero__video {
     z-index: 0;
     inset: auto;
     top: M(-42);
-    left: M(-302);
-    width: M(1224);
-    height: M(689);
+    left: M(-145);
+    width: M(802);
+    height: M(451);
     object-fit: fill;
-    /* cut at the photo bottom (card = hero − 85, photo = card − 251; video top −42):
-       689 − (hero − 85 − 251 + 42) = 983 − hero */
-    clip-path: inset(0 0 max(0px, calc(983px * var(--m) - max(var(--fixed-vh, 100vh), 940px * var(--m)))) 0);
   }
 
-  /* Figma 194:22: #191310 blurred 75px with its top edge at y 541 (same ramp as the
-     home hero): from 458 above the photo bottom to solid 30 above it */
+  /* Figma 194:22: #191310 blurred 75px with its top edge at y 306 (same ramp as the
+     home hero): from y 81 down to the photo bottom (409 in the card), then the page */
   /* reaches 2px past the photo bottom, so no sub-pixel strip of the video shows under it */
   .cat-hero__card::after {
     content: "";
     position: absolute;
     left: 0;
     right: 0;
-    bottom: calc(M(251) - 2px);
-    height: calc(M(458) + 2px);
+    top: M(71);
+    height: calc(M(338) + 2px);
     background: linear-gradient(to bottom, rgba(25, 19, 16, 0) 0, rgba(25, 19, 16, 0.16) M(75), rgba(25, 19, 16, 0.5) M(225), rgba(25, 19, 16, 0.84) M(300), #191310 M(428));
   }
 
@@ -2015,7 +2057,8 @@
 
   /* the veil (style.css) covers the photo only, not the page colour under it */
   .cat-hero__card::before {
-    bottom: M(251);
+    bottom: auto;
+    height: M(409);
   }
 
   .cat-hero__tag {
@@ -2346,7 +2389,7 @@
     margin-top: M(50);
   }
 
-  .howto__bg,
+  .howto__photo-cell,
   .howto__count,
   .howto__line {
     display: none;
@@ -2430,13 +2473,25 @@
     object-position: 44% 0;
   }
 
+  /* new frame (hero 867): the still in a 16:9 box 821.5 × 462.3 at (-184.2, -3.9), cover, centred */
+  .page-hero.page-hero--reviews {
+    height: max(var(--fixed-vh, 100vh), M(867));
+  }
+
   .page-hero--reviews .page-hero__photo {
     position: absolute;
-    top: 0;
-    left: calc(50% - 599.7px * var(--m));
-    width: M(1313.9);
-    height: M(774);
-    object-position: 0 0;
+    top: M(-3.9);
+    left: calc(50% - 364.2px * var(--m));
+    width: M(821.5);
+    height: M(462.3);
+    object-fit: cover;
+    object-position: 50% 50%;
+  }
+
+  /* Figma 195:863: the ramp's top edge at y 371, anchored to the top like the photo */
+  .page-hero--reviews .page-hero__bg::after {
+    top: M(146);
+    height: auto;
   }
 
   /* Figma 195:863: #191310 blurred, top edge at y 571 (the home hero ramp), solid to the bottom */
@@ -2505,8 +2560,10 @@
     width: M(2061);
     height: M(1714);
     background: radial-gradient(M(1081.5) M(1277.5) at M(957.5) M(495), var(--glow-80));
-    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 M(300));
-    mask-image: linear-gradient(to bottom, transparent, #000 M(300));
+    /* its top 205 sit under the hero (which hides them); Figma's blurred ramp 195:863 still
+       covers ~85 % of it at the hero bottom and lets it through by y 1150: fade in from there */
+    -webkit-mask-image: linear-gradient(to bottom, transparent M(205), rgba(0, 0, 0, 0.15) M(206), #000 M(490));
+    mask-image: linear-gradient(to bottom, transparent M(205), rgba(0, 0, 0, 0.15) M(206), #000 M(490));
   }
 
   .graduates--reviews {
@@ -2999,18 +3056,30 @@
      The frame repeats copy from other pages in places (hero tag and text, the docs
      title, the visit kicker, the video card); the page keeps its own copy. */
 
-  /* ── Hero card (Figma 197:1989: 10,10 340 × 764; text 197:1999–197:2217): the catalog hero ── */
-  /* Figma 197:2205: the desktop photo (1398 × 786 in the frame), puppy at the centre */
-  .cat-hero--about .cat-hero__photo {
-    object-position: 51% 0;
+  /* ── Hero card (Figma 197:1989; text 197:1999–197:2217): the catalog hero ── */
+  /* new frame: the hero is 857 (card bottom = button bottom 783, 74 above the hero bottom) */
+  .cat-hero.cat-hero--about {
+    height: max(var(--fixed-vh, 100vh), M(857));
   }
 
-  /* The ramp is 458 of the 764 photo in Figma (60 %). On screens shorter than the
-     frame's proportions the photo is shorter, so the ramp follows the photo's height
-     instead of covering all of it */
+  /* Figma 197:2205: the desktop photo 912 × 514 at (-217, 0) in the card (cover, centred) */
+  .cat-hero--about .cat-hero__photo {
+    position: relative;
+    left: M(-217);
+    width: M(912);
+    max-width: none;
+    height: M(514);
+    object-position: 50% 50%;
+  }
+
+  /* Figma 197:1998: the ramp's top edge at y 388: from 153 in the card to the photo bottom */
   .cat-hero--about .cat-hero__card::after {
-    height: calc(min(M(458), (100% - 251px * var(--m)) * 0.6) + 2px);
-    background: linear-gradient(to bottom, rgba(25, 19, 16, 0) 0, rgba(25, 19, 16, 0.16) 16.4%, rgba(25, 19, 16, 0.5) 49.1%, rgba(25, 19, 16, 0.84) 65.5%, #191310 93.4%);
+    top: M(153);
+    height: calc(M(361) + 2px);
+  }
+
+  .cat-hero--about .cat-hero__card::before {
+    height: M(514);
   }
 
   /* Distances from the card bottom (Figma 1031): tag 359, title 237, text 124. The page's
@@ -3266,8 +3335,9 @@
   /* ── Care conditions (Figma 2950–4060): bag, one chip at a time with a counter and arrows ── */
   @sec 2950
 
+  /* new frame: 34 taller (the story block starts 34 lower) */
   .ab-care__inner {
-    height: M(1110);
+    height: M(1144);
   }
 
   /* Figma 197:2309: the home care glow at (-314.1, 3066) */
@@ -3372,11 +3442,12 @@
     height: M(2489);
   }
 
-  /* Figma 198:2357: the home «Как купить» glow, 997 × 758 rotated 53.4°, centred at (195, 4866) */
+  /* Figma 198:2357: the home «Как купить» glow, 997 × 758 rotated 53.4°, centred at (195, 4866);
+     new frame: its box starts 34 lower in the section (y values here are the old frame's) */
   .ab-story__glow {
     display: block;
     position: absolute;
-    top: T(4107.8);
+    top: T(4141.8);
     left: L(-802.3);
     width: M(1994.8);
     height: M(1516.4);
@@ -3713,32 +3784,35 @@
   /* ══ Contacts page (contacts.html, Figma mobile 201:2, 360 × 3815) ══ */
   @sec 0
 
-  /* The hero runs to the map (Figma 1836): photo to y 1075, tag / title at the top,
-     phone / e-mail / address right-aligned at 770, the form from 1105, socials at 1646 */
+  /* The hero runs to the map (Figma 1634; new frame): the photo 0–515, tag / title under it
+     at 428, phone / e-mail / address right-aligned at 568, the form from 903, socials at 1423 */
   .ct-hero {
-    height: M(1824);
+    height: M(1622);
   }
 
-  /* Figma 201:282: the photo at 1897 × 1068, its window at x 832 (54 %) */
   .ct-hero__bg {
     bottom: auto;
-    height: M(1075);
+    height: M(700);
   }
 
+  /* Figma 201:282: the photo 915 × 515 at x -318 (cover: 318 / 555 = 57.3 %) */
   .ct-hero__photo {
-    object-position: 54% 0;
+    height: M(515);
+    object-position: 57.3% 0;
   }
 
-  /* Figma 201:303 / 201:305: black → clear over the top 524, clear → black from 465 to 1173 */
+  /* Figma 273:1606 (#191310 blurred 150, top edge at y 485) over 201:303 (black 66 % → clear at
+     312) and 201:305 (clear at 274 → black 53 % at the photo bottom) */
   .ct-hero__bg::after {
     height: 100%;
     background:
-      linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0, rgba(0, 0, 0, 0) M(524)),
-      linear-gradient(to bottom, rgba(0, 0, 0, 0) M(465), rgba(0, 0, 0, 0.86) 100%);
+      linear-gradient(to bottom, rgba(25, 19, 16, 0) M(260), rgba(25, 19, 16, 0.16) M(335), rgba(25, 19, 16, 0.5) M(485), rgba(25, 19, 16, 0.84) M(560), #191310 M(688)),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.66) 0, rgba(0, 0, 0, 0) M(312)),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0) M(274), rgba(0, 0, 0, 0.53) M(515), rgba(0, 0, 0, 0) M(515));
   }
 
   .ct-hero .ct-hero__tag {
-    top: T(146);
+    top: T(428);
     bottom: auto;
     left: L(20);
     min-width: M(209);
@@ -3755,7 +3829,7 @@
 
   /* Figma 201:12: 78.4px Light in a 70px line box at 196.4 → a 1.0 line box at 192.3 */
   .ct-hero .ct-hero__title {
-    top: T(192.3);
+    top: T(459.9);
     bottom: auto;
     left: L(20);
     font-size: M(78.39);
@@ -3763,7 +3837,7 @@
   }
 
   .ct-hero .ct-info {
-    top: T(770);
+    top: T(568);
     right: R(338);
     gap: M(27);
   }
@@ -3789,7 +3863,7 @@
   }
 
   .ct-hero .ct-form {
-    top: T(1105);
+    top: T(903);
     bottom: auto;
     left: L(20);
     width: M(320);
@@ -3844,7 +3918,7 @@
 
   /* Figma 201:330–201:349: telegram · max · рутуб / whatsapp · вконтакте, centred rows, 21px */
   .ct-hero .ct-hero__socials {
-    top: T(1646);
+    top: T(1444);
     bottom: auto;
     left: 0;
     right: 0;
@@ -3889,7 +3963,7 @@
     height: M(5);
   }
 
-  /* Figma 201:351: the hairline above the socials (y 1605) */
+  /* Figma 201:351: the hairline above the socials (y 1403) */
   .ct-hero__socials::before {
     content: "";
     position: absolute;
@@ -3900,7 +3974,7 @@
     background: rgba(255, 255, 255, 0.15);
   }
 
-  /* Figma 201:353: the map 21,1836 320 × 598, radius 15; the footer columns 100 below it */
+  /* Figma 201:353: the map 21,1634 320 × 598, radius 15; the footer columns 100 below it */
   .ct-map {
     padding: M(12) 0 0;
   }
@@ -3911,7 +3985,7 @@
     margin-left: L(21);
   }
 
-  /* no contacts card: the columns (945 below the footer top) at 2534 = 100 under the map */
+  /* no contacts card: the columns (945 below the footer top) at 2332 = 100 under the map */
   body:has(.ct-map) .footer .container {
     margin-top: M(-845);
   }
@@ -4074,14 +4148,21 @@
      screen bottom, the photo 217 above the card bottom ── */
   @sec 0
 
-  .cat-hero--delivery .cat-hero__card {
-    bottom: M(13);
+  /* new frame: the hero is 857, the card ends 14 above it (button bottom 843) */
+  .cat-hero.cat-hero--delivery {
+    height: max(var(--fixed-vh, 100vh), M(857));
   }
 
-  /* Figma 201:716: the video's first frame cut to the card (delivery-hero-m: x 686–1167 of 1920);
-     the video covers the same area at the same crop */
+  .cat-hero--delivery .cat-hero__card {
+    bottom: M(14);
+  }
+
+  /* Figma 201:716: the photo is the card's top 626, 207 above its bottom; the video's first
+     frame cut to it (delivery-hero-m: x 666–1253 of 1920); the video covers it at the same crop */
   .cat-hero--delivery .cat-hero__photo {
-    height: calc(100% - 217px * var(--m));
+    position: static;
+    width: 100%;
+    height: calc(100% - 207px * var(--m));
     border-radius: M(10);
     object-position: 50% 0;
   }
@@ -4089,34 +4170,37 @@
   .cat-hero--delivery .cat-hero__card > .cat-hero__video {
     inset: 0 0 auto;
     width: 100%;
-    height: calc(100% - 217px * var(--m));
+    height: calc(100% - 207px * var(--m));
     border-radius: M(10);
     object-fit: cover;
-    object-position: 47.7% 0;
+    object-position: 50% 0;
     clip-path: none;
   }
 
-  /* Figma 201:718: black, clear at y 442 → 70 % at the photo bottom (774) */
+  /* Figma 201:718: black, clear at y 348 → 51 % at the photo bottom (636) */
   .cat-hero--delivery .cat-hero__card::after {
-    bottom: M(217);
-    height: M(332);
+    top: auto;
+    bottom: M(207);
+    height: M(288);
     border-radius: 0 0 M(10) M(10);
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51));
   }
 
   .cat-hero--delivery .cat-hero__card::before {
-    bottom: M(217);
+    height: auto;
+    bottom: M(207);
     border-radius: M(10);
   }
 
+  /* distances from the card bottom (843): tag 339, title 223, text 104 */
   .cat-hero--delivery .cat-hero__tag {
-    bottom: M(355);
+    bottom: M(339);
     left: M(16);
     min-width: M(191);
   }
 
   .cat-hero--delivery .cat-hero__title {
-    bottom: M(239);
+    bottom: M(223);
     left: M(16);
     width: M(314);
     font-size: M(33);
@@ -4125,7 +4209,7 @@
   }
 
   .cat-hero--delivery .cat-hero__text {
-    bottom: M(103);
+    bottom: M(104);
     left: M(10);
     width: M(320);
   }
@@ -4405,16 +4489,17 @@
      pinned to the bottom) ── */
   @sec 0
 
+  /* new frame: card 340 × 606, products from 685 */
   .cat-hero.cat-hero--shop {
-    height: M(844);
+    height: M(685);
   }
 
   .cat-hero--shop .cat-hero__card {
     bottom: auto;
-    height: M(764);
+    height: M(606);
   }
 
-  /* the video's first frame cut to the card (shop-hero-m: x 720–1201 of 1920, centred) */
+  /* the video's first frame cut to the card (shop-hero-m: x 657–1261 of 1920, centred) */
   .cat-hero--shop .cat-hero__photo {
     height: calc(100% - 1px); /* like the video below: no undarkened row at the card's fractional bottom edge */
     border-radius: M(10);
@@ -4436,12 +4521,14 @@
      the veil run 2px past the card bottom (the card clips them): the video layer snaps its edge
      to the next device pixel, and a row of undarkened video showed as a light line */
   .cat-hero--shop .cat-hero__card::after {
+    top: auto;
     bottom: -2px;
     height: calc(M(332) + 2px);
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7) calc(100% - 2px));
   }
 
   .cat-hero--shop .cat-hero__card::before {
+    height: auto;
     bottom: -2px;
   }
 
